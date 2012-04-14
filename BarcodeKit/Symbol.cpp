@@ -13,6 +13,8 @@
 
 using namespace std;
 
+#pragma mark --Constructor methods--
+
 Symbol::Symbol( )
 {
 	
@@ -38,63 +40,71 @@ Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidt
 	
 }
 
-int getLeadingElement( )
+
+#pragma mark --Accessor methods--
+
+int Symbol::getLeadingElement( )
 {
 	return 1;
 }
 
-int getIntercharGap( )
+int Symbol::getIntercharGap( )
 {
 	return 1;
 }
 
-int getSymbolType( )
+int Symbol::getSymbolType( )
 {
 	return 1;
 }
 
-vector<int>* getEncodedData( )
+vector<int>* Symbol::getEncodedData( )
 {
-	
+	return 0;
 }
 
-int getForcePostion( )
+int Symbol::getForcePostion( )
 {
 	return 1;
 }
 
-void setLeadingElement( int le )
+void Symbol::setLeadingElement( int le )
+{
+	Symbol::leadingElement = le;
+}
+
+void Symbol::setIntercharGap( int icg )
+{
+	Symbol::intercharacterGap = icg;
+}
+
+void Symbol::setSymbolType( int st )
+{
+	Symbol::symbolType = st;
+}
+
+void Symbol::setEncodedData( vector<int>* ec )
 {
 	
 }
 
-void setIntercharGap( int icg )
+void Symbol::setForcedPosition( int fp )
 {
 	
 }
 
-void setSymbolType( int st )
-{
-	
-}
 
-void setEncodedData( vector<int>* ec )
-{
-	
-}
+#pragma mark --Private internal methods--
 
-void setForcedPosition( int fp )
-{
-	
-}
-
-bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int>* destination)
+bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> destination )
 {
 	int iter;
-	for ( iter = 0; iter < sourceLength; iter++ ) 
+	destination.clear();							//empty the destination
+	destination.resize(sourceLength);				//resize it as we don't know that source and destination are same size
+	for ( iter = 0; iter < sourceLength; iter++ )	//loop through the source assigning to the destination
 	{
 		int holdingVar = source[iter];
-		destination-> insert(iter, holdingVar);
+		destination.assign(iter, holdingVar);
 	}
 	
 	return 1;
