@@ -101,13 +101,26 @@ void Symbol::setForcedPosition( int fp )
 bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination )
 {
 	int iter;
-	destination.clear( );							//empty the destination
-	destination.resize( sourceLength );				//resize it as we don't know that source and destination are same size
-	for ( iter = 0; iter < sourceLength; iter++ )	//loop through the source assigning to the destination
+	try
 	{
-		int holdingVar = source[ iter ];
-		destination.assign( iter, holdingVar );
-		cout << destination[iter] << endl;			//DEBUG 
+		destination.clear( );							//empty the destination
+		destination.resize( sourceLength );				//resize it as we don't know that source and destination are same size
+		for ( iter = 0; iter < sourceLength; iter++ )	//loop through the source assigning to the destination
+		{
+			int holdingVar = source[ iter ];
+			destination.assign( iter, holdingVar );
+			cout << destination[iter] << endl;			//DEBUG 
+		}
+		if ( destination.capacity( ) == 0 )
+		{
+			throw "Insufficient storage available.";
+		}
 	}
+	catch ( const char* str )
+	{
+		cerr << str << " Program terminated." << endl;
+		exit( 0 );
+	}
+	
 	return 1;
 }
