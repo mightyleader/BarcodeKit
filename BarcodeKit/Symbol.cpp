@@ -85,12 +85,9 @@ void Symbol::setSymbolType( int st )
 	Symbol::symbolType = st;
 }
 
-void Symbol::setEncodedData( vector<int>* ec )
+void Symbol::setEncodedData(vector<int> const& ec)
 {
-	
-	Symbol::encodedSymbol.clear( );
-	Symbol::encodedSymbol.resize( ec->size( ) );
-	//Symbol::encodedSymbol.insert( 0, ec->begin( ), ec->end( ) ); //http://stackoverflow.com/questions/10156404/vector-in-c-not-responding-to-one-method-but-fine-with-others
+    Symbol::encodedSymbol = ec;
 }
 
 void Symbol::setForcedPosition( int fp )
@@ -101,7 +98,7 @@ void Symbol::setForcedPosition( int fp )
 
 #pragma mark --Private internal methods--
 
-bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> destination )
+bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination )
 {
 	int iter;
 	destination.clear( );							//empty the destination
@@ -110,6 +107,7 @@ bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> desti
 	{
 		int holdingVar = source[ iter ];
 		destination.assign( iter, holdingVar );
+		cout << destination[iter] << endl;			//DEBUG 
 	}
 	return 1;
 }

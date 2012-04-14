@@ -35,7 +35,7 @@ class Symbol
 	void setLeadingElement( int le );
 	void setIntercharGap( int icg );
 	void setSymbolType( int st );
-	void setEncodedData( vector<int>* ec );
+	void setEncodedData( vector<int> const& ec );
 	void setForcedPosition( int fp );
 	
 	
@@ -47,7 +47,7 @@ class Symbol
 	vector<int>encodedSymbol;																	//vector of element widths as multiples of X width
 	int forcePosition;																			//int value to specify ultimate position in destination array
 	
-	bool arrayIntoVector( int source[ ], int sourceLength, vector<int> destination);
+	bool arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination );
 };
 
 #endif
