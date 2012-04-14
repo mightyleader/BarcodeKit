@@ -45,27 +45,29 @@ Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidt
 
 int Symbol::getLeadingElement( )
 {
-	return 1;
+	return Symbol::leadingElement;
 }
 
 int Symbol::getIntercharGap( )
 {
-	return 1;
+	return Symbol::intercharacterGap;
 }
 
 int Symbol::getSymbolType( )
 {
-	return 1;
+	return Symbol::symbolType;
 }
 
 vector<int>* Symbol::getEncodedData( )
 {
-	return 0;
+	vector<int> *tempVector = new vector<int>;
+	tempVector->insert( tempVector->begin( ), Symbol::encodedSymbol.begin( ), Symbol::encodedSymbol.end( ) );
+	return tempVector;
 }
 
 int Symbol::getForcePostion( )
 {
-	return 1;
+	return Symbol::forcePosition;
 }
 
 void Symbol::setLeadingElement( int le )
@@ -86,11 +88,14 @@ void Symbol::setSymbolType( int st )
 void Symbol::setEncodedData( vector<int>* ec )
 {
 	
+	Symbol::encodedSymbol.clear( );
+	Symbol::encodedSymbol.resize( ec->size( ) );
+	//Symbol::encodedSymbol.insert( 0, ec->begin( ), ec->end( ) ); //http://stackoverflow.com/questions/10156404/vector-in-c-not-responding-to-one-method-but-fine-with-others
 }
 
 void Symbol::setForcedPosition( int fp )
 {
-	
+	Symbol::forcePosition = fp;
 }
 
 
@@ -99,13 +104,12 @@ void Symbol::setForcedPosition( int fp )
 bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> destination )
 {
 	int iter;
-	destination.clear();							//empty the destination
-	destination.resize(sourceLength);				//resize it as we don't know that source and destination are same size
+	destination.clear( );							//empty the destination
+	destination.resize( sourceLength );				//resize it as we don't know that source and destination are same size
 	for ( iter = 0; iter < sourceLength; iter++ )	//loop through the source assigning to the destination
 	{
-		int holdingVar = source[iter];
-		destination.assign(iter, holdingVar);
+		int holdingVar = source[ iter ];
+		destination.assign( iter, holdingVar );
 	}
-	
 	return 1;
 }
