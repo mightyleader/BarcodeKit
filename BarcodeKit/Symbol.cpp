@@ -9,6 +9,7 @@
 
 #include "Symbol.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -89,5 +90,12 @@ void setForcedPosition( int fp )
 
 bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int>* destination)
 {
+	int iter;
+	for ( iter = 0; iter < sourceLength; iter++ ) 
+	{
+		int holdingVar = source[iter];
+		destination-> insert(iter, holdingVar);
+	}
+	
 	return 1;
 }
