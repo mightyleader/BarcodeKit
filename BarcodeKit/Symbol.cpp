@@ -46,6 +46,11 @@ Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidt
 	this->symbolType = ofType;
 }
 
+Symbol::~Symbol()
+{
+	
+}
+
 
 #pragma mark --Accessor methods--
 
@@ -100,6 +105,8 @@ void Symbol::setForcedPosition( int fp )
 {
 	Symbol::forcePosition = fp;
 }
+
+
 
 
 #pragma mark --Private internal methods--
