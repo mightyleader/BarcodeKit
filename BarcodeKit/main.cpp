@@ -12,15 +12,15 @@
 
 using namespace std;
 
-int main(int argc, const char * argv[])
+int main( int argc, const char * argv[ ] )
 {	
 	//Unit Test Data for Symbol
-	vector<int> *testVector = new vector<int>();
-	testVector->push_back(1);
-	testVector->push_back(2);
-	testVector->push_back(3);
-	testVector->push_back(4);
-	testVector->push_back(1);
+	vector<int> *testVector = new vector<int>( );
+	testVector->push_back( 1 );
+	testVector->push_back( 2 );
+	testVector->push_back( 3 );
+	testVector->push_back( 4 );
+	testVector->push_back( 1 );
 	int st = 1, ic = 1, le = 0, fp = 5;
 	
 	//unit Test - Symbol

@@ -46,7 +46,7 @@ Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidt
 	this->symbolType = ofType;
 }
 
-Symbol::~Symbol()
+Symbol::~Symbol( )
 {
 	
 }
@@ -122,7 +122,6 @@ void Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &dest
 		{
 			int holdingVar = source[ iter ];
 			destination.assign( iter, holdingVar );
-			//cout << destination[iter] << endl;			//DEBUG 
 		}
 		if ( destination.capacity( ) == 0 )
 		{
