@@ -47,7 +47,7 @@ class Symbol
 	vector<int>encodedSymbol;																	//vector of element widths as multiples of X width
 	int forcePosition;																			//int value to specify ultimate position in destination array
 	
-	bool arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination );
+	void arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination );
 };
 
 #endif

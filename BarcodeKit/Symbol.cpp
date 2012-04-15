@@ -22,22 +22,28 @@ Symbol::Symbol( )
 
 Symbol::Symbol( int characterData[ ], int dataLength )
 {
-	
+	this->arrayIntoVector(characterData, dataLength, this->encodedSymbol);
 }
 
 Symbol::Symbol( int characterData[ ], int dataLength, int startWith )
 {
-	
+	this->arrayIntoVector(characterData, dataLength, this->encodedSymbol);
+	this->leadingElement = startWith;
 }
 
 Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidth )
 {
-	
+	this->arrayIntoVector(characterData, dataLength, this->encodedSymbol);
+	this->leadingElement = startWith;
+	this->intercharacterGap = gapWidth;
 }
 
 Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidth, int ofType )
 {
-	
+	this->arrayIntoVector(characterData, dataLength, this->encodedSymbol);
+	this->leadingElement = startWith;
+	this->intercharacterGap = gapWidth;
+	this->symbolType = ofType;
 }
 
 
@@ -85,7 +91,7 @@ void Symbol::setSymbolType( int st )
 	Symbol::symbolType = st;
 }
 
-void Symbol::setEncodedData(vector<int> const& ec)
+void Symbol::setEncodedData( vector<int> const& ec )
 {
     Symbol::encodedSymbol = ec;
 }
@@ -98,7 +104,7 @@ void Symbol::setForcedPosition( int fp )
 
 #pragma mark --Private internal methods--
 
-bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination )
+void Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination )
 {
 	int iter;
 	try
@@ -109,11 +115,11 @@ bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &dest
 		{
 			int holdingVar = source[ iter ];
 			destination.assign( iter, holdingVar );
-			cout << destination[iter] << endl;			//DEBUG 
+			//cout << destination[iter] << endl;			//DEBUG 
 		}
 		if ( destination.capacity( ) == 0 )
 		{
-			throw "Insufficient storage available.";
+			throw "Array into Vector failed. Insufficient storage available.";
 		}
 	}
 	catch ( const char* str )
@@ -121,6 +127,4 @@ bool Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &dest
 		cerr << str << " Program terminated." << endl;
 		exit( 0 );
 	}
-	
-	return 1;
 }
