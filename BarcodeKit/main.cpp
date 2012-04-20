@@ -8,12 +8,17 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 #include "Symbol.h"
+#include "rapidxml.hpp"
 
 using namespace std;
+using namespace rapidxml;
 
 int main( int argc, const char * argv[ ] )
-{	
+{
+	/*
 	//Unit Test Data for Symbol
 	vector<int> *testVector = new vector<int>( );
 	testVector->push_back( 1 );
@@ -46,6 +51,84 @@ int main( int argc, const char * argv[ ] )
 	delete testVector;
 	delete versionOne;
 	//End Unit Test - Symbol
+	*/
+	
+	//Test code for RapidXML parser
+	ifstream xmlfile ( "xml_test.xml", ios::in );
+	
+	vector<string> xmlcontent;
+	string xmlentry;
+	string xmltoparse;
+
+	if ( xmlfile.is_open( ) )							//open the file
+	{
+		while ( getline( xmlfile, xmlentry ) )			//get the data
+		{
+			xmlcontent.push_back( xmlentry + "\n" );	//add data to vector
+		}
+		xmlfile.close( );
+		
+		for ( int i = 0; i < xmlcontent.size( ); i++ )	//iterate through vector into string
+		{
+			xmltoparse += xmlcontent[ i ];
+		}
+		cout << xmltoparse.length( ) << endl;			//DEBUG check string length
+	}
+	
+	char * cxml = new char [ xmltoparse.size( ) + 1 ];	//copy string into cstring
+	strcpy ( cxml, xmltoparse.c_str( ) );
+	
+	xml_document< > parsed_xml;
+	parsed_xml.parse< 0 >( cxml );
+	
+	xml_node< > *node;
+	xml_node< > *anothernode;
+	
+	node = parsed_xml.first_node("barcode");
+	cout << "Name of my first node is: " << node->name( ) << "\n";
+	
+	for ( anothernode = node->first_node( ); 
+		  anothernode; 
+		  anothernode = anothernode->first_node( ) ) 
+	{
+		cout << "Name of next child node is: " << anothernode->name( ) << "\n";
+		if ( anothernode->first_node( ) == 0 ) 
+		{
+			anothernode = anothernode->next_sibling( );
+			cout << "Name of next sibling node is: " << anothernode->name( ) << "\n";
+			for ( xml_attribute< > *attr = anothernode->first_attribute( );
+				 attr; attr = attr->next_attribute( ) )
+			{
+				cout << "Node has attribute " << attr->name( ) << " ";
+				cout << "with value " << attr->value( ) << "\n";
+			}
+			
+		}
+	}
+	
+	
+
+	
+	//	for ( xml_attribute< > *attr = node->first_attribute( );
+	//		 attr; attr = attr->next_attribute( ) )
+	//	{
+	//		cout << "Node has attribute " << attr->name( ) << " ";
+	//		cout << "with value " << attr->value( ) << "\n";
+	//	}
+	//	
+	//	xml_node< > *nextnode = node->first_node();
+	//	cout << "Name of my next node is: " << nextnode->name( ) << "\n";
+	
+	for ( xml_attribute< > *attr = anothernode->first_attribute( );
+		 attr; attr = attr->next_attribute( ) )
+		{
+			cout << "Node has attribute " << attr->name( ) << " ";
+			cout << "with value " << attr->value( ) << "\n";
+		}	
+	
+
+	
+	//End XML Test code
 	
     return 0;
 }
