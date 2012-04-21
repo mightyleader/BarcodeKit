@@ -18,7 +18,6 @@ using namespace rapidxml;
 
 int main( int argc, const char * argv[ ] )
 {
-	/*
 	//Unit Test Data for Symbol
 	vector<int> *testVector = new vector<int>( );
 	testVector->push_back( 1 );
@@ -51,7 +50,7 @@ int main( int argc, const char * argv[ ] )
 	delete testVector;
 	delete versionOne;
 	//End Unit Test - Symbol
-	*/
+	
 	
 	//Test code for RapidXML parser
 	ifstream xmlfile ( "xml_test.xml", ios::in );
@@ -81,53 +80,36 @@ int main( int argc, const char * argv[ ] )
 	xml_document< > parsed_xml;
 	parsed_xml.parse< 0 >( cxml );
 	
-	xml_node< > *node;
-	xml_node< > *anothernode;
+	xml_node< > *node = NULL;
+	node = parsed_xml.first_node( )->first_node()->next_sibling()->first_node();
 	
-	node = parsed_xml.first_node("barcode");
-	cout << "Name of my first node is: " << node->name( ) << "\n";
-	
-	for ( anothernode = node->first_node( ); 
-		  anothernode; 
-		  anothernode = anothernode->first_node( ) ) 
+	while ( node->next_sibling( ) != 0 ) 
 	{
-		cout << "Name of next child node is: " << anothernode->name( ) << "\n";
-		if ( anothernode->first_node( ) == 0 ) 
+		cout << node->name( );
+		xml_node< > *datanode = node->first_node();
+		while (datanode != 0) 
 		{
-			anothernode = anothernode->next_sibling( );
-			cout << "Name of next sibling node is: " << anothernode->name( ) << "\n";
-			for ( xml_attribute< > *attr = anothernode->first_attribute( );
-				 attr; attr = attr->next_attribute( ) )
-			{
-				cout << "Node has attribute " << attr->name( ) << " ";
-				cout << "with value " << attr->value( ) << "\n";
-			}
-			
+			cout << " : " << datanode->value();
+			datanode = datanode->next_sibling();
 		}
+		cout << endl;
+		node = node->next_sibling( );
 	}
 	
+	node = parsed_xml.first_node( )->first_node()->next_sibling()->next_sibling()->first_node();
 	
-
-	
-	//	for ( xml_attribute< > *attr = node->first_attribute( );
-	//		 attr; attr = attr->next_attribute( ) )
-	//	{
-	//		cout << "Node has attribute " << attr->name( ) << " ";
-	//		cout << "with value " << attr->value( ) << "\n";
-	//	}
-	//	
-	//	xml_node< > *nextnode = node->first_node();
-	//	cout << "Name of my next node is: " << nextnode->name( ) << "\n";
-	
-	for ( xml_attribute< > *attr = anothernode->first_attribute( );
-		 attr; attr = attr->next_attribute( ) )
+	while ( node->next_sibling( ) != 0 ) 
+	{
+		cout << node->name( );
+		xml_node< > *datanode = node->first_node();
+		while (datanode != 0) 
 		{
-			cout << "Node has attribute " << attr->name( ) << " ";
-			cout << "with value " << attr->value( ) << "\n";
-		}	
-	
-
-	
+			cout << " : " << datanode->value();
+			datanode = datanode->next_sibling();
+		}
+		cout << endl;
+		node = node->next_sibling( );
+	}
 	//End XML Test code
 	
     return 0;
