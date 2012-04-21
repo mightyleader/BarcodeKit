@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <barcode>
-	<type type="EAN13" />
+	<type>EAN13</type>
 	<data_encoding>
-		<ascii48 ascii_text="0" string_pattern="3211"/>
-		<ascii49 ascii_text="1" string_pattern="2221"/>
-		<ascii50 ascii_text="2" string_pattern="2122"/>
-		<ascii51 ascii_text="3" string_pattern="1411"/>
-		<ascii52 ascii_text="4" string_pattern="1132"/>
-		<ascii53 ascii_text="5" string_pattern="1231"/>
-		<ascii54 ascii_text="6" string_pattern="1114"/>
-		<ascii55 ascii_text="7" string_pattern="1312"/>
-		<ascii56 ascii_text="8" string_pattern="1213"/>
-		<ascii57 ascii_text="9" string_pattern="3112"/>
+		<ascii48> 
+			<text>0</text> 
+			<pattern>3211</pattern>
+		</ascii48>
+		<ascii49>
+			<text>1</text>
+			<pattern>2221</pattern>
+		</ascii49>
+		<ascii50>
+			<text>2</text>
+			<pattern>2122</pattern>
+		</ascii50>
+		<ascii51>
+			<text>3</text>
+			<pattern>1411</pattern>
+		</ascii51>
+		<ascii52>
+			<text>4</text>
+			<pattern>1132</pattern>
+		</ascii52>
+		<ascii53>
+			<text>5</text>
+			<pattern>1231</pattern>
+		</ascii53>
+		<ascii54>
+			<text>6</text>
+			<pattern>1114</pattern>
+		</ascii54>
+		<ascii55>
+			<text>7</text>
+			<pattern>1312</pattern>
+		</ascii55>
+		<ascii56>
+			<text>8</text>
+			<pattern>1213</pattern>
+		</ascii56>
+		<ascii57>
+			<text>9</text>
+			<pattern>3112</pattern>
+		</ascii57>
 	</data_encoding>
 	<non_data_encoding>
-		<start_char string_pattern="" />
-		<stop_char string_pattern=""/>
-		<guard_left string_pattern="111"/>
-		<guard_right string_pattern="111"/>
-		<guard_centre string_pattern="11111"/>
-		<quietzone_left string_pattern="10"/>
-		<quietzone_right string_pattern="10"/>
-		<quietzone_upper string_pattern=""/>
-		<quietzone_lower string_pattern=""/>
+		<start_char></start_char>
+		<stop_char></stop_char>
+		<guard_left>111</guard_left>
+		<guard_right>111</guard_right>
+		<guard_centre>11111</guard_centre>
+		<quietzone_left>10</quietzone_left>
+		<quietzone_right>10</quietzone_right>
+		<quietzone_upper></quietzone_upper>
+		<quietzone_lower></quietzone_lower>
 	</non_data_encoding>
 </barcode>
