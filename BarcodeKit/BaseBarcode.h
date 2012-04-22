@@ -20,9 +20,8 @@ class BaseBarcode
 {
 	public:
 	//Build and Destroy
-	virtual BaseBarcode( ) = 0;
-	virtual BaseBarcode( const string *data ) = 0;
-	virtual ~BaseBarcode( ) = 0;
+	BaseBarcode( );
+	~BaseBarcode( );
 					 
 	private:
 	//Methods
@@ -36,15 +35,17 @@ class BaseBarcode
 	virtual void encodeCheckCharacter ( ) = 0;
 	
 	//Accessors
-	vector<Symbol*> encodingpatternData( );
-	vector<Symbol*> encodingPatternNondata( );
-	vector<int> quietzoneWidths( );
-	deque<Symbol*> encodedSymbols( );
-	int checkcharModulus( );
-	int dataLength( );
+	vector<Symbol*> getEncodingpatternData( );
+	vector<Symbol*> getEncodingPatternNondata( );
+	vector<int> getQuietzoneWidths( );
+	deque<Symbol*> getEncodedSymbols( );
+	int getCheckcharModulus( );
+	int getDataLength( );
 	
-	void addEncodedPatternData( Symbol* pattern );
-	void addEncodedPatternNonData( Symbol* pattern );
+	void addEncodedPatternData( Symbol* pattern );							//adds to end
+	void addEncodedPatternNonData( Symbol* pattern );						// ditto
+	void addEncodedPatternData( Symbol* pattern, int position );			//adds at specified index
+	void addEncodedPatternNonData( Symbol* pattern, int position );			// ditto
 	void setQuietzoneWidths( int left, int right, int upper, int lower );
 	void addEncodedSymbol( Symbol* symbol );
 	void setCheckcharModulus( int modulus );
@@ -57,6 +58,6 @@ class BaseBarcode
 	deque<Symbol*> encodedSymbols;
 	int checkcharModulus;
 	int dataLength;	
-}
+};
 					 
 #endif
