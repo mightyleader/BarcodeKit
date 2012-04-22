@@ -48,6 +48,7 @@ class BaseBarcode
 	void addEncodedPatternNonData( Symbol* pattern, int position );			// ditto
 	void setQuietzoneWidths( int left, int right, int upper, int lower );
 	void addEncodedSymbol( Symbol* symbol );
+	void addEncodedSymbol( Symbol* symbol, int position );
 	void setCheckcharModulus( int modulus );
 	void setDataLength( int length );
 	

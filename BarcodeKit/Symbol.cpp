@@ -81,6 +81,16 @@ int Symbol::getForcePostion( )
 	return Symbol::forcePosition;
 }
 
+int Symbol::getAsciiEquivalent( )
+{
+	return asciiEquivalent;
+}
+
+string Symbol::getTextEquivalent( )
+{
+	return  textEquivalent;
+}
+
 void Symbol::setLeadingElement( int le )
 {
 	Symbol::leadingElement = le;
@@ -105,6 +115,17 @@ void Symbol::setForcedPosition( int fp )
 {
 	Symbol::forcePosition = fp;
 }
+
+void Symbol::setAsciiEquivalent( int ae )
+{
+	Symbol::asciiEquivalent = ae;
+}
+
+void Symbol::setTextEquivalent( string &te )
+{
+	Symbol::textEquivalent = te;
+}
+
 
 
 

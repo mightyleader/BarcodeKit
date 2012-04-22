@@ -11,6 +11,7 @@
 #define Symbol_h
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -31,13 +32,16 @@ class Symbol
 	int getSymbolType( );
 	vector<int>* getEncodedData( );
 	int getForcePostion( );
+	int getAsciiEquivalent( );
+	string getTextEquivalent( );
 	
 	void setLeadingElement( int le );
 	void setIntercharGap( int icg );
 	void setSymbolType( int st );
 	void setEncodedData( vector<int> const& ec );
 	void setForcedPosition( int fp );
-	
+	void setAsciiEquivalent( int ae );
+	void setTextEquivalent( string &te );
 	
 	private:
 	//ivars
@@ -46,6 +50,8 @@ class Symbol
 	int symbolType;																				//0,1..4 indicates data or specific non-data type
 	vector<int>encodedSymbol;																	//vector of element widths as multiples of X width
 	int forcePosition;																			//int value to specify ultimate position in destination array
+	int asciiEquivalent;
+	string textEquivalent;
 	
 	void arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination );			//since we do this in all the constructors, spin it out
 };
