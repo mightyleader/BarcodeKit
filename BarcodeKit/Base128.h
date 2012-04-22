@@ -19,12 +19,12 @@ using namespace std;
 
 class Base128 : BaseBarcode
 {
-	public:
-	
+	protected:
+	Base128( string *data );
+	~Base128( );
 	
 	private:
-
-	
+	virtual void encodeSymbol ( const string *data );
 };
 
 
