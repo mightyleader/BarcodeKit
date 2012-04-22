@@ -13,6 +13,18 @@
 #include <vector>
 #include <deque>
 
+#pragma mark --Con/Destructors--
+
+BaseBarcode::BaseBarcode( )
+{
+	//empty
+}
+
+BaseBarcode::~BaseBarcode( )
+{
+	//empty
+}
+
 #pragma mark --Accessor Methods--
 
 #pragma mark --Getters--

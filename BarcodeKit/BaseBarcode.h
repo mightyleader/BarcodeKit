@@ -18,7 +18,7 @@ using namespace std;
 
 class BaseBarcode
 {
-	public:
+	protected:
 	//Build and Destroy
 	BaseBarcode( );
 	~BaseBarcode( );
