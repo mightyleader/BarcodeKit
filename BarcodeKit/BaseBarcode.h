@@ -20,20 +20,20 @@ class BaseBarcode
 {
 	public:
 	//Build and Destroy
-	BaseBarcode( ) = 0;
-	BaseBarcode( const string *data ) = 0;
-	~BaseBarcode( ) = 0;
+	virtual BaseBarcode( ) = 0;
+	virtual BaseBarcode( const string *data ) = 0;
+	virtual ~BaseBarcode( ) = 0;
 					 
 	private:
 	//Methods
-	bool verifyData ( const string *data );
-	bool verifyLength ( const int length );
-	bool verifyContent ( const string *content );
+	virtual bool verifyData ( const string *data );
+	virtual bool verifyLength ( const int length );
+	virtual bool verifyContent ( const string *content );
 	
-	void encodeSymbol ( const string *data ) = 0;
-	void encodeStartStop ( ) = 0;
-	void encodeQuietZones ( ) = 0;
-	void encodeCheckCharacter ( ) = 0;
+	virtual void encodeSymbol ( const string *data ) = 0;
+	virtual void encodeStartStop ( ) = 0;
+	virtual void encodeQuietZones ( ) = 0;
+	virtual void encodeCheckCharacter ( ) = 0;
 	
 	//Accessors
 	vector<Symbol*> encodingpatternData( );
@@ -58,6 +58,5 @@ class BaseBarcode
 	int checkcharModulus;
 	int dataLength;	
 }
-					 
 					 
 #endif
