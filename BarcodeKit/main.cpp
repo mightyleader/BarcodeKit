@@ -18,6 +18,10 @@ using namespace rapidxml;
 
 int main( int argc, const char * argv[ ] )
 {
+	//****************************
+	//** Symbol Class Test Code **
+	//****************************
+	
 	//Unit Test Data for Symbol
 	vector<int> *testVector = new vector<int>( );
 	testVector->push_back( 1 );
@@ -51,6 +55,11 @@ int main( int argc, const char * argv[ ] )
 	delete versionOne;
 	//End Unit Test - Symbol
 	
+	
+	
+	//****************************
+	//** RapidXML Test Code ******
+	//****************************
 	
 	//Test code for RapidXML parser
 	ifstream xmlfile ( "xml_test.xml", ios::in );
