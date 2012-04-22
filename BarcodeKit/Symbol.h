@@ -7,8 +7,8 @@
 //  Copyright (c) 2012 Cocoadelica. All rights reserved.
 //
 
-#ifndef BarcodeKit_Symbol_h
-#define BarcodeKit_Symbol_h
+#ifndef Symbol_h
+#define Symbol_h
 
 #include <vector>
 
