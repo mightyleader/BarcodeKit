@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Cocoadelica. All rights reserved.
 //
 
-#ifndef BarcodeKit_Code39_h
-#define BarcodeKit_Code39_h
+#ifndef Code39_h
+#define Code39_h
 
 #import "BaseBarcode.h"
 #import "Symbol.h"

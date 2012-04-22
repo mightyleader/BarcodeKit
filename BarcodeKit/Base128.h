@@ -27,6 +27,4 @@ class Base128 : BaseBarcode
 	virtual void encodeSymbol ( const string *data );
 };
 
-
-
 #endif

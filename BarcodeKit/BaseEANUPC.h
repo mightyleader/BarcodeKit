@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Cocoadelica. All rights reserved.
 //
 
-#ifndef BarcodeKit_BaseEANUPC_h
-#define BarcodeKit_BaseEANUPC_h
+#ifndef BaseEANUPC_h
+#define BaseEANUPC_h
 
 #import "BaseBarcode.h"
 #import "Symbol.h"

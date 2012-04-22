@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Cocoadelica. All rights reserved.
 //
 
-#ifndef BarcodeKit_Interleaved2of5_h
-#define BarcodeKit_Interleaved2of5_h
+#ifndef Interleaved2of5_h
+#define Interleaved2of5_h
 
 #import "BaseBarcode.h"
 #import "Symbol.h"
