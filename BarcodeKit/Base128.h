@@ -22,8 +22,6 @@ class Base128 : BaseBarcode
 	protected:
 	Base128( string *data );
 	~Base128( );
-	
-	private:
 	virtual void encodeSymbol ( const string *data );
 };
 

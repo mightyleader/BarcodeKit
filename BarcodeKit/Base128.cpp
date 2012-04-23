@@ -22,11 +22,7 @@ using namespace rapidxml;
 
 Base128::Base128( string *data )
 {
-	//parse xml
-	
-	//iterate through DOM
-	
-	//add entries into data structure
+	// SECTION 1 - Parse xml file
 	
 	ifstream xmlfile ( "xml_test.xml", ios::in );		//setup file for input...
 	vector<string> xmlcontent;							//...and the vars we'll use 
@@ -52,11 +48,15 @@ Base128::Base128( string *data )
 	xml_document< > parsed_xml;							//setup DOM object...
 	parsed_xml.parse< 0 >( cxml );						//...pass cstring to parser to parse into DOM object
 	
+	
+	// SECTION 2 - Extract data from parsed DOM for data characters
+	
 	xml_node< > *node = NULL;
 	node = parsed_xml.first_node( )->first_node()->next_sibling()->first_node();
 	
 	while ( node->next_sibling( ) != 0 ) 
 	{
+		// 1.get the relevant data out of the DOM tree
 		vector<string> *attributes = NULL;
 		xml_node< > *datanode = node->first_node();
 		while ( datanode != 0 ) 
@@ -65,19 +65,32 @@ Base128::Base128( string *data )
 			datanode = datanode->next_sibling();
 		}
 		
-		int dataLength = attributes->at( 0 ).length( );
-		int data[dataLength] = {};
+		// 2.extract the values and format them
+		const int dataLength = attributes->at( 0 ).length( );
+		int thedata[dataLength];
+		for ( int i = dataLength; i > 0; i-- ) 
+		{
+			thedata[ i ] = atoi( &attributes->at( 1 )[ i ] );
+		}
 		
-		//make a symbol object
-		Symbol *aSymbol = new Symbol(9, dataLength, 1, 0, 1);
-		//set it's pattern, leading digit, ascii equiv and text equiv
-		//add it to the ivar vector
+		// 3.make a symbol object
+		Symbol *aSymbol = new Symbol( thedata, dataLength, 1, 0, 1 );
+		aSymbol->setTextEquivalent( attributes->at( 0 ) );
+		aSymbol->setAsciiEquivalent( (int)attributes->at( 0 )[ 0 ] );
+		
+		// 4.add it to the ivar vector
+		this->addEncodedPatternData( aSymbol, (int)attributes->at( 0 )[ 0 ] );
+		delete aSymbol; //? brush up on c++ mm
 		
 		node = node->next_sibling( );
 	}
 	
+	
+	// SECTION 3 - Extract data from parsed DOM for nondata characters
+	
+	
+	
 }
-
 
 Base128::~Base128( )
 {

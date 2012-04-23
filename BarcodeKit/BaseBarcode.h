@@ -22,17 +22,6 @@ class BaseBarcode
 	//Build and Destroy
 	BaseBarcode( );
 	~BaseBarcode( );
-					 
-	private:
-	//Methods
-	virtual bool verifyData ( const string *data );
-	virtual bool verifyLength ( const int length );
-	virtual bool verifyContent ( const string *content );
-	
-	virtual void encodeSymbol ( const string *data ) = 0;
-	virtual void encodeStartStop ( ) = 0;
-	virtual void encodeQuietZones ( ) = 0;
-	virtual void encodeCheckCharacter ( ) = 0;
 	
 	//Accessors
 	vector<Symbol*> getEncodingpatternData( );
@@ -51,7 +40,18 @@ class BaseBarcode
 	void addEncodedSymbol( Symbol* symbol, int position );
 	void setCheckcharModulus( int modulus );
 	void setDataLength( int length );
+					 
+	//Methods
+	virtual bool verifyData ( const string *data );
+	virtual bool verifyLength ( const int length );
+	virtual bool verifyContent ( const string *content );
 	
+	virtual void encodeSymbol ( const string *data ) = 0;
+	virtual void encodeStartStop ( ) = 0;
+	virtual void encodeQuietZones ( ) = 0;
+	virtual void encodeCheckCharacter ( ) = 0;
+
+	private:
 	//iVars
 	vector<Symbol*> encodingpatternData;
 	vector<Symbol*> encodingPatternNondata;
