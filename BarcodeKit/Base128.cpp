@@ -57,14 +57,22 @@ Base128::Base128( string *data )
 	
 	while ( node->next_sibling( ) != 0 ) 
 	{
-		cout << node->name( );
+		vector<string> *attributes = NULL;
 		xml_node< > *datanode = node->first_node();
-		while (datanode != 0) 
+		while ( datanode != 0 ) 
 		{
-			cout << " : " << datanode->value();
+			attributes->push_back( datanode->value( ) );
 			datanode = datanode->next_sibling();
 		}
-		cout << endl;
+		
+		int dataLength = attributes->at( 0 ).length( );
+		int data[dataLength] = {};
+		
+		//make a symbol object
+		Symbol *aSymbol = new Symbol(9, dataLength, 1, 0, 1);
+		//set it's pattern, leading digit, ascii equiv and text equiv
+		//add it to the ivar vector
+		
 		node = node->next_sibling( );
 	}
 	
