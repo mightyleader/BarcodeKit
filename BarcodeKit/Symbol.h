@@ -24,6 +24,7 @@ class Symbol
 	Symbol( int characterData[ ], int dataLength, int startWith );								//...with data and leading flag...
 	Symbol( int characterData[ ], int dataLength, int startWith, int gapWidth );				//...with data, leading flag and ic gap...
 	Symbol( int characterData[ ], int dataLength, int startWith, int gapWidth, int ofType );	//...or with everything supplied
+	//TODO add constructors for new ivars
 	~Symbol( );
 	
 	//Accessors
