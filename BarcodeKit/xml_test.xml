@@ -42,6 +42,7 @@
 			<text>9</text>
 			<pattern>3112</pattern>
 		</ascii57>
+		<asciiXX></asciiXX>
 	</data_encoding>
 	<non_data_encoding>
 		<start_char></start_char>
@@ -53,5 +54,6 @@
 		<quietzone_right>10</quietzone_right>
 		<quietzone_upper></quietzone_upper>
 		<quietzone_lower></quietzone_lower>
+		<non_data></non_data>
 	</non_data_encoding>
 </barcode>
