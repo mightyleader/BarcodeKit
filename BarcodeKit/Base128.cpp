@@ -79,7 +79,7 @@ Base128::Base128( string *data )
 		aSymbol->setAsciiEquivalent( (int)attributes->at( 0 )[ 0 ] );
 		
 		// 4.add it to the ivar vector
-		this->addEncodedPatternData( aSymbol, (int)attributes->at( 0 )[ 0 ] );
+		this->addEncodedPatternData( aSymbol, (int)attributes->at( 0 )[ 0 ] ); //cast derived char value to int to get ascii value
 		delete aSymbol; //? brush up on c++ mm
 		
 		node = node->next_sibling( );
@@ -87,7 +87,20 @@ Base128::Base128( string *data )
 	
 	
 	// SECTION 3 - Extract data from parsed DOM for nondata characters
+	node = parsed_xml.first_node( )->first_node()->next_sibling()->next_sibling()->first_node();
 	
+	while ( node->next_sibling( ) != 0 ) 
+	{
+		
+		xml_node< > *datanode = node->first_node();
+		while (datanode != 0) 
+		{
+			
+			datanode = datanode->next_sibling();
+		}
+		
+		node = node->next_sibling( );
+	}
 	
 	
 }
