@@ -9,12 +9,20 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include "Symbol.h"
 #include "rapidxml.hpp"
 
+
 using namespace std;
 using namespace rapidxml;
+
+Symbol* createSymbol( int st, int ic, int le, int fp, vector<int> *aVector );
+void testSymbol( Symbol *testSymbol );
+char* getXMLToParse( string *fileTitle );
+void testDOM ( xml_node< > *node );
+vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
@@ -29,30 +37,14 @@ int main( int argc, const char * argv[ ] )
 	testVector->push_back( 3 );
 	testVector->push_back( 4 );
 	testVector->push_back( 1 );
-	int st = 1, ic = 1, le = 0, fp = 5;
+	//int st = 1, ic = 1, le = 0, fp = 5;
 	
 	//unit Test - Symbol
-	Symbol *versionOne = new Symbol( );
-	versionOne->setSymbolType( st );
-	versionOne->setIntercharGap( ic );
-	versionOne->setLeadingElement( le );
-	versionOne->setForcedPosition( fp );
-	versionOne->setEncodedData( *testVector );
-	
-	cout << "Unit Test - Symbol" << endl;
-	cout << "Symbol Type: " << versionOne->getSymbolType( ) << endl;
-	cout << "Leading Element: " << versionOne->getLeadingElement( ) << endl;
-	cout << "IC Gap: " << versionOne->getIntercharGap( ) << endl;
-	cout << "Force Position: " << versionOne->getForcePostion( ) << endl;
-	cout << "Encoded Data: " << versionOne->getEncodedData( ) << endl;
-	
-	for ( int ii = 0; ii < testVector->size( ); ii++ ) 
-	{
-		cout << "test: " << testVector->at( ii ) << " actual: " << versionOne->getEncodedData( )->at( ii )	<< endl;
-	}
+	//Symbol *versionOne = createSymbol( st, ic, le, fp, testVector );
+	//testSymbol( versionOne );
 	
 	delete testVector;
-	delete versionOne;
+	
 	//End Unit Test - Symbol
 	
 	
@@ -61,13 +53,122 @@ int main( int argc, const char * argv[ ] )
 	//** RapidXML Test Code ******
 	//****************************
 	
-	//Test code for RapidXML parser
-	ifstream xmlfile ( "xml_test.xml", ios::in );
+	// Process the file
+	string *filename = new string( "xml_test.xml" );
+	xml_document< > parsed_xml;
+	parsed_xml.parse< 0 >( getXMLToParse( filename ) );
+	
+	// Test for data characters
+	xml_node< > *node = NULL;
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( "ascii49" );
+	//testDOM( node );
+	
+	// Test for nondata characters
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( )->next_sibling( "non_data_encoding" )->first_node( "guard_centre" );
+	//testDOM( node );
+	
+	// Test for contained value
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( )->first_node();
+	//testDOM( node );
+	
+	
+	//*****************************
+	//** Putting it all together **
+	//*****************************
+	
+	string *incomingString = new string( "07841669212" );
+	
+	//make an array of the ascii value of each char in the string
+	int stringLength = incomingString->length( );
+	int asciiList[ stringLength ];
+	//loop thru the data and fill the array with ascii values.
+	for (int ii = 0; ii < stringLength; ii++) 
+	{
+		char eachChar = incomingString->at( ii );
+		asciiList[ ii ] = ( int )eachChar;
+	}
+	
+	for ( int jj = 0; jj < stringLength; jj++ ) 
+	{
+		string firstBit = "ascii";
+		//concatenate strings to get tag name, a serious hack but couldnt get boost working
+		int kk = asciiList[ jj ];
+		string secondBit;
+		stringstream out;
+		out << kk;
+		secondBit = out.str();
+		firstBit.append( secondBit );
+		
+		
+		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
+		
+		//get the values for the tag back as a vector
+		vector<string> returnedData = returnDOMValues( node );
+		cout << returnedData.at( 0 ) << " - " << returnedData.at( 1 ) << " - " << returnedData.at( 2 ) << endl;
+		
+		vector< int > *pattern = new vector< int >;
+		for ( int ll = returnedData.at( 1 ).length( ) - 1 ; ll >= 0 ; ll--) 
+		{
+			string tempString = returnedData.at( 1 );
+			int temp = atoi( &tempString.at( ll ) );
+			pattern->push_back( temp ); //hmmmm...
+			cout << tempString.at( ll ) << endl;
+			cout << temp << endl;
+		}
+
+		//use them to create a Symbol
+		Symbol *aSymbol = createSymbol( 0, 0, 0, 0, pattern );
+		
+		//test the symbol object
+		testSymbol( aSymbol );
+		
+		delete pattern;
+	}
+    return 0;
+}
+
+
+//******************************
+//*** TESTING FUNCTIONS ********
+//******************************
+
+Symbol* createSymbol( int st, int ic, int le, int fp, vector<int> *aVector ) //make a new symbol with passed values
+{
+	Symbol *versionOne = new Symbol( );
+	versionOne->setSymbolType( st );
+	versionOne->setIntercharGap( ic );
+	versionOne->setLeadingElement( le );
+	versionOne->setForcedPosition( fp );
+	versionOne->setEncodedData( *aVector );
+	return versionOne;
+}
+
+void testSymbol( Symbol *testSymbol ) //Output the values of a Symbol object to standard output
+{
+	cout << "Unit Test - Symbol" << endl;
+	cout << "Symbol Type: " << testSymbol->getSymbolType( ) << endl;
+	cout << "Leading Element: " << testSymbol->getLeadingElement( ) << endl;
+	cout << "IC Gap: " << testSymbol->getIntercharGap( ) << endl;
+	cout << "Force Position: " << testSymbol->getForcePostion( ) << endl;
+	cout << "Data: ";
+	for ( int ii = 0; ii < testSymbol->getEncodedData( )->size( ); ii++ ) 
+	{
+		cout << testSymbol->getEncodedData( )->at( ii );
+	}
+	cout << endl;
+	cout << testSymbol->getEncodedData()->size() << endl;
+}
+
+char* getXMLToParse( string *fileTitle ) //Safely get the XML file into a c_string
+{
+	char *ft = new char[ fileTitle->length( ) + 1 ];
+	strcpy( ft, fileTitle->c_str( ) );
+	ifstream xmlfile ( ft, ios::in );
 	
 	vector<string> xmlcontent;
 	string xmlentry;
 	string xmltoparse;
-
+	
 	if ( xmlfile.is_open( ) )							//open the file
 	{
 		while ( getline( xmlfile, xmlentry ) )			//get the data
@@ -80,20 +181,16 @@ int main( int argc, const char * argv[ ] )
 		{
 			xmltoparse += xmlcontent[ i ];
 		}
-		cout << xmltoparse.length( ) << endl;			//DEBUG check string length
 	}
 	
 	char * cxml = new char [ xmltoparse.size( ) + 1 ];	//copy string into cstring
 	strcpy ( cxml, xmltoparse.c_str( ) );
 	
-	xml_document< > parsed_xml;
-	parsed_xml.parse< 0 >( cxml );
-	
-	xml_node< > *node = NULL;
-	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( );
-	
-	while ( node->next_sibling( ) != 0 ) 
-	{
+	return cxml;
+}
+
+void testDOM ( xml_node< > *node ) //Test contents of a single named or unnamed node in the DOM
+{
 		cout << node->name( ) << ":";
 		xml_node< > *datanode = node->first_node( );
 		while (datanode != 0) 
@@ -109,24 +206,31 @@ int main( int argc, const char * argv[ ] )
 		}
 		cout << endl;
 		node = node->next_sibling( );
-	}
-	
-	node = parsed_xml.first_node( )->first_node( )->next_sibling( )->next_sibling( "non_data_encoding" )->first_node( );
-	
-	while ( node->next_sibling( ) != 0 ) 
-	{
-		cout << node->name( ) << " : ";
-		xml_node< > *datanode = node->first_node();
-		while (datanode != 0) 
-		{
-			cout << " - " << datanode->name( ) << " is " << datanode->value( );
-			datanode = datanode->next_sibling( );
-		}
-		cout << endl;
-		node = node->next_sibling( );
-	}
-	//End XML Test code
-	
-    return 0;
 }
+
+vector<string> returnDOMValues( xml_node< > *node ) //Return contents of a single named or unnamed node in the DOM
+{
+	vector<string> *returnValues = new vector<string>;
+	cout << node->name( ) << ":";
+	xml_node< > *datanode = node->first_node( );
+	while (datanode != 0) 
+	{
+		cout << " - " << datanode->name( );
+		xml_node< > *childnode = datanode->first_node( );
+		while (childnode != 0) 
+		{
+			cout << childnode->name( ) << " is " << childnode->value( );
+			string aValue = childnode->value();
+			returnValues->push_back( aValue );
+			childnode = childnode->next_sibling( );
+		}
+		datanode = datanode->next_sibling();
+	}
+	cout << endl;
+	node = node->next_sibling( );
+	
+	return *returnValues;
+}
+
+
 
