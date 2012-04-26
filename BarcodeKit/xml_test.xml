@@ -2,58 +2,114 @@
 <barcode>
 	<type>EAN13</type>
 	<data_encoding>
-		<ascii48> 
-			<text>0</text> 
-			<pattern>3211</pattern>
+		<ascii48>
+			<text>0</text>
+			<A>3211</A>
+			<B>nil</B>
+			<C>1231</C>
 		</ascii48>
 		<ascii49>
 			<text>1</text>
-			<pattern>2221</pattern>
+			<A>2221</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii49>
 		<ascii50>
 			<text>2</text>
-			<pattern>2122</pattern>
+			<A>2122</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii50>
 		<ascii51>
 			<text>3</text>
-			<pattern>1411</pattern>
+			<A>1411</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii51>
 		<ascii52>
 			<text>4</text>
-			<pattern>1132</pattern>
+			<A>1132</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii52>
 		<ascii53>
 			<text>5</text>
-			<pattern>1231</pattern>
+			<A>1231</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii53>
 		<ascii54>
 			<text>6</text>
-			<pattern>1114</pattern>
+			<A>1114</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii54>
 		<ascii55>
 			<text>7</text>
-			<pattern>1312</pattern>
+			<A>1312</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii55>
 		<ascii56>
 			<text>8</text>
-			<pattern>1213</pattern>
+			<A>1213</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii56>
 		<ascii57>
 			<text>9</text>
-			<pattern>3112</pattern>
+			<A>3112</A>
+			<B>nil</B>
+			<C>3112</C>
 		</ascii57>
 		<asciiXX></asciiXX>
 	</data_encoding>
 	<non_data_encoding>
-		<start_char></start_char>
-		<stop_char></stop_char>
-		<guard_left>111</guard_left>
-		<guard_right>111</guard_right>
-		<guard_centre>11111</guard_centre>
-		<quietzone_left>10</quietzone_left>
-		<quietzone_right>10</quietzone_right>
-		<quietzone_upper></quietzone_upper>
-		<quietzone_lower></quietzone_lower>
+		<start_char>
+			<A>nil</A>
+			<B>nil</B>
+			<C>nil</C>
+		</start_char>
+		<stop_char>
+			<A>nil</A>
+			<B>nil</B>
+			<C>nil</C>
+		</stop_char>
+		<guard_left>
+			<A>111</A>
+			<B>nil</B>
+			<C>nil</C>
+		</guard_left>
+		<guard_right>
+			<A>111</A>
+			<B>nil</B>
+			<C>nil</C>
+		</guard_right>
+		<guard_centre>
+			<A>11111</A>
+			<B>nil</B>
+			<C>nil</C>
+		</guard_centre>
+		<quietzone_left>
+			<A>10</A>
+			<B>10</B>
+			<C>10</C>
+		</quietzone_left>
+		<quietzone_right>
+			<A>10</A>
+			<B>10</B>
+			<C>10</C>
+		</quietzone_right>
+		<quietzone_upper>
+			<A>0</A>
+			<B>0</B>
+			<C>0</C>
+		</quietzone_upper>
+		<quietzone_lower>
+			<A>0</A>
+			<B>0</B>
+			<C>0</C>
+		</quietzone_lower>
 		<non_data></non_data>
 	</non_data_encoding>
 </barcode>

@@ -90,31 +90,37 @@ int main( int argc, const char * argv[ ] )
 	parsed_xml.parse< 0 >( cxml );
 	
 	xml_node< > *node = NULL;
-	node = parsed_xml.first_node( )->first_node()->next_sibling()->first_node();
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( );
 	
 	while ( node->next_sibling( ) != 0 ) 
 	{
-		cout << node->name( );
-		xml_node< > *datanode = node->first_node();
+		cout << node->name( ) << ":";
+		xml_node< > *datanode = node->first_node( );
 		while (datanode != 0) 
 		{
-			cout << " : " << datanode->value();
+			cout << " - " << datanode->name( );
+			xml_node< > *childnode = datanode->first_node( );
+			while (childnode != 0) 
+			{
+				cout << childnode->name( ) << " is " << childnode->value( );
+				childnode = childnode->next_sibling( );
+			}
 			datanode = datanode->next_sibling();
 		}
 		cout << endl;
 		node = node->next_sibling( );
 	}
 	
-	node = parsed_xml.first_node( )->first_node()->next_sibling()->next_sibling()->first_node();
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( )->next_sibling( "non_data_encoding" )->first_node( );
 	
 	while ( node->next_sibling( ) != 0 ) 
 	{
-		cout << node->name( );
+		cout << node->name( ) << " : ";
 		xml_node< > *datanode = node->first_node();
 		while (datanode != 0) 
 		{
-			cout << " : " << datanode->value();
-			datanode = datanode->next_sibling();
+			cout << " - " << datanode->name( ) << " is " << datanode->value( );
+			datanode = datanode->next_sibling( );
 		}
 		cout << endl;
 		node = node->next_sibling( );
