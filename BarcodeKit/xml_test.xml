@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <barcode>
-	<type>EAN13</type>
+	<type>PlaceboBarcode</type>
 	<data_encoding>
 		<ascii48>
 			<text>0</text>

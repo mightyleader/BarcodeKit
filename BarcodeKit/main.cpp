@@ -85,7 +85,7 @@ int main( int argc, const char * argv[ ] )
 		asciiList[ ii ] = ( int )eachChar;
 	}
 	
-	for ( int jj = 0; jj < stringLength; jj++ ) 
+	for ( int jj = 0; jj < stringLength; ++jj ) 
 	{
 		string firstBit = "ascii";
 		//concatenate strings to get tag name, a serious hack but couldnt get boost working
@@ -102,19 +102,33 @@ int main( int argc, const char * argv[ ] )
 		//use the offset and the composite value of JJ & JJ+1 (compensating for overflow) 
 		//build an asciixx ref. and set the node to that value
 		//otherwise use the normal method for A or B and off to the races.
-		//Except with loops not jumps
+		//Except with loops not  jumps
+		int charSetToRef = 0;
+		string iReallyShouldntMakeThis = "ascii";
+		char thingtwo;
+		char thingone = incomingString->at( jj );
 		
 		//*******SET C SPECIFIC**********
-		//which set are we taking the char from? THIS IS FOR BASE128 DERIVED CLASSES ONLY
-		//Use Set C? 
-		char eachChar = incomingString->at( jj );
-		char nextChar = incomingString->at( jj + 1 ); //add buffer overflow correction
-		int charSetToRef = 0;
-		if ( isdigit( eachChar ) && isdigit( nextChar )  ) //Test for consecutive digits
+		
+		if ( ( jj + 1 ) < stringLength ) 
 		{
-			charSetToRef = 3;
-			//TODO increment counter by 1 and store the concat. numbers into a string and use it to determine pattern 
+			thingtwo = incomingString->at( jj + 1 );
 		}
+
+		if ( isdigit( thingtwo ) && isdigit( thingone ) ) 
+		{
+			string setCAscii = iReallyShouldntMakeThis.append( &thingone );
+			cout << "Test of C Set detector: " << setCAscii  << endl; //<< setCAscii.append( &thingtwo )
+			charSetToRef = 3;
+			++jj;
+			//TODO increment counter by 1 and store the concat. numbers into a string and use it to determine pattern
+		}
+		else 
+		{
+			//
+		}
+		
+				
 		
 		//ELSE IF A OR B DO A/B THINGS
 		
