@@ -14,6 +14,7 @@
 #include "Symbol.h"
 #include "rapidxml.hpp"
 
+#define kOffsetASCII 32
 
 using namespace std;
 using namespace rapidxml;
@@ -98,12 +99,16 @@ int main( int argc, const char * argv[ ] )
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
 		
 		// IF C THEN DO C THINGS
+		//use the offset and the composite value of JJ & JJ+1 (compensating for overflow) 
+		//build an asciixx ref. and set the node to that value
+		//otherwise use the normal method for A or B and off to the races.
+		//Except with loops not jumps
 		
 		//*******SET C SPECIFIC**********
 		//which set are we taking the char from? THIS IS FOR BASE128 DERIVED CLASSES ONLY
 		//Use Set C? 
 		char eachChar = incomingString->at( jj );
-		char nextChar = incomingString->at( jj );
+		char nextChar = incomingString->at( jj + 1 ); //add buffer overflow correction
 		int charSetToRef = 0;
 		if ( isdigit( eachChar ) && isdigit( nextChar )  ) //Test for consecutive digits
 		{
@@ -137,7 +142,6 @@ int main( int argc, const char * argv[ ] )
 			char eachCharFromResult = returnedData.at( charSetToRef )[ ll ];
 			int temp = atoi( &eachCharFromResult );
 			pattern->push_back( temp );
-			cout << ll << ". " << temp << endl;
 		}
 		
 		//******END A & B SPECIFIC CODE******
