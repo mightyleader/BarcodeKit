@@ -98,7 +98,7 @@ int main( int argc, const char * argv[ ] )
 		out.flush( );
 		firstBit.append( secondBit );
 		
-		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
+		
 		
 		
 		int charSetToRef = 0;
@@ -132,23 +132,15 @@ int main( int argc, const char * argv[ ] )
 			firstDigit = NULL;
 			secondDigit = NULL;
 			++jj;
-			
 		}
 		else 
 		{
-			//ELSE IF A OR B DO A/B THINGS
+			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
 		}
 		
 		//get the values for the tag back as a vector
 		vector<string> returnedData = returnDOMValues( node );		
-		
-		
-		
-		//*******A & B FROM HERE*********
-		
-		
 		cout << returnedData.at( 0 ) << " - " << returnedData.at( 1 ) << " - " << returnedData.at( 2 ) << " - " << returnedData.at( 3 ) << endl; //DEBUG
-		
 		
 		//Use Set B?
 		if ( returnedData.at( 1 ) == "nil" ) 
@@ -156,7 +148,7 @@ int main( int argc, const char * argv[ ] )
 			charSetToRef = 2;
 		}
 		//OK, Set A it is.
-		else 
+		else if ( returnedData.at( 2 ) == "nil" )
 		{
 			charSetToRef = 1;
 		}
@@ -168,10 +160,6 @@ int main( int argc, const char * argv[ ] )
 			int temp = atoi( &eachCharFromResult );
 			pattern->push_back( temp );
 		}
-		
-		//******END A & B SPECIFIC CODE******
-		
-		//UNITE A B C PATHS TO CREATE SYMBOL FROM OUTPUT OF CONDITIONAL
 
 		//use them to create a Symbol
 		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
