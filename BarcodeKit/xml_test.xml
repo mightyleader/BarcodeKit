@@ -1,286 +1,286 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <barcode>
-	<type>PlaceboBarcode</type>
+	<type>Base128</type>
 	<data_encoding>
 		<ascii0>
 			<text>0</text>
-			<A>nil</A>
+			<A>111422</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii0>
 		<ascii1>
 			<text>0</text>
-			<A>nil</A>
+			<A>121124</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii1>
 		<ascii2>
 			<text>0</text>
-			<A>nil</A>
+			<A>121421</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii2>
 		<ascii3>
 			<text>0</text>
-			<A>nil</A>
+			<A>141122</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii3>
 		<ascii4>
 			<text>0</text>
-			<A>nil</A>
+			<A>141221</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii4>
 		<ascii5>
 			<text>0</text>
-			<A>nil</A>
+			<A>112214</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii5>
 		<ascii6>
 			<text>0</text>
-			<A>nil</A>
+			<A>112412</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii6>
 		<ascii7>
 			<text>0</text>
-			<A>nil</A>
+			<A>122114</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii7>
 		<ascii8>
 			<text>0</text>
-			<A>nil</A>
+			<A>122411</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii8>
 		<ascii9>
 			<text>0</text>
-			<A>nil</A>
+			<A>142112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii9>
 		<ascii10>
 			<text>0</text>
-			<A>nil</A>
+			<A>142211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii10>
 		<ascii11>
 			<text>0</text>
-			<A>nil</A>
+			<A>241211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii11>
 		<ascii12>
 			<text>0</text>
-			<A>nil</A>
+			<A>221114</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii12>
 		<ascii13>
 			<text>0</text>
-			<A>nil</A>
+			<A>413111</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii13>
 		<ascii14>
 			<text>0</text>
-			<A>nil</A>
+			<A>241112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii14>
 		<ascii15>
 			<text>0</text>
-			<A>nil</A>
+			<A>134111</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii15>
 		<ascii16>
 			<text>0</text>
-			<A>nil</A>
+			<A>111242</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii16>
 		<ascii17>
 			<text>0</text>
-			<A>nil</A>
+			<A>121142</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii17>
 		<ascii18>
 			<text>0</text>
-			<A>nil</A>
+			<A>121241</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii18>
 		<ascii19>
 			<text>0</text>
-			<A>nil</A>
+			<A>114212</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii19>
 		<ascii20>
 			<text>0</text>
-			<A>nil</A>
+			<A>124112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii20>
 		<ascii21>
 			<text>0</text>
-			<A>nil</A>
+			<A>124211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii21>
 		<ascii22>
 			<text>0</text>
-			<A>nil</A>
+			<A>411212</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii22>
 		<ascii23>
 			<text>0</text>
-			<A>nil</A>
+			<A>421112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii23>
 		<ascii24>
 			<text>0</text>
-			<A>nil</A>
+			<A>421211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii24>
 		<ascii25>
 			<text>0</text>
-			<A>nil</A>
+			<A>212141</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii25>
 		<ascii26>
 			<text>0</text>
-			<A>nil</A>
+			<A>214121</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii26>
 		<ascii27>
 			<text>0</text>
-			<A>nil</A>
+			<A>312122</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii27>
 		<ascii28>
 			<text>0</text>
-			<A>nil</A>
+			<A>111143</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii28>
 		<ascii29>
 			<text>0</text>
-			<A>nil</A>
+			<A>111341</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii29>
 		<ascii30>
 			<text>0</text>
-			<A>nil</A>
+			<A>131141</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii30>
 		<ascii31>
 			<text>0</text>
-			<A>nil</A>
+			<A>114113</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii31>
 		<ascii32>
 			<text>0</text>
-			<A>nil</A>
+			<A>212222</A>
 			<B>212222</B>
 			<C>212222</C>
 		</ascii32>
 		<ascii33>
 			<text>0</text>
-			<A>3211</A>
+			<A>222122</A>
 			<B>222122</B>
 			<C>222122</C>
 		</ascii33>
 		<ascii34>
 			<text>0</text>
-			<A>3211</A>
+			<A>222221</A>
 			<B>222221</B>
 			<C>222221</C>
 		</ascii34>
 		<ascii35>
 			<text>0</text>
-			<A>3211</A>
+			<A>121223</A>
 			<B>121223</B>
 			<C>121223</C>
 		</ascii35>
 		<ascii36>
 			<text>0</text>
-			<A>3211</A>
+			<A>121322</A>
 			<B>121322</B>
 			<C>121322</C>
 		</ascii36>
 		<ascii37>
 			<text>0</text>
-			<A>3211</A>
+			<A>131222</A>
 			<B>131222</B>
 			<C>131222</C>
 		</ascii37>
 		<ascii38>
 			<text>0</text>
-			<A>3211</A>
+			<A>122213</A>
 			<B>122213</B>
 			<C>122213</C>
 		</ascii38>
 		<ascii39>
 			<text>0</text>
-			<A>3211</A>
+			<A>122312</A>
 			<B>122312</B>
 			<C>122312</C>
 		</ascii39>
 		<ascii40>
 			<text>0</text>
-			<A>3211</A>
+			<A>132212</A>
 			<B>132212</B>
 			<C>132212</C>
 		</ascii40>
 		<ascii41>
 			<text>0</text>
-			<A>3211</A>
+			<A>221213</A>
 			<B>221213</B>
 			<C>221213</C>
 		</ascii41>
 		<ascii42>
 			<text>0</text>
-			<A>3211</A>
+			<A>221312</A>
 			<B>221312</B>
 			<C>221312</C>
 		</ascii42>
 		<ascii43>
 			<text>0</text>
-			<A>3211</A>
+			<A>231212</A>
 			<B>231212</B>
 			<C>231212</C>
 		</ascii43>
 		<ascii44>
 			<text>0</text>
-			<A>3211</A>
+			<A>112232</A>
 			<B>112232</B>
 			<C>112232</C>
 		</ascii44>
 		<ascii45>
 			<text>0</text>
-			<A>3211</A>
+			<A>122132</A>
 			<B>122132</B>
 			<C>122132</C>
 		</ascii45>
 		<ascii46>
 			<text>0</text>
-			<A>3211</A>
+			<A>122231</A>
 			<B>122231</B>
 			<C>122231</C>
 		</ascii46>
@@ -292,289 +292,289 @@
 		</ascii47>
 		<ascii48>
 			<text>0</text>
-			<A>3211</A>
+			<A>123122</A>
 			<B>123122</B>
 			<C>123122</C>
 		</ascii48>
 		<ascii49>
 			<text>1</text>
-			<A>2221</A>
+			<A>123221</A>
 			<B>123221</B>
 			<C>123221</C>
 		</ascii49>
 		<ascii50>
 			<text>2</text>
-			<A>2122</A>
+			<A>223211</A>
 			<B>223211</B>
 			<C>223211</C>
 		</ascii50>
 		<ascii51>
 			<text>3</text>
-			<A>1411</A>
+			<A>221132</A>
 			<B>221132</B>
 			<C>221132</C>
 		</ascii51>
 		<ascii52>
 			<text>4</text>
-			<A>1132</A>
+			<A>221231</A>
 			<B>221231</B>
 			<C>221231</C>
 		</ascii52>
 		<ascii53>
 			<text>5</text>
-			<A>1231</A>
+			<A>213212</A>
 			<B>213212</B>
 			<C>213212</C>
 		</ascii53>
 		<ascii54>
 			<text>6</text>
-			<A>1114</A>
+			<A>223112</A>
 			<B>223112</B>
 			<C>223112</C>
 		</ascii54>
 		<ascii55>
 			<text>7</text>
-			<A>1312</A>
+			<A>312131</A>
 			<B>312131</B>
 			<C>312131</C>
 		</ascii55>
 		<ascii56>
 			<text>8</text>
-			<A>1213</A>
+			<A>311222</A>
 			<B>311222</B>
 			<C>311222</C>
 		</ascii56>
 		<ascii57>
 			<text>9</text>
-			<A>3112</A>
+			<A>321122</A>
 			<B>321122</B>
 			<C>321122</C>
 		</ascii57>
 		<ascii58>
 			<text>0</text>
-			<A>nil</A>
+			<A>321221</A>
 			<B>321221</B>
 			<C>321221</C>
 		</ascii58>
 		<ascii59>
 			<text>0</text>
-			<A>nil</A>
+			<A>312212</A>
 			<B>312212</B>
 			<C>312212</C>
 		</ascii59>
 		<ascii60>
 			<text>0</text>
-			<A>nil</A>
+			<A>322112</A>
 			<B>322112</B>
 			<C>322112</C>
 		</ascii60>
 		<ascii61>
 			<text>0</text>
-			<A>nil</A>
+			<A>322211</A>
 			<B>322211</B>
 			<C>322211</C>
 		</ascii61>
 		<ascii62>
 			<text>0</text>
-			<A>nil</A>
+			<A>212123</A>
 			<B>212123</B>
 			<C>212123</C>
 		</ascii62>
 		<ascii63>
 			<text>0</text>
-			<A>nil</A>
+			<A>212321</A>
 			<B>212321</B>
 			<C>212321</C>
 		</ascii63>
 		<ascii64>
 			<text>0</text>
-			<A>nil</A>
+			<A>232121</A>
 			<B>232121</B>
 			<C>232121</C>
 		</ascii64>
 		<ascii65>
 			<text>0</text>
-			<A>nil</A>
+			<A>111323</A>
 			<B>111323</B>
 			<C>111323</C>
 		</ascii65>
 		<ascii66>
 			<text>0</text>
-			<A>nil</A>
+			<A>131123</A>
 			<B>131123</B>
 			<C>131123</C>
 		</ascii66>
 		<ascii67>
 			<text>0</text>
-			<A>nil</A>
+			<A>131321</A>
 			<B>131321</B>
 			<C>131321</C>
 		</ascii67>
 		<ascii68>
 			<text>0</text>
-			<A>nil</A>
+			<A>112313</A>
 			<B>112313</B>
 			<C>112313</C>
 		</ascii68>
 		<ascii69>
 			<text>0</text>
-			<A>nil</A>
+			<A>132113</A>
 			<B>132113</B>
 			<C>132113</C>
 		</ascii69>
 		<ascii70>
 			<text>0</text>
-			<A>nil</A>
+			<A>132311</A>
 			<B>132311</B>
 			<C>132311</C>
 		</ascii70>
 		<ascii71>
 			<text>0</text>
-			<A>nil</A>
+			<A>211313</A>
 			<B>211313</B>
 			<C>211313</C>
 		</ascii71>
 		<ascii72>
 			<text>0</text>
-			<A>nil</A>
+			<A>231113</A>
 			<B>231113</B>
 			<C>231113</C>
 		</ascii72>
 		<ascii73>
 			<text>0</text>
-			<A>nil</A>
+			<A>231311</A>
 			<B>231311</B>
 			<C>231311</C>
 		</ascii73>
 		<ascii74>
 			<text>0</text>
-			<A>nil</A>
+			<A>112133</A>
 			<B>112133</B>
 			<C>112133</C>
 		</ascii74>
 		<ascii75>
 			<text>0</text>
-			<A>nil</A>
+			<A>112331</A>
 			<B>112331</B>
 			<C>112331</C>
 		</ascii75>
 		<ascii76>
 			<text>0</text>
-			<A>nil</A>
+			<A>132131</A>
 			<B>132131</B>
 			<C>132131</C>
 		</ascii76>
 		<ascii77>
 			<text>0</text>
-			<A>nil</A>
+			<A>113123</A>
 			<B>113123</B>
 			<C>113123</C>
 		</ascii77>
 		<ascii78>
 			<text>0</text>
-			<A>nil</A>
+			<A>113321</A>
 			<B>113321</B>
 			<C>113321</C>
 		</ascii78>
 		<ascii79>
 			<text>0</text>
-			<A>nil</A>
+			<A>133121</A>
 			<B>133121</B>
 			<C>133121</C>
 		</ascii79>
 		<ascii80>
 			<text>0</text>
-			<A>nil</A>
+			<A>313121</A>
 			<B>313121</B>
 			<C>313121</C>
 		</ascii80>
 		<ascii81>
 			<text>0</text>
-			<A>nil</A>
+			<A>211331</A>
 			<B>211331</B>
 			<C>211331</C>
 		</ascii81>
 		<ascii82>
 			<text>0</text>
-			<A>nil</A>
+			<A>231131</A>
 			<B>231131</B>
 			<C>231131</C>
 		</ascii82>
 		<ascii83>
 			<text>0</text>
-			<A>nil</A>
+			<A>213113</A>
 			<B>213113</B>
 			<C>213113</C>
 		</ascii83>
 		<ascii84>
 			<text>0</text>
-			<A>nil</A>
+			<A>213311</A>
 			<B>213311</B>
 			<C>213311</C>
 		</ascii84>
 		<ascii85>
 			<text>0</text>
-			<A>nil</A>
+			<A>213131</A>
 			<B>213131</B>
 			<C>213131</C>
 		</ascii85>
 		<ascii86>
 			<text>0</text>
-			<A>nil</A>
+			<A>311123</A>
 			<B>311123</B>
 			<C>311123</C>
 		</ascii86>
 		<ascii87>
 			<text>0</text>
-			<A>nil</A>
+			<A>311321</A>
 			<B>311321</B>
 			<C>311321</C>
 		</ascii87>
 		<ascii88>
 			<text>0</text>
-			<A>nil</A>
+			<A>331121</A>
 			<B>331121</B>
 			<C>331121</C>
 		</ascii88>
 		<ascii89>
 			<text>0</text>
-			<A>nil</A>
+			<A>312131</A>
 			<B>312131</B>
 			<C>312131</C>
 		</ascii89>
 		<ascii90>
 			<text>0</text>
-			<A>nil</A>
+			<A>312311</A>
 			<B>312311</B>
 			<C>312311</C>
 		</ascii90>
 		<ascii91>
 			<text>0</text>
-			<A>nil</A>
+			<A>332111</A>
 			<B>332111</B>
 			<C>332111</C>
 		</ascii91>
 		<ascii92>
 			<text>0</text>
-			<A>nil</A>
+			<A>314111</A>
 			<B>314111</B>
 			<C>314111</C>
 		</ascii92>
 		<ascii93>
 			<text>0</text>
-			<A>nil</A>
+			<A>221411</A>
 			<B>221411</B>
 			<C>221411</C>
 		</ascii93>
 		<ascii94>
 			<text>0</text>
-			<A>nil</A>
+			<A>431111</A>
 			<B>431111</B>
 			<C>431111</C>
 		</ascii94>
 		<ascii95>
 			<text>0</text>
-			<A>nil</A>
+			<A>111124</A>
 			<B>111224</B>
 			<C>111224</C>
 		</ascii95>
@@ -790,577 +790,577 @@
 		</ascii130>
 		<ascii131>
 			<text>0</text>
-			<A>nil</A>
+			<A>111422</A>
 			<B>nil</B>
 			<C>113141</C>
 		</ascii131>
 		<ascii132>
 			<text>0</text>
-			<A>nil</A>
+			<A>121124</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii132>
 		<ascii133>
 			<text>0</text>
-			<A>nil</A>
+			<A>121421</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii133>
 		<ascii134>
 			<text>0</text>
-			<A>nil</A>
+			<A>141122</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii134>
 		<ascii135>
 			<text>0</text>
-			<A>nil</A>
+			<A>141221</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii135>
 		<ascii136>
 			<text>0</text>
-			<A>nil</A>
+			<A>112214</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii136>
 		<ascii137>
 			<text>0</text>
-			<A>nil</A>
+			<A>112412</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii137>
 		<ascii138>
 			<text>0</text>
-			<A>nil</A>
+			<A>122114</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii138>
 		<ascii139>
 			<text>0</text>
-			<A>nil</A>
+			<A>122411</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii139>
 		<ascii140>
 			<text>0</text>
-			<A>nil</A>
+			<A>142112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii140>
 		<ascii141>
 			<text>0</text>
-			<A>nil</A>
+			<A>142211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii141>
 		<ascii142>
 			<text>0</text>
-			<A>nil</A>
+			<A>241211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii142>
 		<ascii143>
 			<text>0</text>
-			<A>nil</A>
+			<A>221114</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii143>
 		<ascii144>
 			<text>0</text>
-			<A>nil</A>
+			<A>413111</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii144>
 		<ascii145>
 			<text>0</text>
-			<A>nil</A>
+			<A>241112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii145>
 		<ascii146>
 			<text>0</text>
-			<A>nil</A>
+			<A>134111</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii146>
 		<ascii147>
 			<text>0</text>
-			<A>nil</A>
+			<A>111242</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii147>
 		<ascii148>
 			<text>0</text>
-			<A>nil</A>
+			<A>121142</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii148>
 		<ascii149>
 			<text>0</text>
-			<A>nil</A>
+			<A>121241</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii149>
 		<ascii150>
 			<text>0</text>
-			<A>nil</A>
+			<A>114212</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii150>
 		<ascii151>
 			<text>0</text>
-			<A>nil</A>
+			<A>124112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii151>
 		<ascii152>
 			<text>0</text>
-			<A>nil</A>
+			<A>124211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii152>
 		<ascii153>
 			<text>0</text>
-			<A>nil</A>
+			<A>411212</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii153>
 		<ascii154>
 			<text>0</text>
-			<A>nil</A>
+			<A>421112</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii154>
 		<ascii155>
 			<text>0</text>
-			<A>nil</A>
+			<A>421211</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii155>
 		<ascii156>
 			<text>0</text>
-			<A>nil</A>
+			<A>212141</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii156>
 		<ascii157>
 			<text>0</text>
-			<A>nil</A>
+			<A>214121</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii157>
 		<ascii158>
 			<text>0</text>
-			<A>nil</A>
+			<A>312122</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii158>
 		<ascii159>
 			<text>0</text>
-			<A>nil</A>
+			<A>111143</A>
 			<B>nil</B>
 			<C>nil</C>
 		</ascii159>
 		<ascii160>
 			<text>0</text>
-			<A>nil</A>
+			<A>111341</A>
 			<B>212222</B>
 			<C>nil</C>
 		</ascii160>
 		<ascii161>
 			<text>0</text>
-			<A>nil</A>
+			<A>131141</A>
 			<B>222122</B>
 			<C>nil</C>
 		</ascii161>
 		<ascii162>
 			<text>0</text>
-			<A>nil</A>
+			<A>114113</A>
 			<B>222221</B>
 			<C>nil</C>
 		</ascii162>
 		<ascii163>
 			<text>0</text>
-			<A>nil</A>
+			<A>212222</A>
 			<B>121223</B>
 			<C>nil</C>
 		</ascii163>
 		<ascii164>
 			<text>0</text>
-			<A>nil</A>
+			<A>222122</A>
 			<B>121322</B>
 			<C>nil</C>
 		</ascii164>
 		<ascii165>
 			<text>0</text>
-			<A>nil</A>
+			<A>222221</A>
 			<B>131222</B>
 			<C>nil</C>
 		</ascii165>
 		<ascii166>
 			<text>0</text>
-			<A>nil</A>
+			<A>121223</A>
 			<B>122213</B>
 			<C>nil</C>
 		</ascii166>
 		<ascii167>
 			<text>0</text>
-			<A>nil</A>
+			<A>121322</A>
 			<B>122312</B>
 			<C>nil</C>
 		</ascii167>
 		<ascii168>
 			<text>0</text>
-			<A>nil</A>
+			<A>131222</A>
 			<B>132212</B>
 			<C>nil</C>
 		</ascii168>
 		<ascii169>
 			<text>0</text>
-			<A>nil</A>
+			<A>122213</A>
 			<B>221213</B>
 			<C>nil</C>
 		</ascii169>
 		<ascii170>
 			<text>0</text>
-			<A>nil</A>
+			<A>122312</A>
 			<B>221312</B>
 			<C>nil</C>
 		</ascii170>
 		<ascii171>
 			<text>0</text>
-			<A>nil</A>
+			<A>132212</A>
 			<B>231212</B>
 			<C>nil</C>
 		</ascii171>
 		<ascii172>
 			<text>0</text>
-			<A>nil</A>
+			<A>221213</A>
 			<B>112232</B>
 			<C>nil</C>
 		</ascii172>
 		<ascii173>
 			<text>0</text>
-			<A>nil</A>
+			<A>221312</A>
 			<B>122132</B>
 			<C>nil</C>
 		</ascii173>
 		<ascii174>
 			<text>0</text>
-			<A>nil</A>
+			<A>232212</A>
 			<B>122231</B>
 			<C>nil</C>
 		</ascii174>
 		<ascii175>
 			<text>0</text>
-			<A>nil</A>
+			<A>112232</A>
 			<B>113222</B>
 			<C>nil</C>
 		</ascii175>
 		<ascii176>
 			<text>0</text>
-			<A>nil</A>
+			<A>122132</A>
 			<B>123122</B>
 			<C>nil</C>
 		</ascii176>
 		<ascii177>
 			<text>0</text>
-			<A>nil</A>
+			<A>122231</A>
 			<B>123221</B>
 			<C>nil</C>
 		</ascii177>
 		<ascii178>
 			<text>0</text>
-			<A>nil</A>
+			<A>113222</A>
 			<B>223211</B>
 			<C>nil</C>
 		</ascii178>
 		<ascii179>
 			<text>0</text>
-			<A>nil</A>
+			<A>123122</A>
 			<B>221132</B>
 			<C>nil</C>
 		</ascii179>
 		<ascii180>
 			<text>0</text>
-			<A>nil</A>
+			<A>123221</A>
 			<B>221231</B>
 			<C>nil</C>
 		</ascii180>
 		<ascii181>
 			<text>0</text>
-			<A>nil</A>
+			<A>223211</A>
 			<B>213212</B>
 			<C>nil</C>
 		</ascii181>
 		<ascii182>
 			<text>0</text>
-			<A>nil</A>
+			<A>221132</A>
 			<B>223112</B>
 			<C>nil</C>
 		</ascii182>
 		<ascii183>
 			<text>0</text>
-			<A>nil</A>
+			<A>221231</A>
 			<B>312131</B>
 			<C>nil</C>
 		</ascii183>
 		<ascii184>
 			<text>0</text>
-			<A>nil</A>
+			<A>213212</A>
 			<B>311222</B>
 			<C>nil</C>
 		</ascii184>
 		<ascii185>
 			<text>0</text>
-			<A>nil</A>
+			<A>223112</A>
 			<B>321122</B>
 			<C>nil</C>
 		</ascii185>
 		<ascii186>
 			<text>0</text>
-			<A>nil</A>
+			<A>312131</A>
 			<B>321221</B>
 			<C>nil</C>
 		</ascii186>
 		<ascii187>
 			<text>0</text>
-			<A>nil</A>
+			<A>311222</A>
 			<B>312212</B>
 			<C>nil</C>
 		</ascii187>
 		<ascii188>
 			<text>0</text>
-			<A>nil</A>
+			<A>321122</A>
 			<B>322112</B>
 			<C>nil</C>
 		</ascii188>
 		<ascii189>
 			<text>0</text>
-			<A>nil</A>
+			<A>321221</A>
 			<B>322211</B>
 			<C>nil</C>
 		</ascii189>
 		<ascii190>
 			<text>0</text>
-			<A>nil</A>
+			<A>312212</A>
 			<B>212123</B>
 			<C>nil</C>
 		</ascii190>
 		<ascii191>
 			<text>0</text>
-			<A>nil</A>
+			<A>322112</A>
 			<B>212321</B>
 			<C>nil</C>
 		</ascii191>
 		<ascii192>
 			<text>0</text>
-			<A>nil</A>
+			<A>322211</A>
 			<B>232121</B>
 			<C>nil</C>
 		</ascii192>
 		<ascii193>
 			<text>0</text>
-			<A>nil</A>
+			<A>212123</A>
 			<B>111323</B>
 			<C>nil</C>
 		</ascii193>
 		<ascii194>
 			<text>0</text>
-			<A>nil</A>
+			<A>212321</A>
 			<B>131123</B>
 			<C>nil</C>
 		</ascii194>
 		<ascii195>
 			<text>0</text>
-			<A>nil</A>
+			<A>232121</A>
 			<B>131321</B>
 			<C>nil</C>
 		</ascii195>
 		<ascii196>
 			<text>0</text>
-			<A>nil</A>
+			<A>111323</A>
 			<B>112313</B>
 			<C>nil</C>
 		</ascii196>
 		<ascii197>
 			<text>0</text>
-			<A>nil</A>
+			<A>131123</A>
 			<B>132113</B>
 			<C>nil</C>
 		</ascii197>
 		<ascii198>
 			<text>0</text>
-			<A>nil</A>
+			<A>131321</A>
 			<B>132311</B>
 			<C>nil</C>
 		</ascii198>
 		<ascii199>
 			<text>0</text>
-			<A>nil</A>
+			<A>112313</A>
 			<B>211313</B>
 			<C>nil</C>
 		</ascii199>
 		<ascii200>
 			<text>0</text>
-			<A>nil</A>
+			<A>132113</A>
 			<B>231113</B>
 			<C>nil</C>
 		</ascii200>
 		<ascii201>
 			<text>0</text>
-			<A>nil</A>
+			<A>132311</A>
 			<B>231311</B>
 			<C>nil</C>
 		</ascii201>
 		<ascii202>
 			<text>0</text>
-			<A>nil</A>
+			<A>211313</A>
 			<B>112133</B>
 			<C>nil</C>
 		</ascii202>
 		<ascii203>
 			<text>0</text>
-			<A>nil</A>
+			<A>231113</A>
 			<B>112331</B>
 			<C>nil</C>
 		</ascii203>
 		<ascii204>
 			<text>0</text>
-			<A>nil</A>
+			<A>231311</A>
 			<B>132131</B>
 			<C>nil</C>
 		</ascii204>
 		<ascii205>
 			<text>0</text>
-			<A>nil</A>
+			<A>112133</A>
 			<B>113123</B>
 			<C>nil</C>
 		</ascii205>
 		<ascii206>
 			<text>0</text>
-			<A>nil</A>
+			<A>112331</A>
 			<B>113321</B>
 			<C>nil</C>
 		</ascii206>
 		<ascii207>
 			<text>0</text>
-			<A>nil</A>
+			<A>132131</A>
 			<B>133121</B>
 			<C>nil</C>
 		</ascii207>
 		<ascii208>
 			<text>0</text>
-			<A>nil</A>
+			<A>113123</A>
 			<B>313121</B>
 			<C>nil</C>
 		</ascii208>
 		<ascii209>
 			<text>0</text>
-			<A>nil</A>
+			<A>113321</A>
 			<B>211331</B>
 			<C>nil</C>
 		</ascii209>
 		<ascii210>
 			<text>0</text>
-			<A>nil</A>
+			<A>133121</A>
 			<B>231131</B>
 			<C>nil</C>
 		</ascii210>
 		<ascii211>
 			<text>0</text>
-			<A>nil</A>
+			<A>313121</A>
 			<B>213113</B>
 			<C>nil</C>
 		</ascii211>
 		<ascii212>
 			<text>0</text>
-			<A>nil</A>
+			<A>211331</A>
 			<B>213311</B>
 			<C>nil</C>
 		</ascii212>
 		<ascii213>
 			<text>0</text>
-			<A>nil</A>
+			<A>231131</A>
 			<B>213131</B>
 			<C>nil</C>
 		</ascii213>
 		<ascii214>
 			<text>0</text>
-			<A>nil</A>
+			<A>213113</A>
 			<B>311123</B>
 			<C>nil</C>
 		</ascii214>
 		<ascii215>
 			<text>0</text>
-			<A>nil</A>
+			<A>213311</A>
 			<B>311321</B>
 			<C>nil</C>
 		</ascii215>
 		<ascii216>
 			<text>0</text>
-			<A>nil</A>
+			<A>213131</A>
 			<B>331121</B>
 			<C>nil</C>
 		</ascii216>
 		<ascii217>
 			<text>0</text>
-			<A>nil</A>
+			<A>311123</A>
 			<B>312131</B>
 			<C>nil</C>
 		</ascii217>
 		<ascii218>
 			<text>0</text>
-			<A>nil</A>
+			<A>311321</A>
 			<B>312311</B>
 			<C>nil</C>
 		</ascii218>
 		<ascii219>
 			<text>0</text>
-			<A>nil</A>
+			<A>331121</A>
 			<B>332111</B>
 			<C>nil</C>
 		</ascii219>
 		<ascii220>
 			<text>0</text>
-			<A>nil</A>
+			<A>312131</A>
 			<B>314111</B>
 			<C>nil</C>
 		</ascii220>
 		<ascii221>
 			<text>0</text>
-			<A>nil</A>
+			<A>312311</A>
 			<B>221411</B>
 			<C>nil</C>
 		</ascii221>
 		<ascii222>
 			<text>0</text>
-			<A>nil</A>
+			<A>332111</A>
 			<B>431111</B>
 			<C>nil</C>
 		</ascii222>
 		<ascii223>
 			<text>0</text>
-			<A>nil</A>
+			<A>314111</A>
 			<B>111224</B>
 			<C>nil</C>
 		</ascii223>
 		<ascii224>
 			<text>0</text>
-			<A>nil</A>
+			<A>221411</A>
 			<B>111422</B>
 			<C>nil</C>
 		</ascii224>
 		<ascii225>
 			<text>0</text>
-			<A>nil</A>
+			<A>431111</A>
 			<B>121124</B>
 			<C>nil</C>
 		</ascii225>
 		<ascii226>
 			<text>0</text>
-			<A>nil</A>
+			<A>111124</A>
 			<B>121421</B>
 			<C>nil</C>
 		</ascii226>
@@ -1538,150 +1538,6 @@
 			<B>114113</B>
 			<C>nil</C>
 		</ascii255>
-		<ascii256>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii256>
-		<ascii257>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii257>
-		<ascii258>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii258>
-		<ascii259>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii259>
-		<ascii260>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii260>
-		<ascii261>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii261>
-		<ascii262>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii262>
-		<ascii263>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii263>
-		<ascii264>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii264>
-		<ascii265>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii265>
-		<ascii266>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii266>
-		<ascii267>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii267>
-		<ascii268>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii268>
-		<ascii269>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii269>
-		<ascii270>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii270>
-		<ascii271>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii271>
-		<ascii272>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii272>
-		<ascii273>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii273>
-		<ascii274>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii274>
-		<ascii275>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii275>
-		<ascii276>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii276>
-		<ascii277>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii277>
-		<ascii278>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii278>
-		<ascii279>
-			<text>0</text>
-			<A>nil</A>
-			<B>nil</B>
-			<C>nil</C>
-		</ascii279>
 		<asciiXX></asciiXX>
 	</data_encoding>
 	<non_data_encoding>
