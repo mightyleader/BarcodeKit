@@ -15,6 +15,7 @@
 #include "rapidxml.hpp"
 
 #define kOffsetASCII 32
+#define kASCII "ascii"
 
 using namespace std;
 using namespace rapidxml;
@@ -87,55 +88,65 @@ int main( int argc, const char * argv[ ] )
 	
 	for ( int jj = 0; jj < stringLength; ++jj ) 
 	{
-		string firstBit = "ascii";
-		//concatenate strings to get tag name, a serious hack but couldnt get boost working
+		string firstBit = kASCII;
+		//concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
 		int kk = asciiList[ jj ];
 		string secondBit;
 		stringstream out;
 		out << kk;
 		secondBit = out.str( );
+		out.flush( );
 		firstBit.append( secondBit );
 		
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
 		
-		// IF C THEN DO C THINGS
-		//use the offset and the composite value of JJ & JJ+1 (compensating for overflow) 
-		//build an asciixx ref. and set the node to that value
-		//otherwise use the normal method for A or B and off to the races.
-		//Except with loops not  jumps
+		
 		int charSetToRef = 0;
-		string iReallyShouldntMakeThis = "ascii";
-		char thingtwo;
-		char thingone = incomingString->at( jj );
+		string ASCIIRef = kASCII;
+		char secondDigit;
+		char firstDigit = incomingString->at( jj );
 		
 		//*******SET C SPECIFIC**********
 		
 		if ( ( jj + 1 ) < stringLength ) 
 		{
-			thingtwo = incomingString->at( jj + 1 );
+			secondDigit = incomingString->at( jj + 1 );
 		}
 
-		if ( isdigit( thingtwo ) && isdigit( thingone ) ) 
+		if ( isdigit( secondDigit ) && isdigit( firstDigit ) ) 
 		{
-			string setCAscii = iReallyShouldntMakeThis.append( &thingone );
-			cout << "Test of C Set detector: " << setCAscii  << endl; //<< setCAscii.append( &thingtwo )
+			// IF C THEN DO C THINGS
+			string setCAscii = ASCIIRef.append( &firstDigit );
+			string shortString = setCAscii.substr( 5, 2 );
+			int offsetASCIIValue = std::atoi( shortString.c_str( ) )  + kOffsetASCII;
+
+			stringstream out2;
+			out2 << offsetASCIIValue;
+			ASCIIRef = kASCII;
+			ASCIIRef.append( out2.str( ) );
+			out2.flush( );
+
+			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( ASCIIRef.c_str( ) );
 			charSetToRef = 3;
+			
+			firstDigit = NULL;
+			secondDigit = NULL;
 			++jj;
-			//TODO increment counter by 1 and store the concat. numbers into a string and use it to determine pattern
+			
 		}
 		else 
 		{
-			//
+			//ELSE IF A OR B DO A/B THINGS
 		}
 		
-				
+		//get the values for the tag back as a vector
+		vector<string> returnedData = returnDOMValues( node );		
 		
-		//ELSE IF A OR B DO A/B THINGS
+		
 		
 		//*******A & B FROM HERE*********
 		
-		//get the values for the tag back as a vector
-		vector<string> returnedData = returnDOMValues( node );
+		
 		cout << returnedData.at( 0 ) << " - " << returnedData.at( 1 ) << " - " << returnedData.at( 2 ) << " - " << returnedData.at( 3 ) << endl; //DEBUG
 		
 		
