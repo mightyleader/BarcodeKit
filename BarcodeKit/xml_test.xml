@@ -1541,6 +1541,26 @@
 		<asciiXX></asciiXX>
 	</data_encoding>
 	<non_data_encoding>
+		<CodeA>
+			<A>nil</A>
+			<B>311141</B>
+			<C>311141</C>
+		</CodeA>
+		<CodeB>
+			<A>114131</A>
+			<B>nil</B>
+			<C>114131</C>
+		</CodeB>
+		<CodeC>
+			<A>113141</A>
+			<B>113141</B>
+			<C>nil</C>
+		</CodeC>
+		<FNC4>
+			<A>311141</A>
+			<B>114131</B>
+			<C>nil</C>
+		</FNC4>
 		<start_char>
 			<A>nil</A>
 			<B>nil</B>
