@@ -88,8 +88,8 @@ int main( int argc, const char * argv[ ] )
 	
 	for ( int jj = 0; jj < stringLength; ++jj ) 
 	{
-		string firstBit = kASCII;
 		//concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
+		string firstBit = kASCII;
 		int kk = asciiList[ jj ];
 		string secondBit;
 		stringstream out;
@@ -98,16 +98,12 @@ int main( int argc, const char * argv[ ] )
 		out.flush( );
 		firstBit.append( secondBit );
 		
-		
-		
-		
 		int charSetToRef = 0;
 		string ASCIIRef = kASCII;
 		char secondDigit;
 		char firstDigit = incomingString->at( jj );
 		
 		//*******SET C SPECIFIC**********
-		
 		if ( ( jj + 1 ) < stringLength ) 
 		{
 			secondDigit = incomingString->at( jj + 1 );
@@ -115,7 +111,6 @@ int main( int argc, const char * argv[ ] )
 
 		if ( isdigit( secondDigit ) && isdigit( firstDigit ) ) 
 		{
-			// IF C THEN DO C THINGS
 			string setCAscii = ASCIIRef.append( &firstDigit );
 			string shortString = setCAscii.substr( 5, 2 );
 			int offsetASCIIValue = std::atoi( shortString.c_str( ) )  + kOffsetASCII;
@@ -128,7 +123,6 @@ int main( int argc, const char * argv[ ] )
 
 			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( ASCIIRef.c_str( ) );
 			charSetToRef = 3;
-			
 			firstDigit = NULL;
 			secondDigit = NULL;
 			++jj;
@@ -161,10 +155,8 @@ int main( int argc, const char * argv[ ] )
 			pattern->push_back( temp );
 		}
 
-		//use them to create a Symbol
+		// Create and test symbol
 		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
-		
-		//test the symbol object
 		testSymbol( aSymbol );
 		
 		delete pattern;
