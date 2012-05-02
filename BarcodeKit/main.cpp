@@ -15,6 +15,9 @@
 #include "rapidxml.hpp"
 
 #define kOffsetASCII 32
+#define kSetA 1
+#define kSetB 2
+#define kSetC 3
 #define kASCII "ascii"
 
 using namespace std;
@@ -75,6 +78,8 @@ int main( int argc, const char * argv[ ] )
 	//*****************************
 	
 	string *incomingString = new string( "07841669212" );
+
+	int previousCharSet = kSetA; //default to using set A first
 	
 	//make an array of the ascii value of each char in the string
 	int stringLength = incomingString->length( );
@@ -122,7 +127,7 @@ int main( int argc, const char * argv[ ] )
 			out2.flush( );
 
 			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( ASCIIRef.c_str( ) );
-			charSetToRef = 3;
+			charSetToRef = kSetC;
 			firstDigit = NULL;
 			secondDigit = NULL;
 			++jj;
@@ -134,18 +139,32 @@ int main( int argc, const char * argv[ ] )
 		
 		//get the values for the tag back as a vector
 		vector<string> returnedData = returnDOMValues( node );		
-		cout << returnedData.at( 0 ) << " - " << returnedData.at( 1 ) << " - " << returnedData.at( 2 ) << " - " << returnedData.at( 3 ) << endl; //DEBUG
 		
 		//Use Set B?
-		if ( returnedData.at( 1 ) == "nil" ) 
+		if ( returnedData.at( kSetA ) == "nil"  && charSetToRef != kSetC ) 
 		{
-			charSetToRef = 2;
+			charSetToRef = kSetB;
 		}
 		//OK, Set A it is.
-		else if ( returnedData.at( 2 ) == "nil" )
+		else if ( returnedData.at( kSetB ) == "nil" && charSetToRef != kSetC )
 		{
-			charSetToRef = 1;
+			charSetToRef = kSetA;
 		}
+		
+		switch ( charSetToRef ) {
+			case kSetA:
+				cout << "Was: " << previousCharSet << " is: " << charSetToRef << endl;
+				break;
+			case kSetB:
+				cout << "Was: " << previousCharSet << " is: " << charSetToRef << endl;
+				break;
+			case kSetC:
+				cout << "Was: " << previousCharSet << " is: " << charSetToRef << endl;
+				break;
+			default:
+				break;
+		}
+		previousCharSet = charSetToRef;
 		
 		vector< int > *pattern = new vector< int >;
 		for ( int ll = 0; ll < returnedData.at( charSetToRef ).length( ) ; ll++)
@@ -154,7 +173,7 @@ int main( int argc, const char * argv[ ] )
 			int temp = atoi( &eachCharFromResult );
 			pattern->push_back( temp );
 		}
-
+		
 		// Create and test symbol
 		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
 		testSymbol( aSymbol );
