@@ -44,7 +44,7 @@ int main( int argc, const char * argv[ ] )
 	xml_node< > *special = NULL;
 	
 	string *incomingString = new string( "ABC12345abc" );
-	int previousCharSet = kSetA; //default to using set A first
+	int previousCharSet = kSetA; //** default to using set A first **
 	
 	//make an array of the ascii value of each char in the string
 	int stringLength = incomingString->length( );
@@ -126,7 +126,8 @@ int main( int argc, const char * argv[ ] )
 		{
 			//** What was the previous character set? Need it as a letter so we convert **
 			string prevCharSetRefAsString;
-			switch ( previousCharSet ) {
+			switch ( previousCharSet ) 
+			{
 				case 1:
 					prevCharSetRefAsString = "A";
 					break;
@@ -172,7 +173,6 @@ int main( int argc, const char * argv[ ] )
 			testSymbol( bSymbol );
 			
 			delete specialPattern;
-			
 		}
 		
 		previousCharSet = charSetToRef;
