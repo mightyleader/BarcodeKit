@@ -79,7 +79,7 @@ Base128::Base128( string *data )
 		aSymbol->setAsciiEquivalent( (int)attributes->at( 0 )[ 0 ] );
 		
 		// 4.add it to the ivar vector
-		this->addEncodedPatternData( aSymbol, (int)attributes->at( 0 )[ 0 ] ); //cast derived char value to int to get ascii value
+		//this->addEncodedPatternData( aSymbol, (int)attributes->at( 0 )[ 0 ] ); //cast derived char value to int to get ascii value
 		delete aSymbol; //? brush up on c++ mm
 		
 		node = node->next_sibling( );

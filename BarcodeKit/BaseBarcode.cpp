@@ -29,16 +29,16 @@ BaseBarcode::~BaseBarcode( )
 
 #pragma mark --Getters--
 
-vector<Symbol*> BaseBarcode::getEncodingpatternData( )
-{
-	return this->encodingpatternData;
-}
-
-
-vector<Symbol*> BaseBarcode::getEncodingPatternNondata( )
-{
-	return this->encodingPatternNondata;
-}
+//vector<Symbol*> BaseBarcode::getEncodingpatternData( )
+//{
+//	return this->encodingpatternData;
+//}
+//
+//
+//vector<Symbol*> BaseBarcode::getEncodingPatternNondata( )
+//{
+//	return this->encodingPatternNondata;
+//}
 
 
 vector<int> BaseBarcode::getQuietzoneWidths( )
@@ -67,42 +67,42 @@ int BaseBarcode::getDataLength( )
 
 #pragma mark --Setters--
 
-void BaseBarcode::addEncodedPatternData( Symbol* pattern )
-{
-	this->encodingpatternData.push_back( pattern );
-}
-
-
-void BaseBarcode::addEncodedPatternNonData( Symbol* pattern )
-{
-	this->encodingPatternNondata.push_back( pattern );
-}
-
-
-void BaseBarcode::addEncodedPatternData( Symbol* pattern, int position )
-{
-	if ( position == 0 ) 
-	{
-		this->encodingpatternData.insert( this->encodingpatternData.begin( ), pattern );
-	} 
-	else 
-	{
-		this->encodingpatternData.insert( this->encodingpatternData.begin( ) + position, pattern );
-	}
-}
-
-
-void BaseBarcode::addEncodedPatternNonData( Symbol* pattern, int position )
-{
-	if ( position == 0 ) 
-	{
-		this->encodingPatternNondata.insert( this->encodingPatternNondata.begin( ), pattern );
-	} 
-	else 
-	{
-		this->encodingPatternNondata.insert( this->encodingPatternNondata.begin( ) + position, pattern );
-	} 
-}
+//void BaseBarcode::addEncodedPatternData( Symbol* pattern )
+//{
+//	this->encodingpatternData.push_back( pattern );
+//}
+//
+//
+//void BaseBarcode::addEncodedPatternNonData( Symbol* pattern )
+//{
+//	this->encodingPatternNondata.push_back( pattern );
+//}
+//
+//
+//void BaseBarcode::addEncodedPatternData( Symbol* pattern, int position )
+//{
+//	if ( position == 0 ) 
+//	{
+//		this->encodingpatternData.insert( this->encodingpatternData.begin( ), pattern );
+//	} 
+//	else 
+//	{
+//		this->encodingpatternData.insert( this->encodingpatternData.begin( ) + position, pattern );
+//	}
+//}
+//
+//
+//void BaseBarcode::addEncodedPatternNonData( Symbol* pattern, int position )
+//{
+//	if ( position == 0 ) 
+//	{
+//		this->encodingPatternNondata.insert( this->encodingPatternNondata.begin( ), pattern );
+//	} 
+//	else 
+//	{
+//		this->encodingPatternNondata.insert( this->encodingPatternNondata.begin( ) + position, pattern );
+//	} 
+//}
 
 
 void BaseBarcode::setQuietzoneWidths( int left, int right, int upper, int lower )
@@ -179,13 +179,13 @@ bool BaseBarcode::verifyContent ( const string *content )
 {
 	for ( int i = 0; i < content->length( ); i++ ) 
 	{
-		int asciiOfChar = (int)content->at( i );
+		//int asciiOfChar = (int)content->at( i );
 		
-		if ( this->encodingpatternData.at( asciiOfChar ) == NULL ) 
-		{
-			cerr << "Data cannot be encoded by into a barcode-compatible format" << endl;
-			return false;
-		}
+//		if ( this->encodingpatternData.at( asciiOfChar ) == NULL ) 
+//		{
+//			cerr << "Data cannot be encoded by into a barcode-compatible format" << endl;
+//			return false;
+//		}
 	}
 	
 	return true;
