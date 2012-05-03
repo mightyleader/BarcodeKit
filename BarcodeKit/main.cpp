@@ -30,72 +30,38 @@ void testDOM ( xml_node< > *node );
 vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
-{
-	//****************************
-	//** Symbol Class Test Code **
-	//****************************
-	
-	//Unit Test Data for Symbol
-	vector< int > *testVector = new vector< int >( );
-	testVector->push_back( 1 );
-	testVector->push_back( 2 );
-	testVector->push_back( 3 );
-	testVector->push_back( 4 );
-	testVector->push_back( 1 );
-	//int st = 1, ic = 1, le = 0, fp = 5;
-	
-	//unit Test - Symbol
-	//Symbol *versionOne = createSymbol( st, ic, le, fp, testVector );
-	//testSymbol( versionOne );
-	
-	delete testVector;
-	//End Unit Test - Symbol
-	
-	//****************************
-	//** RapidXML Test Code ******
-	//****************************
-	
-	// Process the file
-	string *filename = new string( "xml_test.xml" );
-	xml_document< > parsed_xml;
-	parsed_xml.parse< 0 >( getXMLToParse( filename ) );
-	
-	// Test for data characters
-	xml_node< > *node = NULL;
-	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( "ascii49" );
-	//testDOM( node );
-	
-	// Test for nondata characters
-	node = parsed_xml.first_node( )->first_node( )->next_sibling( )->next_sibling( "non_data_encoding" )->first_node( "guard_centre" );
-	//testDOM( node );
-	
-	// Test for contained value
-	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( )->first_node();
-	//testDOM( node );
-	
+{	
 	//*****************************
 	//** Putting it all together **
 	//*****************************
+	cout << "Start" << endl;
+	string *filename = new string( "xml_test.xml" );
+	xml_document< > parsed_xml;
+	cout << "Parsing starts..." << endl;
+	parsed_xml.parse< 0 >( getXMLToParse( filename ) );
+	cout << "...and ends.\n" << endl;
+	xml_node< > *node = NULL;
+	xml_node< > *special = NULL;
 	
-	string *incomingString = new string( "07841669212" );
-
+	string *incomingString = new string( "ABC12345abc" );
 	int previousCharSet = kSetA; //default to using set A first
 	
 	//make an array of the ascii value of each char in the string
 	int stringLength = incomingString->length( );
 	int asciiList[ stringLength ];
-	//loop thru the data and fill the array with ascii values.
+	//loop thru the data and fill the array with its ascii values.
 	for ( int ii = 0; ii < stringLength; ii++ ) 
 	{
-		char eachChar = incomingString->at( ii );
+		unsigned char eachChar = incomingString->at( ii );
 		asciiList[ ii ] = ( int )eachChar;
 	}
 	
 	for ( int jj = 0; jj < stringLength; ++jj ) 
 	{
-		//concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
+		//** concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
 		string firstBit = kASCII;
 		int kk = asciiList[ jj ];
+		//cout << "ASCII Code is: " << kk << " for: " << incomingString->at( jj ) << endl;
 		string secondBit;
 		stringstream out;
 		out << kk;
@@ -103,12 +69,14 @@ int main( int argc, const char * argv[ ] )
 		out.flush( );
 		firstBit.append( secondBit );
 		
-		int charSetToRef = 0;
+		int charSetToRef = 1;
 		string ASCIIRef = kASCII;
 		char secondDigit;
 		char firstDigit = incomingString->at( jj );
 		
-		//*******SET C SPECIFIC**********
+		vector<string> returnedData;
+		
+		// *** C Char Set ***
 		if ( ( jj + 1 ) < stringLength ) 
 		{
 			secondDigit = incomingString->at( jj + 1 );
@@ -116,6 +84,7 @@ int main( int argc, const char * argv[ ] )
 
 		if ( isdigit( secondDigit ) && isdigit( firstDigit ) ) 
 		{
+			//cout << "ASCII Code is: " << (int)incomingString->at( jj + 1 ) << " for: " << incomingString->at( jj + 1 ) << endl;
 			string setCAscii = ASCIIRef.append( &firstDigit );
 			string shortString = setCAscii.substr( 5, 2 );
 			int offsetASCIIValue = std::atoi( shortString.c_str( ) )  + kOffsetASCII;
@@ -127,43 +96,85 @@ int main( int argc, const char * argv[ ] )
 			out2.flush( );
 
 			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( ASCIIRef.c_str( ) );
+			returnedData = returnDOMValues( node );
 			charSetToRef = kSetC;
 			firstDigit = NULL;
 			secondDigit = NULL;
 			++jj;
 		}
-		else 
+		else //*** A or B Char Sets ***
 		{
 			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
+			returnedData = returnDOMValues( node );
+			//** Use Set B? **
+			string aSetTest = returnedData.at( kSetA );
+			string bSetTest = returnedData.at( kSetB );
+			if ( aSetTest == "nil" ) 
+			{
+				charSetToRef = kSetB;
+			}
+			//** OK, Set A it is. **
+			if ( bSetTest == "nil" )
+			{
+				charSetToRef = kSetA;
+			}
 		}
 		
-		//get the values for the tag back as a vector
-		vector<string> returnedData = returnDOMValues( node );		
+		//cout << "Using Set " << charSetToRef << ", was using Set " << previousCharSet << endl;
 		
-		//Use Set B?
-		if ( returnedData.at( kSetA ) == "nil"  && charSetToRef != kSetC ) 
+		if ( previousCharSet != charSetToRef ) //** Do we need a code set symbol inserted? **
 		{
-			charSetToRef = kSetB;
-		}
-		//OK, Set A it is.
-		else if ( returnedData.at( kSetB ) == "nil" && charSetToRef != kSetC )
-		{
-			charSetToRef = kSetA;
+			//** What was the previous character set? Need it as a letter so we convert **
+			string prevCharSetRefAsString;
+			switch ( previousCharSet ) {
+				case 1:
+					prevCharSetRefAsString = "A";
+					break;
+				case 2:
+					prevCharSetRefAsString = "B";
+					break;
+				case 3:
+					prevCharSetRefAsString = "C";
+					break;
+			}
+			//cout << "FROM: " << prevCharSetRefAsString << endl;
+			
+			//** Which char set are we going to? We can shoot to the exact place in the DOM **
+			string charSettoRefAsString;
+			switch ( charSetToRef ) 
+			{
+				case 1:
+					charSettoRefAsString =  "CodeA";
+					break;
+				case 2:
+					charSettoRefAsString = "CodeB";
+					break;
+				case 3:
+					charSettoRefAsString = "CodeC";
+					break;
+			}
+			//cout << "TO: " << charSettoRefAsString << endl;
+			
+			//** Get the data we need back into a vector
+			special = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( charSettoRefAsString.c_str( ) )->first_node( prevCharSetRefAsString.c_str( ) );
+			
+			vector< int > *specialPattern = new vector< int >;
+			string receivedPattern = special->value( );
+			for ( int mm = 0; mm < receivedPattern.length( ); mm++ ) 
+			{
+				char eachCharFromResult = receivedPattern.at( mm );
+				int temp = atoi( &eachCharFromResult );
+				specialPattern->push_back( temp );
+			}
+			
+			Symbol *bSymbol = createSymbol( 4, 0, 1, 0, specialPattern );
+			cout << "*** CHANGING SET SYMBOL ***" << endl;
+			testSymbol( bSymbol );
+			
+			delete specialPattern;
+			
 		}
 		
-		switch ( charSetToRef ) {
-			case kSetA:
-				cout << "Was: " << previousCharSet << " is: " << charSetToRef << endl;
-				break;
-			case kSetB:
-				cout << "Was: " << previousCharSet << " is: " << charSetToRef << endl;
-				break;
-			case kSetC:
-				cout << "Was: " << previousCharSet << " is: " << charSetToRef << endl;
-				break;
-			default:
-				break;
-		}
 		previousCharSet = charSetToRef;
 		
 		vector< int > *pattern = new vector< int >;
@@ -176,6 +187,7 @@ int main( int argc, const char * argv[ ] )
 		
 		// Create and test symbol
 		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
+		cout << "*** DATA SYMBOL ***" << endl;
 		testSymbol( aSymbol );
 		
 		delete pattern;
@@ -267,22 +279,22 @@ void testDOM ( xml_node< > *node ) //Test contents of a single named or unnamed 
 vector<string> returnDOMValues( xml_node< > *node ) //Return contents of a single named or unnamed node in the DOM
 {
 	vector<string> *returnValues = new vector<string>;
-	cout << node->name( ) << ":";
+	//cout << node->name( ) << ":";
 	xml_node< > *datanode = node->first_node( );
 	while ( datanode != 0 ) 
 	{
-		cout << " - " << datanode->name( );
+		//cout << " - " << datanode->name( );
 		xml_node< > *childnode = datanode->first_node( );
 		while ( childnode != 0 ) 
 		{
-			cout << childnode->name( ) << " is " << childnode->value( );
+			//cout << childnode->name( ) << " is " << childnode->value( );
 			string aValue = childnode->value( );
 			returnValues->push_back( aValue );
 			childnode = childnode->next_sibling( );
 		}
 		datanode = datanode->next_sibling( );
 	}
-	cout << endl;
+	//cout << endl;
 	node = node->next_sibling( );
 	
 	return *returnValues;
