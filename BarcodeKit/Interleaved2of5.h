@@ -21,10 +21,16 @@ class Interleaved2of5 : BaseBarcode
 {
 
 	public:
-	
+	Interleaved2of5( );
+	~Interleaved2of5( );
+	bool verifyContent ( const string *content );
+	void encodeSymbol ( const string *data );
+	void encodeStartStop ( );
+	void encodeQuietZones ( );
+	void encodeCheckCharacter ( );
 	
 	private:
-	
+	int[] validASCII = {48,49,50,51,52,53,54,55,56,57\0};
 	
 };
 
