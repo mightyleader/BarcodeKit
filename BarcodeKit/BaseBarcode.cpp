@@ -12,6 +12,9 @@
 #include <string>
 #include <vector>
 #include <deque>
+#include <fstream>
+#include <sstream>
+#include "rapidxml.hpp"
 
 #pragma mark --Con/Destructors--
 
@@ -28,18 +31,6 @@ BaseBarcode::~BaseBarcode( )
 #pragma mark --Accessor Methods--
 
 #pragma mark --Getters--
-
-//vector<Symbol*> BaseBarcode::getEncodingpatternData( )
-//{
-//	return this->encodingpatternData;
-//}
-//
-//
-//vector<Symbol*> BaseBarcode::getEncodingPatternNondata( )
-//{
-//	return this->encodingPatternNondata;
-//}
-
 
 vector<int> BaseBarcode::getQuietzoneWidths( )
 {
@@ -66,44 +57,6 @@ int BaseBarcode::getDataLength( )
 
 
 #pragma mark --Setters--
-
-//void BaseBarcode::addEncodedPatternData( Symbol* pattern )
-//{
-//	this->encodingpatternData.push_back( pattern );
-//}
-//
-//
-//void BaseBarcode::addEncodedPatternNonData( Symbol* pattern )
-//{
-//	this->encodingPatternNondata.push_back( pattern );
-//}
-//
-//
-//void BaseBarcode::addEncodedPatternData( Symbol* pattern, int position )
-//{
-//	if ( position == 0 ) 
-//	{
-//		this->encodingpatternData.insert( this->encodingpatternData.begin( ), pattern );
-//	} 
-//	else 
-//	{
-//		this->encodingpatternData.insert( this->encodingpatternData.begin( ) + position, pattern );
-//	}
-//}
-//
-//
-//void BaseBarcode::addEncodedPatternNonData( Symbol* pattern, int position )
-//{
-//	if ( position == 0 ) 
-//	{
-//		this->encodingPatternNondata.insert( this->encodingPatternNondata.begin( ), pattern );
-//	} 
-//	else 
-//	{
-//		this->encodingPatternNondata.insert( this->encodingPatternNondata.begin( ) + position, pattern );
-//	} 
-//}
-
 
 void BaseBarcode::setQuietzoneWidths( int left, int right, int upper, int lower )
 {
@@ -174,19 +127,71 @@ bool BaseBarcode::verifyLength ( const int length )
 	return false;
 }
 
+#pragma mark --Helper Methods--
 
-bool BaseBarcode::verifyContent ( const string *content )
+Symbol* BaseBarcode::createSymbol( int st, int ic, int le, int fp, vector<int> *aVector ) //make a new symbol with passed values
 {
-	for ( int i = 0; i < content->length( ); i++ ) 
+	Symbol *shinyNewSymbol = new Symbol( );
+	shinyNewSymbol->setSymbolType( st );
+	shinyNewSymbol->setIntercharGap( ic );
+	shinyNewSymbol->setLeadingElement( le );
+	shinyNewSymbol->setForcedPosition( fp );
+	shinyNewSymbol->setEncodedData( *aVector );
+	return shinyNewSymbol;
+}
+
+
+char* BaseBarcode::getXMLToParse( string *fileTitle ) //Safely get the XML file into a c_string
+{
+	char *ft = new char[ fileTitle->length( ) + 1 ];
+	strcpy( ft, fileTitle->c_str( ) );
+	ifstream xmlfile ( ft, ios::in );
+	
+	vector<string> xmlcontent;
+	string xmlentry;
+	string xmltoparse;
+	
+	if ( xmlfile.is_open( ) )							//open the file
 	{
-		//int asciiOfChar = (int)content->at( i );
+		while ( getline( xmlfile, xmlentry ) )			//get the data
+		{
+			xmlcontent.push_back( xmlentry + "\n" );	//add data to vector
+		}
+		xmlfile.close( );
 		
-//		if ( this->encodingpatternData.at( asciiOfChar ) == NULL ) 
-//		{
-//			cerr << "Data cannot be encoded by into a barcode-compatible format" << endl;
-//			return false;
-//		}
+		for ( int i = 0; i < xmlcontent.size( ); i++ )	//iterate through vector into string
+		{
+			xmltoparse += xmlcontent[ i ];
+		}
 	}
 	
-	return true;
+	char * cxml = new char [ xmltoparse.size( ) + 1 ];	//copy string into cstring
+	strcpy ( cxml, xmltoparse.c_str( ) );
+	
+	return cxml;
+}
+
+
+vector<string> BaseBarcode::returnDOMValues( rapidxml::xml_node< > *node ) //Return contents of a single named or unnamed node in the DOM
+{
+	vector<string> *returnValues = new vector<string>;
+	//cout << node->name( ) << ":";
+	rapidxml::xml_node< > *datanode = node->first_node( );
+	while ( datanode != 0 ) 
+	{
+		//cout << " - " << datanode->name( );
+		rapidxml::xml_node< > *childnode = datanode->first_node( );
+		while ( childnode != 0 ) 
+		{
+			//cout << childnode->name( ) << " is " << childnode->value( );
+			string aValue = childnode->value( );
+			returnValues->push_back( aValue );
+			childnode = childnode->next_sibling( );
+		}
+		datanode = datanode->next_sibling( );
+	}
+	//cout << endl;
+	node = node->next_sibling( );
+	
+	return *returnValues;
 }

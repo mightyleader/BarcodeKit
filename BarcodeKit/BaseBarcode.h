@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <deque>
+#include "rapidxml.hpp"
 
 using namespace std;
 
@@ -20,8 +21,8 @@ class BaseBarcode
 {
 	protected:
 	//Build and Destroy
-	BaseBarcode( );
-	~BaseBarcode( );
+	BaseBarcode( );	//override
+	~BaseBarcode( ); 
 	
 	//Accessors
 	vector<int> getQuietzoneWidths( );
@@ -38,12 +39,16 @@ class BaseBarcode
 	//Methods
 	virtual bool verifyData ( const string *data );
 	virtual bool verifyLength ( const int length );
-	virtual bool verifyContent ( const string *content );
+	virtual bool verifyContent ( const string *content ) = 0; //override
 	
-	virtual void encodeSymbol ( const string *data ) = 0;
+	virtual void encodeSymbol ( const string *data ) = 0; //override
 	virtual void encodeStartStop ( ) = 0;
 	virtual void encodeQuietZones ( ) = 0;
 	virtual void encodeCheckCharacter ( ) = 0;
+	
+	Symbol* createSymbol( int st, int ic, int le, int fp, vector< int > *aVector );
+	char* getXMLToParse( string *fileTitle );
+	vector<string> returnDOMValues( rapidxml::xml_node< > *node );
 
 	private:
 	//iVars

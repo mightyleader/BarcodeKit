@@ -25,10 +25,6 @@ class Base128 : BaseBarcode
 	Base128( string *data );
 	~Base128( );
 	virtual void encodeSymbol ( const string *data );
-	
-	Symbol* createSymbol( int st, int ic, int le, int fp, vector< int > *aVector );
-	char* getXMLToParse( string *fileTitle );
-	vector<string> returnDOMValues( rapidxml::xml_node< > *node );
 };
 
 #endif
