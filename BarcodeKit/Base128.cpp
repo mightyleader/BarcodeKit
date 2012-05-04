@@ -8,12 +8,19 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <deque>
 #include <string>
 #include "Base128.h"
 #include "Symbol.h"
 #include "rapidxml.hpp"
+
+#define kOffsetASCII 32
+#define kSetA 1
+#define kSetB 2
+#define kSetC 3
+#define kASCII "ascii"
 
 using namespace std;
 using namespace rapidxml;
@@ -22,88 +29,9 @@ using namespace rapidxml;
 
 Base128::Base128( string *data )
 {
-	// SECTION 1 - Parse xml file
-	
-	ifstream xmlfile ( "xml_test.xml", ios::in );		//setup file for input...
-	vector<string> xmlcontent;							//...and the vars we'll use 
-	string xmlentry;
-	string xmltoparse;
-	
-	if ( xmlfile.is_open( ) )							//open the file
-	{
-		while ( getline( xmlfile, xmlentry ) )			//get the data
-		{
-			xmlcontent.push_back( xmlentry + "\n" );	//add data to vector
-		}
-		xmlfile.close( );								//close the file
-		
-		for ( int i = 0; i < xmlcontent.size( ); i++ )	//iterate through vector 
-		{
-			xmltoparse += xmlcontent[ i ];				//add it to the string
-		}
-	}
-	char * cxml = new char [ xmltoparse.size( ) + 1 ];	
-	strcpy ( cxml, xmltoparse.c_str( ) );				//convert string into cstring req'd by API
-	
-	xml_document< > parsed_xml;							//setup DOM object...
-	parsed_xml.parse< 0 >( cxml );						//...pass cstring to parser to parse into DOM object
-	
-	
-	// SECTION 2 - Extract data from parsed DOM for data characters
-	
-	xml_node< > *node = NULL;
-	node = parsed_xml.first_node( )->first_node()->next_sibling()->first_node();
-	
-	while ( node->next_sibling( ) != 0 ) 
-	{
-		// 1.get the relevant data out of the DOM tree
-		vector<string> *attributes = NULL;
-		xml_node< > *datanode = node->first_node();
-		while ( datanode != 0 ) 
-		{
-			attributes->push_back( datanode->value( ) );
-			datanode = datanode->next_sibling();
-		}
-		
-		// 2.extract the values and format them
-		const int dataLength = attributes->at( 0 ).length( );
-		int thedata[dataLength];
-		for ( int i = dataLength; i > 0; i-- ) 
-		{
-			thedata[ i ] = atoi( &attributes->at( 1 )[ i ] );
-		}
-		
-		// 3.make a symbol object
-		Symbol *aSymbol = new Symbol( thedata, dataLength, 1, 0, 1 );
-		aSymbol->setTextEquivalent( attributes->at( 0 ) );
-		aSymbol->setAsciiEquivalent( (int)attributes->at( 0 )[ 0 ] );
-		
-		// 4.add it to the ivar vector
-		//this->addEncodedPatternData( aSymbol, (int)attributes->at( 0 )[ 0 ] ); //cast derived char value to int to get ascii value
-		delete aSymbol; //? brush up on c++ mm
-		
-		node = node->next_sibling( );
-	}
-	
-	
-	// SECTION 3 - Extract data from parsed DOM for nondata characters
-	node = parsed_xml.first_node( )->first_node()->next_sibling()->next_sibling()->first_node();
-	
-	while ( node->next_sibling( ) != 0 ) 
-	{
-		
-		xml_node< > *datanode = node->first_node();
-		while (datanode != 0) 
-		{
-			
-			datanode = datanode->next_sibling();
-		}
-		
-		node = node->next_sibling( );
-	}
-	
-	
+	Base128::encodeSymbol( data ); 
 }
+
 
 Base128::~Base128( )
 {
@@ -115,10 +43,222 @@ Base128::~Base128( )
 
 void Base128::encodeSymbol ( const string *data )
 {
-	//for each char in string get ascii value
-	//pull pattern from data structure
-	//create symbol for each
-	//add to the data structure
+	string *filename = new string( "xml_test.xml" ); //TODO: Change this to actual file, probably in a define somewhere in the superclass
+	xml_document< > parsed_xml;
+	parsed_xml.parse< 0 >( getXMLToParse( filename ) );
+	xml_node< > *node = NULL;
+	xml_node< > *special = NULL;
 	
-	//q's handling sets, 
+	const string *incomingString = data;
+	int previousCharSet = kSetA; //** default to using set A first **
+	
+	//** make an array of the ascii value of each char in the string **
+	int stringLength = incomingString->length( );
+	int asciiList[ stringLength ];
+	//** loop thru the data and fill the array with its ascii values. **
+	for ( int ii = 0; ii < stringLength; ii++ ) 
+	{
+		unsigned char eachChar = incomingString->at( ii );
+		asciiList[ ii ] = ( int )eachChar;
+	}
+	
+	for ( int jj = 0; jj < stringLength; ++jj ) 
+	{
+		//** concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
+		string firstBit = kASCII;
+		int kk = asciiList[ jj ];
+		string secondBit;
+		stringstream out;
+		out << kk;
+		secondBit = out.str( );
+		out.flush( );
+		firstBit.append( secondBit );
+		
+		int charSetToRef = 1;
+		string ASCIIRef = kASCII;
+		char secondDigit;
+		char firstDigit = incomingString->at( jj );
+		
+		vector<string> returnedData;
+		
+		// *** C Char Set ***
+		if ( ( jj + 1 ) < stringLength ) 
+		{
+			secondDigit = incomingString->at( jj + 1 );
+		}
+		
+		if ( isdigit( secondDigit ) && isdigit( firstDigit ) ) 
+		{
+			string setCAscii = ASCIIRef.append( &firstDigit );
+			string shortString = setCAscii.substr( 5, 2 );
+			int offsetASCIIValue = std::atoi( shortString.c_str( ) )  + kOffsetASCII;
+			
+			stringstream out2;
+			out2 << offsetASCIIValue;
+			ASCIIRef = kASCII;
+			ASCIIRef.append( out2.str( ) );
+			out2.flush( );
+			
+			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( ASCIIRef.c_str( ) );
+			returnedData = returnDOMValues( node );
+			charSetToRef = kSetC;
+			firstDigit = NULL;
+			secondDigit = NULL;
+			++jj;
+		}
+		else //*** A or B Char Sets ***
+		{
+			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) );
+			returnedData = returnDOMValues( node );
+			//** Use Set B? **
+			string aSetTest = returnedData.at( kSetA );
+			string bSetTest = returnedData.at( kSetB );
+			if ( aSetTest == "nil" ) 
+			{
+				charSetToRef = kSetB;
+			}
+			//** OK, Set A it is. **
+			if ( bSetTest == "nil" )
+			{
+				charSetToRef = kSetA;
+			}
+		}
+		
+		if ( previousCharSet != charSetToRef ) //** Do we need a code set symbol inserted? **
+		{
+			//** What was the previous character set? Need it as a letter so we convert **
+			string prevCharSetRefAsString;
+			switch ( previousCharSet ) 
+			{
+				case 1:
+					prevCharSetRefAsString = "A";
+					break;
+				case 2:
+					prevCharSetRefAsString = "B";
+					break;
+				case 3:
+					prevCharSetRefAsString = "C";
+					break;
+			}
+			
+			//** Which char set are we going to? We can shoot to the exact place in the DOM **
+			string charSettoRefAsString;
+			switch ( charSetToRef ) 
+			{
+				case 1:
+					charSettoRefAsString =  "CodeA";
+					break;
+				case 2:
+					charSettoRefAsString = "CodeB";
+					break;
+				case 3:
+					charSettoRefAsString = "CodeC";
+					break;
+			}
+			
+			//** Get the data we need back into a vector
+			special = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( charSettoRefAsString.c_str( ) )->first_node( prevCharSetRefAsString.c_str( ) );
+			
+			vector< int > *specialPattern = new vector< int >;
+			string receivedPattern = special->value( );
+			for ( int mm = 0; mm < receivedPattern.length( ); mm++ ) 
+			{
+				char eachCharFromResult = receivedPattern.at( mm );
+				int temp = atoi( &eachCharFromResult );
+				specialPattern->push_back( temp );
+			}
+			
+			Symbol *bSymbol = createSymbol( 4, 0, 1, 0, specialPattern );
+			cout << "*** CHANGING SET SYMBOL ***" << endl;
+			//testSymbol( bSymbol ); //TODO: Add actual code to add to ivar.
+			
+			delete specialPattern;
+		}
+		
+		previousCharSet = charSetToRef;
+		
+		vector< int > *pattern = new vector< int >;
+		for ( int ll = 0; ll < returnedData.at( charSetToRef ).length( ) ; ll++)
+		{
+			char eachCharFromResult = returnedData.at( charSetToRef )[ ll ];
+			int temp = atoi( &eachCharFromResult );
+			pattern->push_back( temp );
+		}
+		
+		// Create and test symbol
+		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
+		cout << "*** DATA SYMBOL ***" << endl;
+		//testSymbol( aSymbol ); //TODO: Add actual code to add to ivar.
+		
+		delete pattern;
+	}
+}
+
+#pragma mark --Helper Methods--
+
+Symbol* Base128::createSymbol( int st, int ic, int le, int fp, vector<int> *aVector ) //make a new symbol with passed values
+{
+	Symbol *shinyNewSymbol = new Symbol( );
+	shinyNewSymbol->setSymbolType( st );
+	shinyNewSymbol->setIntercharGap( ic );
+	shinyNewSymbol->setLeadingElement( le );
+	shinyNewSymbol->setForcedPosition( fp );
+	shinyNewSymbol->setEncodedData( *aVector );
+	return shinyNewSymbol;
+}
+
+
+char* Base128::getXMLToParse( string *fileTitle ) //Safely get the XML file into a c_string
+{
+	char *ft = new char[ fileTitle->length( ) + 1 ];
+	strcpy( ft, fileTitle->c_str( ) );
+	ifstream xmlfile ( ft, ios::in );
+	
+	vector<string> xmlcontent;
+	string xmlentry;
+	string xmltoparse;
+	
+	if ( xmlfile.is_open( ) )							//open the file
+	{
+		while ( getline( xmlfile, xmlentry ) )			//get the data
+		{
+			xmlcontent.push_back( xmlentry + "\n" );	//add data to vector
+		}
+		xmlfile.close( );
+		
+		for ( int i = 0; i < xmlcontent.size( ); i++ )	//iterate through vector into string
+		{
+			xmltoparse += xmlcontent[ i ];
+		}
+	}
+	
+	char * cxml = new char [ xmltoparse.size( ) + 1 ];	//copy string into cstring
+	strcpy ( cxml, xmltoparse.c_str( ) );
+	
+	return cxml;
+}
+
+
+vector<string> Base128::returnDOMValues( xml_node< > *node ) //Return contents of a single named or unnamed node in the DOM
+{
+	vector<string> *returnValues = new vector<string>;
+	//cout << node->name( ) << ":";
+	xml_node< > *datanode = node->first_node( );
+	while ( datanode != 0 ) 
+	{
+		//cout << " - " << datanode->name( );
+		xml_node< > *childnode = datanode->first_node( );
+		while ( childnode != 0 ) 
+		{
+			//cout << childnode->name( ) << " is " << childnode->value( );
+			string aValue = childnode->value( );
+			returnValues->push_back( aValue );
+			childnode = childnode->next_sibling( );
+		}
+		datanode = datanode->next_sibling( );
+	}
+	//cout << endl;
+	node = node->next_sibling( );
+	
+	return *returnValues;
 }
