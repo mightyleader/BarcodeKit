@@ -24,17 +24,11 @@ class BaseBarcode
 	~BaseBarcode( );
 	
 	//Accessors
-	//vector<Symbol*> getEncodingpatternData( );
-	//vector<Symbol*> getEncodingPatternNondata( );
 	vector<int> getQuietzoneWidths( );
 	deque<Symbol*> getEncodedSymbols( );
 	int getCheckcharModulus( );
 	int getDataLength( );
 	
-	//void addEncodedPatternData( Symbol* pattern );							//adds to end
-	//void addEncodedPatternNonData( Symbol* pattern );						// ditto
-	//void addEncodedPatternData( Symbol* pattern, int position );			//adds at specified index
-	//void addEncodedPatternNonData( Symbol* pattern, int position );			// ditto
 	void setQuietzoneWidths( int left, int right, int upper, int lower );
 	void addEncodedSymbol( Symbol* symbol );
 	void addEncodedSymbol( Symbol* symbol, int position );
@@ -53,8 +47,6 @@ class BaseBarcode
 
 	private:
 	//iVars
-	//vector<Symbol*> encodingpatternData;
-	//vector<Symbol*> encodingPatternNondata;
 	vector<int> quietzoneWidths;
 	deque<Symbol*> encodedSymbols;
 	int checkcharModulus;

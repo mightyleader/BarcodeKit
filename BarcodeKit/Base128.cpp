@@ -171,6 +171,7 @@ void Base128::encodeSymbol ( const string *data )
 			Symbol *bSymbol = createSymbol( 4, 0, 1, 0, specialPattern );
 			cout << "*** CHANGING SET SYMBOL ***" << endl;
 			//testSymbol( bSymbol ); //TODO: Add actual code to add to ivar.
+			BaseBarcode::addEncodedSymbol( bSymbol );
 			
 			delete specialPattern;
 		}
@@ -188,7 +189,7 @@ void Base128::encodeSymbol ( const string *data )
 		// Create and test symbol
 		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
 		cout << "*** DATA SYMBOL ***" << endl;
-		//testSymbol( aSymbol ); //TODO: Add actual code to add to ivar.
+		BaseBarcode::addEncodedSymbol( aSymbol );
 		
 		delete pattern;
 	}
