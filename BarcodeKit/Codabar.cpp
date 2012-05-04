@@ -22,9 +22,18 @@
 using namespace std;
 using namespace rapidxml;
 
-Codabar::Codabar( )
+Codabar::Codabar( string *data )
 {
-	
+	//verify
+	verifyData( data );
+	//quiet zones
+	encodeQuietZones( );
+	//start/stop
+	encodeStartStop( );
+	//data
+	encodeSymbol( data );
+	//check char
+	encodeCheckCharacter( data );
 }
 
 Codabar::~Codabar( )
@@ -67,7 +76,7 @@ void Codabar::encodeQuietZones ( )
 	
 }
 
-void Codabar::encodeCheckCharacter ( )
+void Codabar::encodeCheckCharacter ( const string *data )
 {
 	
 }

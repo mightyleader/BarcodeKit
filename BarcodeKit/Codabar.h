@@ -20,13 +20,13 @@ using namespace std;
 class Codabar : BaseBarcode
 {
 	public:
-	Codabar( );
+	Codabar( string *data );
 	~Codabar( );
 	bool verifyContent ( const string *content );
 	void encodeSymbol ( const string *data );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	void encodeCheckCharacter ( );
+	void encodeCheckCharacter ( const string *data );
 };
 
 #endif

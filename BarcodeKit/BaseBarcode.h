@@ -39,9 +39,9 @@ class BaseBarcode
 	//Methods
 	virtual bool verifyData ( const string *data );
 	virtual bool verifyLength ( const int length );
-	virtual bool verifyContent ( const string *content ) = 0; //override
+	virtual bool verifyContent ( const string *content ) = 0;
 	
-	virtual void encodeSymbol ( const string *data ) = 0; //override
+	virtual void encodeSymbol ( const string *data ) = 0;
 	virtual void encodeStartStop ( ) = 0;
 	virtual void encodeQuietZones ( ) = 0;
 	virtual void encodeCheckCharacter ( ) = 0;

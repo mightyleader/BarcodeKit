@@ -22,9 +22,18 @@
 using namespace std;
 using namespace rapidxml;
 
-Interleaved2of5::Interleaved2of5( )
+Interleaved2of5::Interleaved2of5( string *data )
 {
-	
+	//verify
+	verifyData( data );
+	//quiet zones
+	encodeQuietZones( );
+	//start/stop
+	encodeStartStop( );
+	//data
+	encodeSymbol( data );
+	//check char
+	encodeCheckCharacter( data );
 }
 
 Interleaved2of5::~Interleaved2of5( )
@@ -67,7 +76,7 @@ void Interleaved2of5::encodeQuietZones ( )
 	
 }
 
-void Interleaved2of5::encodeCheckCharacter ( )
+void Interleaved2of5::encodeCheckCharacter ( const string *data )
 {
 	
 }

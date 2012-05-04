@@ -20,13 +20,13 @@ using namespace std;
 class Interleaved2of5 : BaseBarcode
 {
 	public:
-	Interleaved2of5( );
+	Interleaved2of5( string *data );
 	~Interleaved2of5( );
 	bool verifyContent ( const string *content );
 	void encodeSymbol ( const string *data );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	void encodeCheckCharacter ( );
+	void encodeCheckCharacter ( const string *data );
 };
 
 #endif

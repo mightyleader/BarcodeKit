@@ -20,13 +20,13 @@ using namespace std;
 class Code39 : BaseBarcode
 {
 	public:
-	Code39( );
+	Code39( string *data );
 	~Code39( );
 	bool verifyContent ( const string *content );
 	void encodeSymbol ( const string *data );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	void encodeCheckCharacter ( );
+	void encodeCheckCharacter ( const string *data );
 };
 
 #endif

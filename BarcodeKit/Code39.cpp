@@ -22,9 +22,18 @@
 using namespace std;
 using namespace rapidxml;
 
-Code39::Code39( )
+Code39::Code39( string *data )
 {
-	
+	//verify
+	verifyData( data );
+	//quiet zones
+	encodeQuietZones( );
+	//start/stop
+	encodeStartStop( );
+	//data
+	encodeSymbol( data );
+	//check char
+	encodeCheckCharacter( data );
 }
 
 Code39::~Code39( )
@@ -67,7 +76,7 @@ void Code39::encodeQuietZones ( )
 	
 }
 
-void Code39::encodeCheckCharacter ( )
+void Code39::encodeCheckCharacter ( const string *data )
 {
 	
 }
