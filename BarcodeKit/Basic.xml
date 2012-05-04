@@ -1,299 +1,229 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Barcode>
-	<type></type>
+	<type>Basic: Code39, CodaBar, Interleaved 2of5</type>
 	<data_encoding>
 		<ascii32>
-			<Code39>nil</Code39>
+			<Code39>0011000100</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii32>
-		<ascii33>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii33>
-		<ascii34>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii34>
-		<ascii35>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii35>
 		<ascii36>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>010101000</Code39>
+			<CodaBar>0011000</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii36>
 		<ascii37>
-			<Code39>nil</Code39>
+			<Code39>000101010</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii37>
-		<ascii38>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii38>
-		<ascii39>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii39>
-		<ascii40>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii40>
-		<ascii41>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii41>
 		<ascii42>
-			<Code39>nil</Code39>
+			<Code39>010010100</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii42>
 		<ascii43>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>010001010</Code39>
+			<CodaBar>0010101</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii43>
-		<ascii44>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii44>
 		<ascii45>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>010000101</Code39>
+			<CodaBar>0001100</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii45>
 		<ascii46>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>110000100</Code39>
+			<CodaBar>1010100</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii46>
 		<ascii47>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>010100010</Code39>
+			<CodaBar>1010001</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii47>
 		<ascii48>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>000110100</Code39>
+			<CodaBar>0000011</CodaBar>
+			<Interleaved>00110</Interleaved>
 		</ascii48>
 		<ascii49>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>100100001</Code39>
+			<CodaBar>0000110</CodaBar>
+			<Interleaved>10001</Interleaved>
 		</ascii49>
 		<ascii50>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>001100001</Code39>
+			<CodaBar>0001001</CodaBar>
+			<Interleaved>01001</Interleaved>
 		</ascii50>
 		<ascii51>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>101100000</Code39>
+			<CodaBar>1100000</CodaBar>
+			<Interleaved>11000</Interleaved>
 		</ascii51>
 		<ascii52>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>000110001</Code39>
+			<CodaBar>0010010</CodaBar>
+			<Interleaved>00101</Interleaved>
 		</ascii52>
 		<ascii53>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>100110000</Code39>
+			<CodaBar>1000010</CodaBar>
+			<Interleaved>10100</Interleaved>
 		</ascii53>
 		<ascii54>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>001110000</Code39>
+			<CodaBar>0100001</CodaBar>
+			<Interleaved>01100</Interleaved>
 		</ascii54>
 		<ascii55>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>000100101</Code39>
+			<CodaBar>0100100</CodaBar>
+			<Interleaved>00011</Interleaved>
 		</ascii55>
 		<ascii56>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>100100100</Code39>
+			<CodaBar>0110000</CodaBar>
+			<Interleaved>10010</Interleaved>
 		</ascii56>
 		<ascii57>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>001100100</Code39>
+			<CodaBar>1001000</CodaBar>
+			<Interleaved>01010</Interleaved>
 		</ascii57>
 		<ascii58>
 			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<CodaBar>1000101</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii58>
-		<ascii59>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii59>
-		<ascii60>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii60>
-		<ascii61>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii61>
-		<ascii62>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii62>
-		<ascii63>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii63>
-		<ascii64>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
-		</ascii64>
 		<ascii65>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>100001001</Code39>
+			<CodaBar>0011010</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii65>
 		<ascii66>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>001001001</Code39>
+			<CodaBar>0101001</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii66>
 		<ascii67>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>101001000</Code39>
+			<CodaBar>0001011</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii67>
 		<ascii68>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
+			<Code39>000011001</Code39>
+			<CodaBar>0001110</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii68>
 		<ascii69>
-			<Code39>nil</Code39>
+			<Code39>100011000</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii69>
 		<ascii70>
-			<Code39>nil</Code39>
+			<Code39>001011000</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii70>
 		<ascii71>
-			<Code39>nil</Code39>
+			<Code39>000001101</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii71>
 		<ascii72>
-			<Code39>nil</Code39>
+			<Code39>100001100</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii72>
 		<ascii73>
-			<Code39>nil</Code39>
+			<Code39>001001100</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii73>
 		<ascii74>
-			<Code39>nil</Code39>
+			<Code39>000011100</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii74>
 		<ascii75>
-			<Code39>nil</Code39>
+			<Code39>100000011</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii75>
 		<ascii76>
-			<Code39>nil</Code39>
+			<Code39>001000011</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii76>
 		<ascii77>
-			<Code39>nil</Code39>
+			<Code39>101000010</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii77>
 		<ascii78>
-			<Code39>nil</Code39>
+			<Code39>000010011</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii78>
 		<ascii79>
-			<Code39>nil</Code39>
+			<Code39>100010010</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii79>
 		<ascii80>
-			<Code39>nil</Code39>
+			<Code39>001010010</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii80>
 		<ascii81>
-			<Code39>nil</Code39>
+			<Code39>000000111</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii81>
 		<ascii82>
-			<Code39>nil</Code39>
+			<Code39>100000110</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii82>
 		<ascii83>
-			<Code39>nil</Code39>
+			<Code39>001000110</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii83>
 		<ascii84>
-			<Code39>nil</Code39>
+			<Code39>000010110</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii84>
 		<ascii85>
-			<Code39>nil</Code39>
+			<Code39>110000001</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii85>
 		<ascii86>
-			<Code39>nil</Code39>
+			<Code39>011000001</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii86>
 		<ascii87>
-			<Code39>nil</Code39>
+			<Code39>111000000</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii87>
 		<ascii88>
-			<Code39>nil</Code39>
+			<Code39>0100100001</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii88>
 		<ascii89>
-			<Code39>nil</Code39>
+			<Code39>110010000</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii89>
 		<ascii90>
-			<Code39>nil</Code39>
+			<Code39>011010000</Code39>
 			<CodaBar>nil</CodaBar>
 			<Interleaved>nil</Interleaved>
 		</ascii90>
@@ -301,24 +231,24 @@
 	</data_encoding>
 	<non_data_encoding>
 		<start_char>
-			<Code39>nil</Code39>
+			<Code39>010010100</Code39>
 			<CodaBar>
-				<A></A>
-				<B></B>
-				<C></C>
-				<D></D>
+				<A>0011010</A>
+				<B>0101001</B>
+				<C>0001011</C>
+				<D>0001110</D>
 			</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Interleaved>0000</Interleaved>
 		</start_char>
 		<stop_char>
-			<Code39>nil</Code39>
+			<Code39>010010100</Code39>
 			<CodaBar>
-				<A></A>
-				<B></B>
-				<C></C>
-				<D></D>
+				<A>0011010</A>
+				<B>0101001</B>
+				<C>0001011</C>
+				<D>0001110</D>
 			</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Interleaved>100</Interleaved>
 		</stop_char>
 		<guard_left>
 			<Code39>nil</Code39>
@@ -336,14 +266,14 @@
 			<Interleaved>nil</Interleaved>
 		</guard_centre>
 		<quietzone_left>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>11</Code39>
+			<CodaBar>10</CodaBar>
+			<Interleaved>10</Interleaved>
 		</quietzone_left>
 		<quietzone_right>
-			<Code39>nil</Code39>
-			<CodaBar>nil</CodaBar>
-			<Interleaved>nil</Interleaved>
+			<Code39>11</Code39>
+			<CodaBar>10</CodaBar>
+			<Interleaved>10</Interleaved>
 		</quietzone_right>
 		<quietzone_upper>
 			<Code39>nil</Code39>
