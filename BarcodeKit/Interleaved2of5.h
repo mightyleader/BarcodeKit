@@ -19,7 +19,6 @@ using namespace std;
 
 class Interleaved2of5 : BaseBarcode
 {
-
 	public:
 	Interleaved2of5( );
 	~Interleaved2of5( );
@@ -28,10 +27,6 @@ class Interleaved2of5 : BaseBarcode
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
 	void encodeCheckCharacter ( );
-	
-	private:
-	int[] validASCII = {48,49,50,51,52,53,54,55,56,57\0};
-	
 };
 
 #endif
