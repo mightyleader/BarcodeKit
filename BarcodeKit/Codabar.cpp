@@ -165,5 +165,3 @@ vector< int >* Codabar::stringToVector( string aString )
 	}
 	return pattern;
 }
-
-

@@ -278,6 +278,3 @@ char Code39::checksumCharForInt( int anInt )
 	}
 	return 0;
 }
-
-
-

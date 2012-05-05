@@ -95,15 +95,12 @@ void Interleaved2of5::encodeSymbol ( const string *data )
 		ASCII = kASCII;
 		string search2 = ASCII.append( suffix2 );
 		
-		
-				
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( search1.c_str( ) )->first_node( "Interleaved" );
 		returnedData1 = node->value( );
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( search2.c_str( ) )->first_node( "Interleaved" );
 		returnedData2 = node->value( );
 		
 		string combinedData;
-		
 		for ( int xx = 0; xx < returnedData1.length( ); xx++ ) 
 		{
 			combinedData.append( 1, returnedData1.at( xx ) );
@@ -199,4 +196,3 @@ vector< int >* Interleaved2of5::stringToVector( string aString )
 	}
 	return pattern;
 }
-
