@@ -15,12 +15,7 @@
 #include "Symbol.h"
 #include "rapidxml.hpp"
 #include "Codabar.h"
-
-#define kOffsetASCII 32
-#define kSetA 1
-#define kSetB 2
-#define kSetC 3
-#define kASCII "ascii"
+#include "Code39.h"
 
 using namespace std;
 using namespace rapidxml;
@@ -38,8 +33,8 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("07841669212");
-	Codabar *testBarcode = new Codabar( testString );
+	string *testString = new string("123ABC%+-");
+	Code39 *testBarcode = new Code39( testString );
 	
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 

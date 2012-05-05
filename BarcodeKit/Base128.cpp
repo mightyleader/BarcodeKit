@@ -186,7 +186,7 @@ void Base128::encodeSymbol ( const string *data )
 		}
 		
 		// Create and store data symbol
-		Symbol *aSymbol = createSymbol( 1, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
+		Symbol *aSymbol = createSymbol( 0, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
 		BaseBarcode::addEncodedSymbol( aSymbol );
 		
 		delete pattern;

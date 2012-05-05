@@ -113,7 +113,7 @@ void Codabar::encodeSymbol ( const string *data )
 		returnedData = node->value( );
 		vector< int > *pattern = stringToVector( returnedData );
 		
-		Symbol *aSymbol = createSymbol( 1, 1, 1, 0, pattern ); 
+		Symbol *aSymbol = createSymbol( 0, 1, 1, 0, pattern ); 
 		BaseBarcode::addEncodedSymbol( aSymbol );
 		
 		delete pattern;
