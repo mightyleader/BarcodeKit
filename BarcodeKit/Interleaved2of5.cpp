@@ -34,12 +34,10 @@ Interleaved2of5::Interleaved2of5( string *data )
 	{
 		//check char
 		encodeCheckCharacter( data );
-		//data
-		//encodeSymbol( data );
 		//start/stop
-		//encodeStartStop( );
+		encodeStartStop( );
 		//quiet zones
-		//encodeQuietZones( );
+		encodeQuietZones( );
 	}
 	else 
 	{
@@ -76,57 +74,78 @@ bool Interleaved2of5::verifyContent ( const string *content )
 void Interleaved2of5::encodeSymbol ( const string *data )
 {
 	xml_node< > *node = NULL;
+	string returnedData1, returnedData2;
+	string ASCII = kASCII;
 	
 	for ( int ii = 0; ii < data->length( ); ii++ ) 
 	{
 		char char1 = data->at( ii );
 		char char2 = data->at( ii + 1 );
-		string returnedData1, returnedData2;
 		
-		//node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "Code39" );
+		string suffix1, suffix2;
+		stringstream output1, output2;
+		output1 << ( int )char1;
+		output2 << ( int )char2;
+		suffix1 = output1.str( );
+		suffix2 = output2.str( );
+		output1.flush( );
+		output2.flush( );
+		ASCII = kASCII;
+		string search1 = ASCII.append( suffix1 );
+		ASCII = kASCII;
+		string search2 = ASCII.append( suffix2 );
 		
 		
+				
+		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( search1.c_str( ) )->first_node( "Interleaved" );
+		returnedData1 = node->value( );
+		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( search2.c_str( ) )->first_node( "Interleaved" );
+		returnedData2 = node->value( );
 		
+		string combinedData;
 		
+		for ( int xx = 0; xx < returnedData1.length( ); xx++ ) 
+		{
+			combinedData.append( 1, returnedData1.at( xx ) );
+			combinedData.append( 1, returnedData2.at( xx ) );
+		}
+		
+		vector< int > *pattern = stringToVector( combinedData );
+		Symbol *iSymbol = createSymbol( 0, 0, 1, 0, pattern );
+		BaseBarcode::addEncodedSymbol( iSymbol );
 		ii++;
 	}
-
-
-	
-	
-	
-	
-	
-	
-	//intertwingle them into a string
-	//string to vector of ints
-	//create symbol etc...
 }
 
 void Interleaved2of5::encodeStartStop ( )
 {
 	string returnedData;
-	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "start_char" )->first_node( "Interleaved2of5" );
+	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "start_char" )->first_node( "Interleaved" );
 	returnedData = node->value( );
 	
 	vector< int > *pattern = stringToVector( returnedData );
+	Symbol *startSymbol = createSymbol( 4, 0, 1, 0, pattern );
+	BaseBarcode::addEncodedSymbol( startSymbol, 0 );
 	
-	Symbol *startstopSymbol = createSymbol( 4, 1, 1, 0, pattern );
-	BaseBarcode::addEncodedSymbol( startstopSymbol, 0 );
-	BaseBarcode::addEncodedSymbol( startstopSymbol, BaseBarcode::encodedSymbols.size( ) );
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "stop_char" )->first_node( "Interleaved" );
+	returnedData = node->value( );
+	
+	pattern = stringToVector( returnedData );
+	Symbol *stopSymbol = createSymbol(4, 0, 1, 0, pattern );
+	BaseBarcode::addEncodedSymbol( stopSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
 
 void Interleaved2of5::encodeQuietZones ( )
 {
 	string returnedData;
-	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "quietzone_left" )->first_node( "Interleaved2of5" );
+	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "quietzone_left" )->first_node( "Interleaved" );
 	returnedData = node->value( );
 	
 	int width = atoi( returnedData.c_str( ) );
 	vector< int > *pattern = new vector< int >;
 	pattern->push_back( width );
 	
-	Symbol *quietSymbol = createSymbol( 2, 1, 1, 0, pattern );
+	Symbol *quietSymbol = createSymbol( 2, 0, 1, 0, pattern );
 	BaseBarcode::addEncodedSymbol( quietSymbol, 0 );
 	BaseBarcode::addEncodedSymbol( quietSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
