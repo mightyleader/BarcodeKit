@@ -11,11 +11,13 @@
 
 #import "BaseBarcode.h"
 #import "Symbol.h"
+#import "rapidxml.hpp"
 #import <vector>
 #import <deque> 
 #import <string> 
 
 using namespace std;
+using namespace rapidxml;
 
 class Codabar : public BaseBarcode
 {
@@ -28,6 +30,11 @@ class Codabar : public BaseBarcode
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
 	void encodeCheckCharacter ( const string *data );
+	
+	private:
+	string filename;
+	xml_document< > parsed_xml;
+	vector< int >* stringToVector( string aString );
 };
 
 #endif

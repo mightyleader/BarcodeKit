@@ -74,7 +74,7 @@ void testSymbol( Symbol *testSymbol ) //Output the values of a Symbol object to 
 	cout << "Data: ";
 	for ( int ii = 0; ii < testSymbol->getEncodedData( )->size( ); ii++ ) 
 	{
-		cout << testSymbol->getEncodedData( )->at( ii );
+		cout << testSymbol->getEncodedData( )->at( ii ) << ",";
 	}
 	cout << endl;
 	cout << endl;

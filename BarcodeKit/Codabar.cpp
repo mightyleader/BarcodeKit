@@ -29,16 +29,26 @@ Codabar::Codabar( )
 
 Codabar::Codabar( string *data )
 {
+	filename = "Basic.xml";
+	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
+	
+	setDataLength( -1 ); //variable length symbol
 	//verify
-	verifyData( data );
-	//data
-	encodeSymbol( data );
-	//check char
-	encodeCheckCharacter( data );
-	//start/stop
-	encodeStartStop( );
-	//quiet zones
-	encodeQuietZones( );
+	 if ( verifyData( data ) )
+	 {
+		 //data
+		 encodeSymbol( data );
+		 //check char
+		 encodeCheckCharacter( data );
+		 //start/stop
+		 encodeStartStop( );
+		 //quiet zones
+		 encodeQuietZones( ); 
+	 }
+	 else 
+	 {
+		 cerr << "Data verification failed" << endl;
+	 }
 }
 
 Codabar::~Codabar( )
@@ -48,13 +58,15 @@ Codabar::~Codabar( )
 
 bool Codabar::verifyContent ( const string *content )
 {
-	string ASCIIstring = "0123456789";
+	//** setup acceptable content **
+	string ASCIIstring = "0123456789$+-./:";
 	set< char > setOfASCII;
 	set< char > ::iterator iter;
 	for ( int nn = 0; nn < ASCIIstring.length( ); nn++ ) 
 	{
 		setOfASCII.insert( ASCIIstring.at( nn ) );
 	}
+	//** check the incoming string **
 	for ( int nn = 0; nn < content->length( ); nn++ ) 
 	{
 		iter = setOfASCII.find( content->at( nn ) );
@@ -69,9 +81,6 @@ bool Codabar::verifyContent ( const string *content )
 
 void Codabar::encodeSymbol ( const string *data )
 {
-	string *filename = new string( "Basic.xml" );
-	xml_document< > parsed_xml;
-	parsed_xml.parse< 0 >( getXMLToParse( filename ) );
 	xml_node< > *node = NULL;
 	
 	//** make an array of the ascii value of each char in the string **
@@ -88,7 +97,6 @@ void Codabar::encodeSymbol ( const string *data )
 	
 	for ( int jj = 0; jj < stringLength; ++jj ) 
 	{
-		//** concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
 		string firstBit = kASCII;
 		int kk = asciiList[ jj ];
 		string secondBit;
@@ -103,40 +111,59 @@ void Codabar::encodeSymbol ( const string *data )
 		
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "CodaBar" );
 		returnedData = node->value( );
+		vector< int > *pattern = stringToVector( returnedData );
 		
-		vector< int > *pattern = new vector< int >;
-		for ( int ll = 0; ll < returnedData.length( ) ; ll++)
-		{
-			char eachCharFromResult = returnedData.at( ll );
-			int temp = atoi( &eachCharFromResult );
-			temp++; //to bring it up to standard 1 for narrow, 2X...NX for wide
-			pattern->push_back( temp );
-		}
-		
-		// Create and store data symbol
 		Symbol *aSymbol = createSymbol( 1, 1, 1, 0, pattern ); 
 		BaseBarcode::addEncodedSymbol( aSymbol );
 		
 		delete pattern;
-	}
-	
-	
-	
+	}	
 }
 
 void Codabar::encodeStartStop ( )
 {
+	string returnedData;
+	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "start_char" )->first_node( "CodaBar" )->first_node( "A" );
+	returnedData = node->value( );
 	
+	vector< int > *pattern = stringToVector( returnedData );
+	
+	Symbol *startstopSymbol = createSymbol( 4, 1, 1, 0, pattern );
+	BaseBarcode::addEncodedSymbol( startstopSymbol, 0 );
+	BaseBarcode::addEncodedSymbol( startstopSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
 
 void Codabar::encodeQuietZones ( )
 {
+	string returnedData;
+	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "quietzone_left" )->first_node( "CodaBar" );
+	returnedData = node->value( );
 	
+	int width = atoi( returnedData.c_str( ) );
+	vector< int > *pattern = new vector< int >;
+	pattern->push_back( width );
+	
+	Symbol *quietSymbol = createSymbol( 2, 1, 1, 0, pattern );
+	BaseBarcode::addEncodedSymbol( quietSymbol, 0 );
+	BaseBarcode::addEncodedSymbol( quietSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
 
 void Codabar::encodeCheckCharacter ( const string *data )
 {
-	cout << "Whatever" << endl;
+	//** optional, reserved for future expansion **
+}
+
+vector< int >* Codabar::stringToVector( string aString )
+{
+	vector< int > *pattern = new vector< int >;
+	for ( int ll = 0; ll < aString.length( ) ; ll++)
+	{
+		char eachCharFromResult = aString.at( ll );
+		int temp = atoi( &eachCharFromResult );
+		temp++; //** to bring it up to standard 1 for narrow, 2X...NX for wide **
+		pattern->push_back( temp );
+	}
+	return pattern;
 }
 
 

@@ -24,16 +24,23 @@ using namespace rapidxml;
 
 Code39::Code39( string *data )
 {
+	setDataLength( -1 ); //variable length symbol
 	//verify
-	verifyData( data );
-	//data
-	encodeSymbol( data );
-	//start/stop
-	encodeStartStop( );
-	//quiet zones
-	encodeQuietZones( );
-	//check char
-	encodeCheckCharacter( data );
+	if ( verifyData( data ) )
+	{
+		//data
+		encodeSymbol( data );
+		//check char
+		encodeCheckCharacter( data );
+		//start/stop
+		encodeStartStop( );
+		//quiet zones
+		encodeQuietZones( ); 
+	}
+	else 
+	{
+		cerr << "Data verification failed" << endl;
+	}
 }
 
 Code39::~Code39( )
@@ -43,6 +50,7 @@ Code39::~Code39( )
 
 bool Code39::verifyContent ( const string *content )
 {
+	//** setup acceptable content **
 	string ASCIIstring = "0123456789";
 	set< char > setOfASCII;
 	set< char > ::iterator iter;
@@ -50,6 +58,7 @@ bool Code39::verifyContent ( const string *content )
 	{
 		setOfASCII.insert( ASCIIstring.at( nn ) );
 	}
+	//** check the incoming string **
 	for ( int nn = 0; nn < content->length( ); nn++ ) 
 	{
 		iter = setOfASCII.find( content->at( nn ) );
@@ -59,7 +68,7 @@ bool Code39::verifyContent ( const string *content )
 			return false;
 		}
 	}
-	return true;  
+	return true;   
 }
 
 void Code39::encodeSymbol ( const string *data )
