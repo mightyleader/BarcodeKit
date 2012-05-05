@@ -19,6 +19,7 @@
 
 #define kAlphaOffset 55
 #define kNumericOffset 48
+#define kModulus 43
 
 #define kASCII "ascii"
 
@@ -27,7 +28,7 @@ using namespace rapidxml;
 
 Code39::Code39( string *data )
 {
-	BaseBarcode::setCheckcharModulus( 43 );
+	BaseBarcode::setCheckcharModulus( kModulus );
 	filename = "Basic.xml";
 	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
 	setDataLength( -1 ); //variable length symbol

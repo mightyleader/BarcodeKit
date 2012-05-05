@@ -16,6 +16,7 @@
 #include "rapidxml.hpp"
 #include "Codabar.h"
 #include "Code39.h"
+#include "Interleaved2of5.h"
 
 using namespace std;
 using namespace rapidxml;
@@ -33,14 +34,15 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("123ABC%+-");
-	Code39 *testBarcode = new Code39( testString );
+	string *testString = new string("0123456789");
+	Interleaved2of5 *testBarcode = new Interleaved2of5( testString );
 	
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
 	{
 		testSymbol( testDeque.at( aa ) );
 	}
+	delete testString;
 }
 
 

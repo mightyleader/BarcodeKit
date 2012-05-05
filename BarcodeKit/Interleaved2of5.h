@@ -11,11 +11,13 @@
 
 #import "BaseBarcode.h"
 #import "Symbol.h"
+#import "rapidxml.hpp"
 #import <vector>
 #import <deque> 
 #import <string> 
 
 using namespace std;
+using namespace rapidxml;
 
 class Interleaved2of5 : public BaseBarcode
 {
@@ -23,10 +25,16 @@ class Interleaved2of5 : public BaseBarcode
 	Interleaved2of5( string *data );
 	~Interleaved2of5( );
 	bool verifyContent ( const string *content );
+	void encodeCheckCharacter ( const string *data );
 	void encodeSymbol ( const string *data );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	void encodeCheckCharacter ( const string *data );
+	
+	
+	private:
+	string filename;
+	xml_document< > parsed_xml;
+	vector< int >* stringToVector( string aString );
 };
 
 #endif
