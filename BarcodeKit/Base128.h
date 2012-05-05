@@ -19,7 +19,7 @@
 using namespace std;
 using namespace rapidxml;
 
-class Base128 : BaseBarcode
+class Base128 : public BaseBarcode
 {
 	protected:
 	Base128( string *data );

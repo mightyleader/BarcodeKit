@@ -17,7 +17,7 @@
 
 using namespace std;
 
-class Code39 : BaseBarcode
+class Code39 : public BaseBarcode
 {
 	public:
 	Code39( string *data );

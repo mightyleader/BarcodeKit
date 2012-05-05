@@ -17,9 +17,10 @@
 
 using namespace std;
 
-class Codabar : BaseBarcode
+class Codabar : public BaseBarcode
 {
 	public:
+	Codabar( );
 	Codabar( string *data );
 	~Codabar( );
 	bool verifyContent ( const string *content );

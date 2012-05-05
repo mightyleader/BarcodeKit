@@ -19,17 +19,19 @@ using namespace std;
 
 class BaseBarcode
 {
-	protected:
-	//Build and Destroy
-	BaseBarcode( );	//override
-	~BaseBarcode( ); 
-	
+	public:
 	//Accessors
-	vector<int> getQuietzoneWidths( );
-	deque<Symbol*> getEncodedSymbols( );
+	vector< int > getQuietzoneWidths( );
+	deque< Symbol* > getEncodedSymbols( );
 	int getCheckcharModulus( );
 	int getDataLength( );
 	
+	protected:
+	//Build and Destroy
+	BaseBarcode( );
+	~BaseBarcode( ); 
+	
+	//Accessors	
 	void setQuietzoneWidths( int left, int right, int upper, int lower );
 	void addEncodedSymbol( Symbol* symbol );
 	void addEncodedSymbol( Symbol* symbol, int position );
@@ -44,16 +46,15 @@ class BaseBarcode
 	virtual void encodeSymbol ( const string *data ) = 0;
 	virtual void encodeStartStop ( ) = 0;
 	virtual void encodeQuietZones ( ) = 0;
-	virtual void encodeCheckCharacter ( ) = 0;
+	virtual void encodeCheckCharacter ( const string *data ) = 0;
 	
 	Symbol* createSymbol( int st, int ic, int le, int fp, vector< int > *aVector );
 	char* getXMLToParse( string *fileTitle );
 	vector<string> returnDOMValues( rapidxml::xml_node< > *node );
 
-	private:
 	//iVars
-	vector<int> quietzoneWidths;
-	deque<Symbol*> encodedSymbols;
+	vector< int > quietzoneWidths;
+	deque< Symbol* > encodedSymbols;
 	int checkcharModulus;
 	int dataLength;	
 };

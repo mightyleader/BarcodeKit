@@ -26,12 +26,12 @@ Code39::Code39( string *data )
 {
 	//verify
 	verifyData( data );
-	//quiet zones
-	encodeQuietZones( );
-	//start/stop
-	encodeStartStop( );
 	//data
 	encodeSymbol( data );
+	//start/stop
+	encodeStartStop( );
+	//quiet zones
+	encodeQuietZones( );
 	//check char
 	encodeCheckCharacter( data );
 }
@@ -55,6 +55,7 @@ bool Code39::verifyContent ( const string *content )
 		iter = setOfASCII.find( content->at( nn ) );
 		if (iter == setOfASCII.end( ) ) 
 		{
+			cerr << "You are trying to encode " << content->at( nn ) << " which is not supported by this barcode type." << endl;
 			return false;
 		}
 	}

@@ -17,7 +17,7 @@
 
 using namespace std;
 
-class Interleaved2of5 : BaseBarcode
+class Interleaved2of5 : public BaseBarcode
 {
 	public:
 	Interleaved2of5( string *data );
