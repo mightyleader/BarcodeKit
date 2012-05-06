@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<check_reference>
+	<type>UPCE</type>
+	<data_encoding>
+		<check0>BBBAAA</check0>
+		<check1>BBABAA</check1>
+		<check2>BBAABA</check2>
+		<check3>BBAAAB</check3>
+		<check4>BABBAA</check4>
+		<check5>BAABBA</check5>
+		<check6>BAAABB</check6>
+		<check7>BABABA</check7>
+		<check8>BABAAB</check8>
+		<check9>BAABAB</check9>
+	</data_encoding>
+</check_reference>
