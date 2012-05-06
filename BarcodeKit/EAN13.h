@@ -34,6 +34,7 @@ public:
 	
 	string filename;
 	string parityFilename;
+	vector< string >guardPatterns;
 	xml_document< > parsed_xml;
 	xml_document< > parity_xml;
 };

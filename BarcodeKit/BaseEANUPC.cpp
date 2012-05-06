@@ -47,6 +47,7 @@ bool BaseEANUPC::verifyContent ( const string *content )
 			return false;
 		}
 	}
+	cout << "Passed content check" << endl;
 	return true;
 }
 

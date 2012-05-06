@@ -20,7 +20,6 @@ class IGuardPatterns
 	virtual void setGuardPatterns( string left, string centre, string right ) = 0;
 	virtual vector< string > getGuardPatterns( ) = 0;
 	virtual void encodeGuardPatterns( ) = 0;
-	vector< string >guardPatterns;
 };
 
 #endif
