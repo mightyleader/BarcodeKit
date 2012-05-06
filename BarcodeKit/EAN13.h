@@ -9,6 +9,34 @@
 #ifndef BarcodeKit_EAN13_h
 #define BarcodeKit_EAN13_h
 
+#include "BaseEANUPC.h"
+#include "IGuardPatterns.h"
+#include "Symbol.h"
+#include "rapidxml.hpp"
+#include <vector>
+#include <deque> 
+#include <string> 
 
+using namespace std;
+using namespace rapidxml;
+
+class EAN13 : public BaseEANUPC, public IGuardPatterns
+{
+public:
+	EAN13( string *data );
+	~EAN13( );
+	void encodeSymbol( const string *data );
+	void encodeQuietZones( );
+	void encodeGuardPatterns( );
+	void setGuardPatterns( string left, string centre, string right );
+	vector< string > getGuardPatterns( );
+	vector< int >* stringToVector( string aString );
+	
+	string filename;
+	string parityFilename;
+	xml_document< > parsed_xml;
+	xml_document< > parity_xml;
+};
 
 #endif
+
