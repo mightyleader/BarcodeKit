@@ -17,6 +17,7 @@
 #include "Codabar.h"
 #include "Code39.h"
 #include "Interleaved2of5.h"
+#include "EAN13.h"
 
 using namespace std;
 using namespace rapidxml;
@@ -34,8 +35,8 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("0123456789");
-	Interleaved2of5 *testBarcode = new Interleaved2of5( testString );
+	string *testString = new string("512345654321");
+	EAN13 *testBarcode = new EAN13( testString );
 	
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
