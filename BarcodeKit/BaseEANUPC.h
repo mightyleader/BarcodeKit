@@ -9,23 +9,28 @@
 #ifndef BaseEANUPC_h
 #define BaseEANUPC_h
 
-#import "BaseBarcode.h"
-#import "Symbol.h"
-#import <vector>
-#import <deque> 
-#import <string> 
+#include "BaseBarcode.h"
+#include "IGuardPatterns.h"
+#include "Symbol.h"
+#include "rapidxml.hpp"
+#include <vector>
+#include <deque> 
+#include <string> 
 
 using namespace std;
 
-class BaseEANUPC : BaseBarcode
+class BaseEANUPC : public BaseBarcode, public IGuardPatterns
 {
-
 	public:
-	
-	
-	private:
-	
-	
+	BaseEANUPC( );
+	~BaseEANUPC( );
+	bool verifyContent ( const string *content );
+	virtual void encodeSymbol ( const string *data );
+	virtual void encodeQuietZones ( );
+	void encodeCheckCharacter ( const string *data );
+	virtual void setGuardPatterns( string left, string centre, string right ) = 0;
+	virtual vector< string > getGuardPatterns( ) = 0;
+	virtual void encodeGuardPatterns( ) = 0;
 };
 
 #endif

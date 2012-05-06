@@ -9,12 +9,12 @@
 #ifndef Interleaved2of5_h
 #define Interleaved2of5_h
 
-#import "BaseBarcode.h"
-#import "Symbol.h"
-#import "rapidxml.hpp"
-#import <vector>
-#import <deque> 
-#import <string> 
+#include "BaseBarcode.h"
+#include "Symbol.h"
+#include "rapidxml.hpp"
+#include <vector>
+#include <deque> 
+#include <string> 
 
 using namespace std;
 using namespace rapidxml;

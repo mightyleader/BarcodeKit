@@ -127,9 +127,6 @@ void Symbol::setTextEquivalent( string &te )
 }
 
 
-
-
-
 #pragma mark --Private internal methods--
 
 void Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination )
