@@ -68,34 +68,39 @@ void BaseEANUPC::encodeStartStop( )
 
 void BaseEANUPC::encodeCheckCharacter ( const string *data )
 {
-	int accumulator;
+	int accumulator = 0;
 	
 	for ( int yy = 0; yy < data->length( ); yy++ ) 
 	{
+		//cout << yy << ". ";
 		int index = data->length( ) - 1 - yy;
 		string tempString = data->substr( index ,1 );
 		char eachChar = tempString.at( 0 );
 		int eachINT = atoi( &eachChar );
+		//cout << " " << eachINT << " * ";
 		if ( eachINT % 2 == 0 ) 
 		{
 			accumulator = accumulator + ( eachINT * 3 );
+			//cout << "3 = ";
 		} 
 		else 
 		{
 			accumulator = accumulator + eachINT;
+			//cout << "1 = ";
 		}
+		//cout << accumulator << endl;
 	}
-	int result = 10 - (accumulator % 10 );
+	//cout << "Total: " << accumulator << endl;
+	const int result = 10 - (accumulator % 10 );
 	
 	string suffix;
-	stringstream output;
-	output << result;
-	suffix = output.str( );
-	output.flush( );
-	
+	stringstream output4;
+	output4 << result;
+	suffix = output4.str( );
+	output4.flush( );
 	string *newString = new string ( *data );
+	//cout << "Check Digit: " << suffix << endl;
 	newString->append( suffix );
-
 	encodeSymbol( newString );
 }
 

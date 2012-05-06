@@ -19,6 +19,7 @@
 #include "Interleaved2of5.h"
 #include "EAN13.h"
 #include "EAN8.h"
+#include "UPCA.h"
 
 using namespace std;
 using namespace rapidxml;
@@ -36,15 +37,15 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("5123456");
-	EAN8 *testBarcode = new EAN8( testString );
-	
+	string *testString = new string("01234567890");
+	UPCA *testBarcode = new UPCA( testString );
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
 	{
 		testSymbol( testDeque.at( aa ) );
 	}
 	delete testString;
+	delete testBarcode;
 }
 
 
