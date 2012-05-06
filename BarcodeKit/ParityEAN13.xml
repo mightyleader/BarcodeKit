@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parity_reference>
+	<type>EAN13</type>
+	<data_encoding>
+		<parity0>AAAAAA</parity0>
+		<parity1>AABABB</parity1>
+		<parity2>AABBAB</parity2>
+		<parity3>AABBBA</parity3>
+		<parity4>ABAABB</parity4>
+		<parity5>ABBAAB</parity5>
+		<parity6>ABBBAA</parity6>
+		<parity7>ABABAB</parity7>
+		<parity8>ABABBA</parity8>
+		<parity9>ABBABA</parity9>
+	</data_encoding>
+</parity_reference>
