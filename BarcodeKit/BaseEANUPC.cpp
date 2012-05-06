@@ -77,6 +77,16 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 	}
 	int result = 10 - (accumulator % BaseBarcode::getCheckcharModulus( ) );
 	
+	string suffix;
+	stringstream output;
+	output << result;
+	suffix = output.str( );
+	output.flush( );
 	
+	string *newString = new string ( *data );
+	
+	newString->append( suffix );
+
+	encodeSymbol( newString );
 }
 
