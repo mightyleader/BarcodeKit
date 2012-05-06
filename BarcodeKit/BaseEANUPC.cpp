@@ -94,7 +94,6 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 	output.flush( );
 	
 	string *newString = new string ( *data );
-	
 	newString->append( suffix );
 
 	encodeSymbol( newString );

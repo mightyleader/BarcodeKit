@@ -16,7 +16,6 @@
 #include <stack>
 #include <set>
 #include <string>
-#include "Code39.h"
 #include "Symbol.h"
 #include "rapidxml.hpp"
 
