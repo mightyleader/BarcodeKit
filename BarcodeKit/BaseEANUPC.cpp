@@ -17,9 +17,11 @@
 #include "Symbol.h"
 #include "rapidxml.hpp"
 
+#define kASCII "ascii"
+
 BaseEANUPC::BaseEANUPC ( )
 {
-	
+	BaseBarcode::setCheckcharModulus( 10 );
 }
 
 BaseEANUPC::~BaseEANUPC ( )
@@ -58,24 +60,31 @@ void BaseEANUPC::encodeQuietZones ( )
 	
 }
 
+void BaseEANUPC::encodeStartStop( )
+{
+	
+}
+
 void BaseEANUPC::encodeCheckCharacter ( const string *data )
 {
 	int accumulator;
 	
 	for ( int yy = 0; yy < data->length( ); yy++ ) 
 	{
-		const char *eachChar = &data->at( data->length( ) - yy );
-		int eachINT = atoi( eachChar );
+		int index = data->length( ) - 1 - yy;
+		string tempString = data->substr( index ,1 );
+		char eachChar = tempString.at( 0 );
+		int eachINT = atoi( &eachChar );
 		if ( eachINT % 2 == 0 ) 
 		{
-			accumulator = accumulator + eachINT * 3;
+			accumulator = accumulator + ( eachINT * 3 );
 		} 
 		else 
 		{
 			accumulator = accumulator + eachINT;
 		}
 	}
-	int result = 10 - (accumulator % BaseBarcode::getCheckcharModulus( ) );
+	int result = 10 - (accumulator % 10 );
 	
 	string suffix;
 	stringstream output;
