@@ -26,6 +26,8 @@ class Base128 : public BaseBarcode
 	~Base128( );
 	virtual void encodeSymbol ( const string *data );
 	virtual int returnCheckCharASCII(  ) = 0;
+	
+	vector< int >* checkCharList;
 };
 
 #endif

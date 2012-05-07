@@ -43,12 +43,12 @@ Base128::~Base128( )
 
 void Base128::encodeSymbol ( const string *data )
 {
-	string *filename = new string( "xml_test.xml" ); //TODO: Change this to actual file, probably in a define somewhere in the superclass
+	string *filename = new string( "Base128.xml" );
 	xml_document< > parsed_xml;
 	parsed_xml.parse< 0 >( getXMLToParse( filename ) );
 	xml_node< > *node = NULL;
 	xml_node< > *special = NULL;
-	
+	int offsetASCIIValue;
 	const string *incomingString = data;
 	int previousCharSet = kSetA; //** default to using set A first **
 	
@@ -62,18 +62,18 @@ void Base128::encodeSymbol ( const string *data )
 		asciiList[ ii ] = ( int )eachChar;
 	}
 	
-	for ( int jj = 0; jj < stringLength; ++jj ) 
+	for ( int jj = 0; jj < stringLength; jj++ ) 
 	{
 		//** concatenate strings to get tag name, a serious hack but couldnt get boost working and itoa is non-standard c++
 		string firstBit = kASCII;
 		int kk = asciiList[ jj ];
+		offsetASCIIValue = kk;
 		string secondBit;
 		stringstream out;
 		out << kk;
 		secondBit = out.str( );
 		out.flush( );
 		firstBit.append( secondBit );
-		
 		int charSetToRef = 1;
 		string ASCIIRef = kASCII;
 		char secondDigit;
@@ -90,8 +90,9 @@ void Base128::encodeSymbol ( const string *data )
 		if ( isdigit( secondDigit ) && isdigit( firstDigit ) ) 
 		{
 			string setCAscii = ASCIIRef.append( &firstDigit );
+			
 			string shortString = setCAscii.substr( 5, 2 );
-			int offsetASCIIValue = std::atoi( shortString.c_str( ) )  + kOffsetASCII;
+			offsetASCIIValue = std::atoi( shortString.c_str( ) )  + kOffsetASCII;
 			
 			stringstream out2;
 			out2 << offsetASCIIValue;
@@ -147,12 +148,15 @@ void Base128::encodeSymbol ( const string *data )
 			{
 				case 1:
 					charSettoRefAsString =  "CodeA";
+					checkCharList->push_back( 101 );
 					break;
 				case 2:
 					charSettoRefAsString = "CodeB";
+					checkCharList->push_back( 100 );
 					break;
 				case 3:
 					charSettoRefAsString = "CodeC";
+					checkCharList->push_back( 99 );
 					break;
 			}
 			
@@ -169,7 +173,7 @@ void Base128::encodeSymbol ( const string *data )
 			}
 			
 			// Create and store non-data symbol
-			Symbol *bSymbol = createSymbol( 4, 0, 1, 0, specialPattern );
+			Symbol *bSymbol = createSymbol( 5, 0, 1, 0, specialPattern );
 			BaseBarcode::addEncodedSymbol( bSymbol );
 			
 			delete specialPattern;
@@ -185,6 +189,32 @@ void Base128::encodeSymbol ( const string *data )
 			pattern->push_back( temp );
 		}
 		
+		//fill the vector to prep for the check char work
+		switch ( charSetToRef ) 
+		{
+			case kSetA:
+				if ( offsetASCIIValue >= 0 && offsetASCIIValue <= 31 )
+				{
+					checkCharList->push_back( offsetASCIIValue + 64 );
+				} 
+				else if ( offsetASCIIValue >= 32 && offsetASCIIValue <= 95) 
+				{
+					checkCharList->push_back( offsetASCIIValue - 32 );
+				}
+				break;
+			case kSetB:
+				if ( offsetASCIIValue >= 32 && offsetASCIIValue <= 127 )
+				{
+					checkCharList->push_back( offsetASCIIValue - 32 );
+				} 
+				break;
+			case kSetC:
+				checkCharList->push_back( offsetASCIIValue - 32 );
+				break;
+			default:
+				break;
+		}
+
 		// Create and store data symbol
 		Symbol *aSymbol = createSymbol( 0, 0, 1, 0, pattern ); //Default values for Base128 and BaseEANUPC except data
 		BaseBarcode::addEncodedSymbol( aSymbol );
