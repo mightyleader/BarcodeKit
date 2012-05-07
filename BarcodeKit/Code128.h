@@ -24,6 +24,7 @@ class Code128 : public Base128
 	public:
 	Code128( string *data );
 	~Code128( );
+	int getSet( char first );
 	bool verifyContent ( const string *content );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
@@ -34,6 +35,7 @@ class Code128 : public Base128
 	string filename;
 	xml_document< > parsed_xml;
 	vector< int >* stringToVector( string aString );
+	
 };
 
 #endif

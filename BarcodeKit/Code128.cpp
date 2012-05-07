@@ -18,15 +18,20 @@
 #include "rapidxml.hpp"
 
 #define kModulus 103
+#define kSetA 1
+#define kSetB 2
+#define kSetC 3
 #define kASCII "ascii"
+#define kStop "2331112"
 
 using namespace std;
 using namespace rapidxml;
 
 Code128::Code128( string *data )
 {
+	checkCharList = new vector< int >;
 	BaseBarcode::setCheckcharModulus( kModulus );
-	filename = "xml_test.xml";
+	filename = "Base128.xml";
 	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
 	setDataLength( -1 ); //variable length symbol
 	//verify
@@ -34,6 +39,33 @@ Code128::Code128( string *data )
 	{
 		//data
 		encodeSymbol( data );
+		//get Set for first character
+		vector< int > *startpattern;
+		Symbol *startSymbol;
+		//dynamic start symbol creation
+		switch ( getSet( data->at( 0 ) ) ) 
+		{
+			case kSetA:
+				startpattern = stringToVector( "211412" );
+				startSymbol = createSymbol( 4, 1, 1, 0, startpattern );
+				BaseBarcode::addEncodedSymbol( startSymbol, 0 );
+				checkCharList->insert( checkCharList->begin( ) , 103 );
+				break;
+			case kSetB:
+				startpattern = stringToVector( "211214" );
+				startSymbol = createSymbol( 4, 1, 1, 0, startpattern );
+				BaseBarcode::addEncodedSymbol( startSymbol, 0 );
+				checkCharList->insert( checkCharList->begin( ) , 104 );
+				break;
+			case kSetC:
+				startpattern = stringToVector( "211232" );
+				startSymbol = createSymbol( 4, 1, 1, 0, startpattern );
+				BaseBarcode::addEncodedSymbol( startSymbol, 0 );
+				checkCharList->insert( checkCharList->begin( ) , 105 );
+				break;
+			default:
+				break;
+		}
 		//check char
 		encodeCheckCharacter( data );
 		//start/stop
@@ -50,52 +82,63 @@ Code128::Code128( string *data )
 
 Code128::~Code128( )
 {
-	
+	checkCharList = NULL;
+	delete checkCharList;
+}
+
+
+int Code128::getSet( char first )
+{
+	string firstBit = kASCII;
+	string secondBit;
+	stringstream ccout;
+	ccout << ( int )first;
+	secondBit = ccout.str( );
+	ccout.flush( );
+	firstBit.append( secondBit );
+	xml_node< > *firstNode = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "A" );
+	string returnedData = firstNode->value( );
+	if ( returnedData == "nil" ) 
+	{
+		firstNode = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "B" );
+		returnedData = firstNode->value( );
+		if ( returnedData == "nil" ) 
+		{
+			return kSetC;
+		}
+		return kSetB; 
+	}
+	return kSetA;
 }
 
 
 bool Code128::verifyContent ( const string *content )
 {
-//	//** setup acceptable content **
-//	string ASCIIstring = "$%* +-./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//	set< char > setOfASCII;
-//	set< char > ::iterator iter;
-//	for ( int nn = 0; nn < ASCIIstring.length( ); nn++ ) 
-//	{
-//		setOfASCII.insert( ASCIIstring.at( nn ) );
-//	}
-//	//** check the incoming string **
-//	for ( int nn = 0; nn < content->length( ); nn++ ) 
-//	{
-//		iter = setOfASCII.find( content->at( nn ) );
-//		if (iter == setOfASCII.end( ) ) 
-//		{
-//			cerr << "You are trying to encode " << content->at( nn ) << " which is not supported by this barcode type." << endl;
-//			return false;
-//		}
-//	}
+	for ( int nn = 0; nn < content->length( ); nn++ ) 
+	{
+		char testChar = content->at( nn );
+		if ( ( int )testChar < 0 && ( int )testChar > 127 ) 
+		{
+			cerr << "You are trying to encode " << content->at( nn ) << " which is not supported by this barcode type." << endl;
+			return false;
+		}
+	}
 	return true;   
 }
 
 
 void Code128::encodeStartStop ( )
-{
-	string returnedData;
-	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "start_char" )->first_node( "Code128" );
-	returnedData = node->value( );
-	
-	vector< int > *pattern = stringToVector( returnedData );
-	
-	Symbol *startstopSymbol = createSymbol( 4, 1, 1, 0, pattern );
-	BaseBarcode::addEncodedSymbol( startstopSymbol, 0 );
-	BaseBarcode::addEncodedSymbol( startstopSymbol, BaseBarcode::encodedSymbols.size( ) );
+{	
+	vector< int > *stoppattern = stringToVector( kStop );
+	Symbol *stopSymbol = createSymbol( 4, 1, 1, 0, stoppattern );
+	BaseBarcode::addEncodedSymbol( stopSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
 
 
 void Code128::encodeQuietZones ( )
 {
 	string returnedData;
-	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "quietzone_left" )->first_node( "Code128" );
+	xml_node< > *node = parsed_xml.first_node( )->first_node( )->next_sibling( "non_data_encoding" )->first_node( "quietzone_left" )->first_node( "A" );
 	returnedData = node->value( );
 	
 	int width = atoi( returnedData.c_str( ) );
@@ -110,37 +153,38 @@ void Code128::encodeQuietZones ( )
 
 void Code128::encodeCheckCharacter ( const string *data )
 {
-//	int accumulator = 0;
-//	for ( int bb = 0; bb < data->length( ); bb++ ) 
-//	{
-//		char aChar = data->at( bb );
-//		int returnedINT = ( int )aChar;
-//		accumulator = accumulator + returnedINT;
-//	}
-//	
-//	int modulo = accumulator % BaseBarcode::getCheckcharModulus( );
-//	char returnChar =  modulo;
-//	
-//	xml_node< > *node = NULL;
-//	
-//	//**int to string using streams - inefficient but standard**
-//	string returnedData;
-//	string firstBit = kASCII;
-//	string secondBit;
-//	stringstream out;
-//	out << ( int )returnChar;
-//	secondBit = out.str( );
-//	out.flush( );
-//	firstBit.append( secondBit );
-//	
-//	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "Code128" );
-//	returnedData = node->value( );
-//	vector< int > *pattern = stringToVector( returnedData );
-//	
-//	Symbol *aSymbol = createSymbol( 1, 1, 1, 0, pattern ); 
-//	BaseBarcode::addEncodedSymbol( aSymbol, BaseBarcode::encodedSymbols.size( ) );
-//	
-//	delete pattern;
+	xml_node< > *node = NULL;
+	vector< int > *pattern = NULL;
+	int accumulator = checkCharList->at( 0 );
+	//loop through the vector of ascii values....
+	for ( int rr = 1; rr < checkCharList->size( ); rr++ ) 
+	{
+		accumulator = accumulator + ( checkCharList->at( rr ) * ( rr ) );
+	}
+	
+	int modulus = accumulator % 103;
+	
+	string firstBit = kASCII;
+	string secondBit;
+	stringstream ccout;
+	ccout << modulus;
+	secondBit = ccout.str( );
+	ccout.flush( );
+	firstBit.append( secondBit );
+	
+	node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "A" );
+	string returnedData = node->value( );
+	if ( returnedData == "nil" ) 
+	{
+		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( firstBit.c_str( ) )->first_node( "B" );
+		returnedData = node->value( );
+	} 
+	
+	pattern = stringToVector( returnedData );
+	Symbol *aSymbol = createSymbol( 1, 1, 1, 0, pattern ); 
+	BaseBarcode::addEncodedSymbol( aSymbol, BaseBarcode::encodedSymbols.size( ) );
+	
+	delete pattern;
 }
 
 
