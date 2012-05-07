@@ -22,9 +22,10 @@ using namespace rapidxml;
 class Base128 : public BaseBarcode
 {
 	protected:
-	Base128( string *data );
+	Base128( );
 	~Base128( );
 	virtual void encodeSymbol ( const string *data );
+	virtual int returnCheckCharASCII(  ) = 0;
 };
 
 #endif

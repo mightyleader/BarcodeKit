@@ -27,9 +27,9 @@ using namespace rapidxml;
 
 #pragma mark --Con/Destructors--
 
-Base128::Base128( string *data )
+Base128::Base128( )
 {
-	Base128::encodeSymbol( data ); 
+
 }
 
 

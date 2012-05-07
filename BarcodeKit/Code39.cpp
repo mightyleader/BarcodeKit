@@ -20,7 +20,6 @@
 #define kAlphaOffset 55
 #define kNumericOffset 48
 #define kModulus 43
-
 #define kASCII "ascii"
 
 using namespace std;
@@ -50,10 +49,12 @@ Code39::Code39( string *data )
 	}
 }
 
+
 Code39::~Code39( )
 {
 	
 }
+
 
 bool Code39::verifyContent ( const string *content )
 {
@@ -77,6 +78,7 @@ bool Code39::verifyContent ( const string *content )
 	}
 	return true;   
 }
+
 
 void Code39::encodeSymbol ( const string *data )
 {
@@ -119,6 +121,7 @@ void Code39::encodeSymbol ( const string *data )
 	}
 }
 
+
 void Code39::encodeStartStop ( )
 {
 	string returnedData;
@@ -131,6 +134,7 @@ void Code39::encodeStartStop ( )
 	BaseBarcode::addEncodedSymbol( startstopSymbol, 0 );
 	BaseBarcode::addEncodedSymbol( startstopSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
+
 
 void Code39::encodeQuietZones ( )
 {
@@ -146,6 +150,7 @@ void Code39::encodeQuietZones ( )
 	BaseBarcode::addEncodedSymbol( quietSymbol, 0 );
 	BaseBarcode::addEncodedSymbol( quietSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
+
 
 void Code39::encodeCheckCharacter ( const string *data )
 {
@@ -180,8 +185,8 @@ void Code39::encodeCheckCharacter ( const string *data )
 	BaseBarcode::addEncodedSymbol( aSymbol, BaseBarcode::encodedSymbols.size( ) );
 	
 	delete pattern;
-	
 }
+
 
 vector< int >* Code39::stringToVector( string aString )
 {
@@ -237,6 +242,7 @@ int Code39::checksumIntForChar( int aChar )
 	}
 	return 0;
 }
+
 
 char Code39::checksumCharForInt( int anInt )
 {
