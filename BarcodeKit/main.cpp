@@ -21,6 +21,7 @@
 #include "EAN8.h"
 #include "UPCA.h"
 #include "UPCE.h"
+#include "Code128.h"
 
 using namespace std;
 using namespace rapidxml;
@@ -38,8 +39,8 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("01240000034");
-	UPCE *testBarcode = new UPCE( testString );
+	string *testString = new string("AIM1234");
+	Code128 *testBarcode = new Code128( testString );
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
 	{
