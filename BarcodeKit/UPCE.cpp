@@ -94,7 +94,7 @@ bool UPCE::verifyContent ( const string *content )
 		return false;
 	}
 	
-	cout << "Passed content check" << endl;
+	//cout << "Passed content check" << endl;
 	return true;
 }
 
@@ -220,7 +220,7 @@ void UPCE::encodeCheckCharacter ( const string *data )
 	suffix = output4.str( );
 	output4.flush( );
 	string *newString = new string ( *data );
-	cout << "Check Digit: " << suffix << endl; //DEBUG
+	//cout << "Check Digit: " << suffix << endl; //DEBUG
 	newString->append( suffix );
 	encodeSymbol( newString );
 }
@@ -230,7 +230,7 @@ void UPCE::encodeSymbol ( const string *content )
 {
 	string *data = zeroSuppression( content );
 	string parityRef = content->substr( content->length( ) - 1,1 );
-	cout << parityRef << endl;
+	//cout << parityRef << endl;
 	string searchRef = "check";
 	searchRef = searchRef.append( parityRef );
 	xml_node< > *parityNode = parity_xml.first_node( )->first_node( )->next_sibling( )->first_node( searchRef.c_str( ) );
