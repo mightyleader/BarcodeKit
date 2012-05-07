@@ -91,7 +91,14 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 		//cout << accumulator << endl;
 	}
 	//cout << "Total: " << accumulator << endl;
-	const int result = 10 - (accumulator % 10 );
+	int result = 0;
+	if ( (accumulator % 10 ) == 0 ) 
+	{
+		result = 0;
+	} else 
+	{
+		result = 10 - ( accumulator % 10 );
+	}
 	
 	string suffix;
 	stringstream output4;

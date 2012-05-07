@@ -28,7 +28,7 @@ class BaseEANUPC : public BaseBarcode, public IGuardPatterns
 	virtual void encodeSymbol ( const string *data );
 	virtual void encodeQuietZones ( );
 	virtual void encodeStartStop( );
-	void encodeCheckCharacter ( const string *data );
+	virtual void encodeCheckCharacter ( const string *data );
 	virtual void setGuardPatterns( string left, string centre, string right ) = 0;
 	virtual vector< string > getGuardPatterns( ) = 0;
 	virtual void encodeGuardPatterns( ) = 0;

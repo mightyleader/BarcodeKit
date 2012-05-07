@@ -20,6 +20,10 @@
 #include "rapidxml.hpp"
 
 #define kASCII "ascii"
+#define kPatternA 1
+#define kPatternB 2
+#define kPatternC 3
+#define kPatternD 4
 
 UPCE::UPCE( string *data )
 {
@@ -27,7 +31,7 @@ UPCE::UPCE( string *data )
 	checkFilename = "CheckUPCE.xml";
 	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
 	parity_xml.parse< 0 >( getXMLToParse( &checkFilename ) );
-	setDataLength( 11 ); //variable length symbol
+	setDataLength( 11 );
 	
 	//verify
 	if ( verifyData( data ) ) 
@@ -37,11 +41,11 @@ UPCE::UPCE( string *data )
 		string right =  rightnode->value( );
 		xml_node< > *leftnode = gpnode->first_node( "guard_left" )->first_node( "UPCE" );
 		string left =  leftnode->value( );
-		setGuardPatterns( left, right );
-		
+		setGuardPatterns( left, "nothing", right );
 		
 		//check char
 		encodeCheckCharacter( data );
+		
 		//quiet zones
 		encodeQuietZones( );
 	}
@@ -57,13 +61,16 @@ UPCE::~UPCE( )
 	
 }
 
-void UPCE::zeroSuppression( const string *data )
-{
-	
-}
 
 bool UPCE::verifyContent ( const string *content )
 {
+	//leading zero
+	if ( content->at( 0 ) != '0' ) 
+	{
+		cout << "failed on leading zero" << endl;
+		return false;
+	}
+	//characters in range
 	string ASCIIstring = "0123456789";
 	set< char > setOfASCII;
 	set< char > ::iterator iter;
@@ -80,22 +87,156 @@ bool UPCE::verifyContent ( const string *content )
 			return false;
 		}
 	}
+	
+	//zero suppression
+	if ( !isZeroSuppresible( content ) ) 
+	{
+		return false;
+	}
+	
 	cout << "Passed content check" << endl;
 	return true;
 }
 
 
-void UPCE::encodeSymbol ( const string *data )
+string* UPCE::zeroSuppression( const string *data )
 {
-	string parityRef = data->substr( 0,1 );
-		
+	//** A little ugly but serviceable - replace with XML data storage/iteration?**
+	string *zsString = new string( );
+	switch ( getZSPattern( ) ) 
+	{
+		case kPatternA:
+			zsString->push_back( data->at( 1 ) );
+			zsString->push_back( data->at( 2 ) );
+			zsString->push_back( data->at( 3 ) );
+			zsString->push_back( data->at( 4 ) );
+			zsString->push_back( data->at( 5 ) );
+			zsString->push_back( data->at( 10 ) );
+			break;
+		case kPatternB:
+			zsString->push_back( data->at( 1 ) );
+			zsString->push_back( data->at( 2 ) );
+			zsString->push_back( data->at( 3 ) );
+			zsString->push_back( data->at( 4 ) );
+			zsString->push_back( data->at( 10 ) );
+			zsString->push_back( '4' );
+			break;
+		case kPatternC:
+			zsString->push_back( data->at( 1 ) );
+			zsString->push_back( data->at( 2 ) );
+			zsString->push_back( data->at( 8 ) );
+			zsString->push_back( data->at( 9 ) );
+			zsString->push_back( data->at( 10 ) );
+			zsString->push_back( data->at( 3 ) );
+			break;
+		case kPatternD:
+			zsString->push_back( data->at( 1 ) );
+			zsString->push_back( data->at( 2 ) );
+			zsString->push_back( data->at( 3 ) );
+			zsString->push_back( data->at( 9 ) );
+			zsString->push_back( data->at( 10 ) );
+			zsString->push_back( '3' );
+			break;
+		default:
+			break;
+	}
+	return zsString;
+}
+
+
+bool UPCE::isZeroSuppresible( const string *data )
+{
+	vector< int	> *test = stringToVector( *data );
+	if ( test->at( 6 ) == 0 && test->at( 7 ) == 0 && test->at( 8 ) == 0 && test->at( 9 ) == 0 && ( test->at( 10 ) >= 5 && test->at( 10 ) <= 9 ) ) 
+	{
+		setZSPattern( kPatternA );
+		return true;
+	}
+	if ( test->at( 5 ) == 0 && test->at( 6 ) == 0 && test->at( 7 ) == 0 && test->at( 8 ) == 0 && test->at( 9 ) == 0 ) 
+	{
+		setZSPattern( kPatternB );
+		return true;
+	}
+	if ( test->at( 4 ) == 0 && test->at( 5 ) == 0 && test->at( 6 ) == 0 && test->at( 7 ) == 0 && ( test->at( 3 ) >= 0 && test->at( 3 ) <= 2 ) ) 
+	{
+		setZSPattern( kPatternC );
+		return true;
+	}
+	if ( test->at( 4 ) == 0 && test->at( 5 ) == 0 && test->at( 6 ) == 0 && test->at( 7 ) == 0 && test->at( 8 ) == 0 && ( test->at( 3 ) >= 3 && test->at( 3 ) <= 9 ) ) 
+	{
+		setZSPattern( kPatternD );
+		return true;
+	}
+	delete test;
+	return false;
+}
+
+
+int UPCE::getZSPattern( )
+{
+	//** 1 = pattern A, 2 = pattern B, 3 = pattern C, 4 = pattern D
+	return zsPattern;
+}
+
+
+void UPCE::setZSPattern( int pattern )
+{
+	zsPattern = pattern;
+}
+
+
+void UPCE::encodeCheckCharacter ( const string *data )
+{
+	int accumulator = 0;
+	
+	for ( int yy = 0; yy < data->length( ); yy++ ) 
+	{
+		int index = data->length( ) - 1 - yy;
+		string tempString = data->substr( index ,1 );
+		char eachChar = tempString.at( 0 );
+		int eachINT = atoi( &eachChar );
+		if ( eachINT % 2 == 0 ) 
+		{
+			accumulator = accumulator + ( eachINT * 3 );
+		} 
+		else 
+		{
+			accumulator = accumulator + eachINT;
+		}
+	}
+
+	int result = 0;
+	if ( (accumulator % 10 ) == 0 ) 
+	{
+		result = 0;
+	} else 
+	{
+		result = 10 - ( accumulator % 10 );
+	}
+	
+	string suffix;
+	stringstream output4;
+	output4 << result;
+	suffix = output4.str( );
+	output4.flush( );
+	string *newString = new string ( *data );
+	cout << "Check Digit: " << suffix << endl; //DEBUG
+	newString->append( suffix );
+	encodeSymbol( newString );
+}
+
+
+void UPCE::encodeSymbol ( const string *content )
+{
+	string *data = zeroSuppression( content );
+	string parityRef = content->substr( content->length( ) - 1,1 );
+	cout << parityRef << endl;
 	string searchRef = "check";
 	searchRef = searchRef.append( parityRef );
 	xml_node< > *parityNode = parity_xml.first_node( )->first_node( )->next_sibling( )->first_node( searchRef.c_str( ) );
 	xml_node< > *node = NULL;
 	string parityPattern = parityNode->value( );
 	
-	//loop through the left side
 	for ( int zz = 0; zz < data->length( ); zz++ ) 
 	{
 		char aChar = data->at( zz );
@@ -149,7 +290,7 @@ void UPCE::encodeGuardPatterns( )
 				pos = 0;
 				break;
 			case 1:
-				le = 1;
+				le = 0;
 				pos = UPCE::getEncodedSymbols( ).size( );
 				break;
 			default:
@@ -161,7 +302,7 @@ void UPCE::encodeGuardPatterns( )
 }
 
 
-void UPCE::setGuardPatterns( string left, string right )
+void UPCE::setGuardPatterns( string left, string centre, string right )
 {
 	guardPatterns.push_back( left );
 	guardPatterns.push_back( right );

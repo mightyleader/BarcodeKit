@@ -23,22 +23,30 @@ using namespace rapidxml;
 class UPCE : public BaseEANUPC, public IGuardPatterns
 {
 public:
+	//**consructors**
 	UPCE( string *data );
 	~UPCE( );
 	void encodeSymbol( const string *data );
 	void encodeQuietZones( );
 	void encodeGuardPatterns( );
-	void setGuardPatterns( string left, string right );
+	void setGuardPatterns( string left, string centre, string right );
+	void encodeCheckCharacter( const string *data );
 	vector< string > getGuardPatterns( );
 	vector< int >* stringToVector( string aString );
 	bool verifyContent ( const string *content );
-	void zeroSuppression( const string *data );
+	
+	//**format specific methods**
+	string* zeroSuppression( const string *data );
+	bool isZeroSuppresible( const string *data );
+	int getZSPattern( );
+	void setZSPattern( int pattern );
 	
 	string filename;
 	string checkFilename;
 	vector< string >guardPatterns;
 	xml_document< > parsed_xml;
 	xml_document< > parity_xml;
+	int zsPattern;
 };
 
 #endif
