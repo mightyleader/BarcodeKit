@@ -39,8 +39,8 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("AIM1234");
-	Code39 *testBarcode = new Code39( testString );
+	string *testString = new string("444444444444");
+	EAN13 *testBarcode = new EAN13( testString );
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
 	{
