@@ -108,6 +108,8 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 	string *newString = new string ( *data );
 	//cout << "Check Digit: " << suffix << endl;
 	newString->append( suffix );
+	completedDataString = *newString;
+	cout << completedDataString << endl;
 	encodeSymbol( newString );
 }
 

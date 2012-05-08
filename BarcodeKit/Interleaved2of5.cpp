@@ -180,7 +180,7 @@ void Interleaved2of5::encodeCheckCharacter ( const string *data )
 	{
 		newString->insert( newString->begin( ), '0' );
 	}
-	
+	completeDataString = *newString;
 	encodeSymbol( newString );
 }
 

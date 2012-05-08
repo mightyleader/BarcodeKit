@@ -22,7 +22,6 @@ enum kRSBarcode
 	kRSUPCE			= 7
 };
 
-
 @interface RSBarcodeViewController : NSViewController
 {
 	BaseBarcode *barcode;
