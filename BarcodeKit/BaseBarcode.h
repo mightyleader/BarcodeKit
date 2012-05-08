@@ -57,6 +57,7 @@ class BaseBarcode
 	deque< Symbol* > encodedSymbols;
 	int checkcharModulus;
 	int dataLength;	
+	string completedDataString;
 };
 					 
 #endif

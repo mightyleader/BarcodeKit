@@ -35,7 +35,6 @@ class Interleaved2of5 : public BaseBarcode
 	string filename;
 	xml_document< > parsed_xml;
 	vector< int >* stringToVector( string aString );
-	string completeDataString;
 };
 
 #endif
