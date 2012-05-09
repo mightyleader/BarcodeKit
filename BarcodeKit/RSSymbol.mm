@@ -12,7 +12,7 @@
 
 @synthesize pattern = _pattern, startingElement = _startingElement, xWidth = _xWidth, drawPoint = _drawPoint, theType = _theType;
 
-- (id)initWithFrame:( NSRect )frame andData:( NSArray* )data startingWith:(enum kRSStarter) starter andX:( int ) xW ofType:(enum kRSType) type
+- (id)initWithFrame:( NSRect )frame andData:( NSArray* )data startingWith:(enum kRSStarter) starter andX:( CGFloat ) xW ofType:(enum kRSType) type
 {
     self = [super initWithFrame:frame];
     if ( self ) 
@@ -30,12 +30,12 @@
 {
     for ( int rr = 0; rr < _pattern.count; rr++ ) 
 	{
-		int element_width = _xWidth * [[_pattern objectAtIndex:rr] intValue];
+		CGFloat element_width = _xWidth * [[_pattern objectAtIndex:rr] intValue];
 		NSRect element = NSMakeRect( _drawPoint.x, _drawPoint.y, element_width, self.frame.size.height );
 		int loop_modulus = rr % 2;
 		if ( _theType == 2 ) 
 		{
-			[[NSColor whiteColor] set];
+			[[NSColor clearColor] set];
 		} 
 		else 
 		{
@@ -44,7 +44,7 @@
 				case 1:
 					if ( loop_modulus == 0 ) 
 					{
-						[[NSColor whiteColor] set];
+						[[NSColor clearColor] set];
 					}
 					if ( loop_modulus == 1) 
 					{
@@ -58,7 +58,7 @@
 					}
 					if ( loop_modulus == 1) 
 					{
-						[[NSColor whiteColor] set];
+						[[NSColor clearColor] set];
 					}
 					break;
 				default:

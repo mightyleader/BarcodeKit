@@ -31,6 +31,7 @@ enum kRSType
 @property ( nonatomic ) NSPoint drawPoint;
 @property ( nonatomic ) int theType;
 
-- (id)initWithFrame:( NSRect )frame andData:( NSArray* )data startingWith:(enum kRSStarter) starter andX:( int ) xW ofType:( enum kRSType ) type;
+- (id)initWithFrame:( NSRect )frame andData:( NSArray* )data startingWith:(enum kRSStarter) starter andX:( CGFloat ) xW ofType:( enum kRSType ) type;
 
 @end
+

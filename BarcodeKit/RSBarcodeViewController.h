@@ -22,12 +22,13 @@ enum kRSBarcode
 	kRSUPCE			= 7
 };
 
+
 @interface RSBarcodeViewController : NSViewController
 {
 	BaseBarcode *barcode;
 }
 
-@property ( nonatomic )	int	xWidth;
+@property ( nonatomic )	CGFloat	xWidth;
 @property ( nonatomic )	int	datamoduleCount;
 @property ( nonatomic )	int	nondatamoduleCount;
 @property ( nonatomic )	int	totalmoduleCount;
@@ -35,6 +36,7 @@ enum kRSBarcode
 @property ( nonatomic, retain ) NSView *theView;
 
 - (id)initWithType:( enum kRSBarcode ) BC andData:(NSString *)barcodeData atPosition:(NSRect)rect;
+- (void) humanReadableText:( enum kRSBarcode ) BC;
 
 
 @end
