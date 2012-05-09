@@ -222,8 +222,8 @@ void UPCE::encodeCheckCharacter ( const string *data )
 	string *newString = new string ( *data );
 	//cout << "Check Digit: " << suffix << endl; //DEBUG
 	newString->append( suffix );
+	cout << *newString << endl;
 	completedDataString = *newString;
-	cout << completedDataString << endl;
 	encodeSymbol( newString );
 }
 
@@ -231,8 +231,11 @@ void UPCE::encodeCheckCharacter ( const string *data )
 void UPCE::encodeSymbol ( const string *content )
 {
 	string *data = zeroSuppression( content );
+	string temp = *data;
+	temp.append( &completedDataString.at( 11 ) );
+	completedDataString = temp;
+	cout << completedDataString << endl;
 	string parityRef = content->substr( content->length( ) - 1,1 );
-	//cout << parityRef << endl;
 	string searchRef = "check";
 	searchRef = searchRef.append( parityRef );
 	xml_node< > *parityNode = parity_xml.first_node( )->first_node( )->next_sibling( )->first_node( searchRef.c_str( ) );
