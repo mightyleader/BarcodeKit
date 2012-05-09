@@ -185,47 +185,47 @@ void UPCE::setZSPattern( int pattern )
 }
 
 
-void UPCE::encodeCheckCharacter ( const string *data )
-{
-	int accumulator = 0;
-	
-	for ( int yy = 0; yy < data->length( ); yy++ ) 
-	{
-		int index = data->length( ) - 1 - yy;
-		string tempString = data->substr( index ,1 );
-		char eachChar = tempString.at( 0 );
-		int eachINT = atoi( &eachChar );
-		if ( eachINT % 2 == 0 ) 
-		{
-			accumulator = accumulator + ( eachINT * 3 );
-		} 
-		else 
-		{
-			accumulator = accumulator + eachINT;
-		}
-	}
-
-	int result = 0;
-	if ( (accumulator % 10 ) == 0 ) 
-	{
-		result = 0;
-	} else 
-	{
-		result = 10 - ( accumulator % 10 );
-	}
-	
-	string suffix;
-	stringstream output4;
-	output4 << result;
-	suffix = output4.str( );
-	output4.flush( );
-	string *newString = new string ( *data );
-	//cout << "Check Digit: " << suffix << endl; //DEBUG
-	newString->append( suffix );
-	cout << *newString << endl;
-	completedDataString = *newString;
-	encodeSymbol( newString );
-}
+//void UPCE::encodeCheckCharacter ( const string *data )
+//{
+//	int accumulator = 0;
+//	
+//	for ( int yy = 0; yy < data->length( ); yy++ ) 
+//	{
+//		int index = data->length( ) - 1 - yy;
+//		string tempString = data->substr( index ,1 );
+//		char eachChar = tempString.at( 0 );
+//		int eachINT = atoi( &eachChar );
+//		if ( eachINT % 2 == 0 ) 
+//		{
+//			accumulator = accumulator + ( eachINT * 3 );
+//		} 
+//		else 
+//		{
+//			accumulator = accumulator + eachINT;
+//		}
+//	}
+//
+//	int result = 0;
+//	if ( (accumulator % 10 ) == 0 ) 
+//	{
+//		result = 0;
+//	} else 
+//	{
+//		result = 10 - ( accumulator % 10 );
+//	}
+//	
+//	string suffix;
+//	stringstream output4;
+//	output4 << result;
+//	suffix = output4.str( );
+//	output4.flush( );
+//	string *newString = new string ( *data );
+//	//cout << "Check Digit: " << suffix << endl; //DEBUG
+//	newString->append( suffix );
+//	cout << *newString << endl;
+//	completedDataString = *newString;
+//	encodeSymbol( newString );
+//}
 
 
 void UPCE::encodeSymbol ( const string *content )

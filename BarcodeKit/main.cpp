@@ -39,12 +39,12 @@ vector<string> returnDOMValues( xml_node< > *node );
 
 int main( int argc, const char * argv[ ] )
 {
-	string *testString = new string("01234500007");
+	string *testString = new string("06510000432");
 	UPCE *testBarcode = new UPCE( testString );
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
 	{
-		testSymbol( testDeque.at( aa ) );
+		//testSymbol( testDeque.at( aa ) );
 	}
 	delete testString;
 	delete testBarcode;

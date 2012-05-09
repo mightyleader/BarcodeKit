@@ -67,49 +67,43 @@ void BaseEANUPC::encodeStartStop( )
 }
 
 void BaseEANUPC::encodeCheckCharacter ( const string *data )
-{
+{	
+	int multiples[12] = {1,3,1,3,1,3,1,3,1,3,1,3};
 	int accumulator = 0;
+	int count = NULL;
+	int dsl = data->length();
 	
-	for ( int yy = 0; yy < data->length( ); yy++ ) 
+	switch (dsl) 
 	{
-		//cout << yy << ". ";
-		int index = data->length( ) - 1 - yy;
-		string tempString = data->substr( index ,1 );
-		char eachChar = tempString.at( 0 );
-		int eachINT = atoi( &eachChar );
-		//cout << " " << eachINT << " * ";
-		if ( eachINT % 2 == 0 ) 
-		{
-			accumulator = accumulator + ( eachINT * 3 );
-			//cout << "3 = ";
-		} 
-		else 
-		{
-			accumulator = accumulator + eachINT;
-			//cout << "1 = ";
-		}
-		//cout << accumulator << endl;
-	}
-	//cout << "Total: " << accumulator << endl;
-	int result = 0;
-	if ( (accumulator % 10 ) == 0 ) 
-	{
-		result = 0;
-	} else 
-	{
-		result = 10 - ( accumulator % 10 );
+		case 12:
+			count = 0;
+			break;
+		case 11:
+			count = 1;
+			break;
+		case 7:
+			count = 5;
+			break;
+		default:
+			break;
 	}
 	
-	string suffix;
-	stringstream output4;
-	output4 << result;
-	suffix = output4.str( );
-	output4.flush( );
+	for ( int ii = 0; ii < dsl; ii++, count++) 
+	{
+		string tempstring  = data->substr(ii,1);
+		char aChar = tempstring.at(0);
+		accumulator += ( atoi(&aChar) * multiples[count] );
+	}
+	
+	int checkdigit = ( 10 - ( accumulator % 10 ) );
 	string *newString = new string ( *data );
-	//cout << "Check Digit: " << suffix << endl;
-	newString->append( suffix );
+	
+	stringstream output4;
+	output4 << checkdigit;
+	output4.flush( );
+	newString->append( output4.str( ) );
 	completedDataString = *newString;
-	cout << completedDataString << endl;
+	cout << "Amended string: " << completedDataString << endl;
 	encodeSymbol( newString );
 }
 
