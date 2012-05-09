@@ -96,6 +96,11 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 	}
 	
 	int checkdigit = ( 10 - ( accumulator % 10 ) );
+	if (checkdigit == 10) 
+	{
+		checkdigit = 0;
+	}
+	
 	string *newString = new string ( *data );
 	
 	stringstream output4;
