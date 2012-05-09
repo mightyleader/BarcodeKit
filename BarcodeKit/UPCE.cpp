@@ -232,7 +232,7 @@ void UPCE::encodeSymbol ( const string *content )
 {
 	string *data = zeroSuppression( content );
 	string temp = *data;
-	temp.append( &completedDataString.at( 11 ) );
+	temp.append( &completedDataString.at( completedDataString.length( ) - 1 ) );
 	completedDataString = temp;
 	cout << completedDataString << endl;
 	string parityRef = content->substr( content->length( ) - 1,1 );
