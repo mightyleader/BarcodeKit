@@ -222,6 +222,8 @@ void UPCE::encodeCheckCharacter ( const string *data )
 	string *newString = new string ( *data );
 	//cout << "Check Digit: " << suffix << endl; //DEBUG
 	newString->append( suffix );
+	completedDataString = *newString;
+	cout << completedDataString << endl;
 	encodeSymbol( newString );
 }
 

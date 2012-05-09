@@ -181,6 +181,7 @@ void Interleaved2of5::encodeCheckCharacter ( const string *data )
 		newString->insert( newString->begin( ), '0' );
 	}
 	completedDataString = *newString;
+	cout << completedDataString << endl;
 	encodeSymbol( newString );
 }
 
