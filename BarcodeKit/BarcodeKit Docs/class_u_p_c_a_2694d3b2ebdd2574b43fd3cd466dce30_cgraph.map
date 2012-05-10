@@ -1,0 +1,10 @@
+<area shape="rect" href="$class_u_p_c_a.html#02dce09e8b5f49a714408c8f1d506ae6" title="UPCA::encodeQuietZones" alt="" coords="160,81,341,108">
+<area shape="rect" href="$main_8cpp.html#6f3b5b8a49e957673689cebd1b45563e" title="getXMLToParse" alt="" coords="191,132,311,159">
+<area shape="rect" href="$class_u_p_c_a.html#5182fd49d6cc2d27a730eb0a51fc21e5" title="UPCA::setGuardPatterns" alt="" coords="164,183,337,209">
+<area shape="rect" href="$class_base_barcode.html#75503c2e616ec145493414bd9aa6dba2" title="BaseBarcode::addEncodedSymbol" alt="" coords="391,56,623,83">
+<area shape="rect" href="$main_8cpp.html#d531521b20f608dbbd316e7ceaefbf11" title="createSymbol" alt="" coords="455,107,559,133">
+<area shape="rect" href="$class_symbol.html#1aebdf4e184d7740991ad2048ab352a8" title="Symbol::setEncodedData" alt="" coords="680,5,856,32">
+<area shape="rect" href="$class_symbol.html#e2dbed2e1bf2f1004b4af276492ce42f" title="Symbol::setForcedPosition" alt="" coords="676,56,860,83">
+<area shape="rect" href="$class_symbol.html#e5b718a3ffe844087c0c312f4026bdd1" title="Symbol::setIntercharGap" alt="" coords="683,107,853,133">
+<area shape="rect" href="$class_symbol.html#2680f4cabbdc9584ed24415e90c62e92" title="Symbol::setLeadingElement" alt="" coords="673,157,863,184">
+<area shape="rect" href="$class_symbol.html#beadcd55e65aaaea05659ba6f4d14ff0" title="Symbol::setSymbolType" alt="" coords="684,208,852,235">

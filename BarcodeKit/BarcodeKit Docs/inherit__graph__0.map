@@ -1,0 +1,12 @@
+<area shape="rect" href="$class_base_barcode.html" title="BaseBarcode" alt="" coords="11,310,115,336">
+<area shape="rect" href="$class_base128.html" title="Base128" alt="" coords="189,360,264,387">
+<area shape="rect" href="$class_base_e_a_n_u_p_c.html" title="BaseEANUPC" alt="" coords="172,208,281,235">
+<area shape="rect" href="$class_codabar.html" title="Codabar" alt="" coords="189,310,264,336">
+<area shape="rect" href="$class_code39.html" title="Code39" alt="" coords="192,411,261,438">
+<area shape="rect" href="$class_interleaved2of5.html" title="Interleaved2of5" alt="" coords="169,259,284,286">
+<area shape="rect" href="$class_code128.html" title="Code128" alt="" coords="333,360,411,387">
+<area shape="rect" href="$class_e_a_n13.html" title="EAN13" alt="" coords="340,56,404,83">
+<area shape="rect" href="$class_e_a_n8.html" title="EAN8" alt="" coords="344,183,400,210">
+<area shape="rect" href="$class_i_guard_patterns.html" title="IGuardPatterns" alt="" coords="5,107,120,134">
+<area shape="rect" href="$class_u_p_c_a.html" title="UPCA" alt="" coords="197,107,256,134">
+<area shape="rect" href="$class_u_p_c_e.html" title="UPCE" alt="" coords="197,56,256,83">

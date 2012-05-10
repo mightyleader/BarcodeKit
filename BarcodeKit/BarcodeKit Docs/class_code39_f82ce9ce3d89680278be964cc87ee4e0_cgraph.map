@@ -1,0 +1,7 @@
+<area shape="rect" href="$class_base_barcode.html#75503c2e616ec145493414bd9aa6dba2" title="BaseBarcode::addEncodedSymbol" alt="" coords="247,56,479,83">
+<area shape="rect" href="$class_base_barcode.html#102e3f6ff408bcddad6e24805770b966" title="BaseBarcode::createSymbol" alt="" coords="265,107,460,133">
+<area shape="rect" href="$class_symbol.html#1aebdf4e184d7740991ad2048ab352a8" title="Symbol::setEncodedData" alt="" coords="536,5,712,32">
+<area shape="rect" href="$class_symbol.html#e2dbed2e1bf2f1004b4af276492ce42f" title="Symbol::setForcedPosition" alt="" coords="532,56,716,83">
+<area shape="rect" href="$class_symbol.html#e5b718a3ffe844087c0c312f4026bdd1" title="Symbol::setIntercharGap" alt="" coords="539,107,709,133">
+<area shape="rect" href="$class_symbol.html#2680f4cabbdc9584ed24415e90c62e92" title="Symbol::setLeadingElement" alt="" coords="529,157,719,184">
+<area shape="rect" href="$class_symbol.html#beadcd55e65aaaea05659ba6f4d14ff0" title="Symbol::setSymbolType" alt="" coords="540,208,708,235">
