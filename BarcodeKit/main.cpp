@@ -44,7 +44,7 @@ int main( int argc, const char * argv[ ] )
 	deque< Symbol* > testDeque = testBarcode->getEncodedSymbols( );
 	for (int aa = 0; aa < testDeque.size( ); aa++) 
 	{
-		//testSymbol( testDeque.at( aa ) );
+		testSymbol( testDeque.at( aa ) );
 	}
 	delete testString;
 	delete testBarcode;
