@@ -68,3 +68,7 @@ BarcodeKit/Desktop/CardSharp Media and UI Work/Screen Shot 2012-03-13 at 9.55.55
 BarcodeKit/Desktop/CardSharp Media and UI Work/ee6c6e24110560679f6951b7e3b57de20272b331_m.jpg
 
 BarcodeKit/df.xml
+
+# Build artifacts
+BarcodeKit/*.o
+BarcodeKit/test_run
