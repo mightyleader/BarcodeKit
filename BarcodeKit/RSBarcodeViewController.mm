@@ -84,17 +84,16 @@
 	int nondata_accumulator = 0, data_accumulator = 0, icgap = 0, local_accum = 0;
 	for ( int gg = 0; gg < testDeque.size( ); gg++ ) 
 	{
-		vector< int > *pattern;
-		pattern = testDeque.at( gg )->getEncodedData( );
+		const vector< int > &pattern = testDeque.at( gg )->getEncodedData( );
 		switch ( testDeque.at( gg )->getSymbolType( ) ) 
 		{
 			case 0: //add up all the element widths for data
 				icgap = testDeque.at( gg )->getIntercharGap( );
 				data_accumulator += icgap;
 				local_accum = 0;
-				for ( int hh = 0; hh < pattern->size( ); hh++ ) 
+				for ( int hh = 0; hh < pattern.size( ); hh++ ) 
 				{
-					int result = pattern->at( hh );
+					int result = pattern.at( hh );
 					local_accum += result;
 					data_accumulator = data_accumulator + result;
 				}
@@ -108,9 +107,9 @@
 				icgap = testDeque.at( gg )->getIntercharGap( );
 				nondata_accumulator += icgap;
 				local_accum = 0;
-				for ( int hh = 0; hh < pattern->size( ); hh++ ) 
+				for ( int hh = 0; hh < pattern.size( ); hh++ ) 
 				{
-					int result = pattern->at( hh );
+					int result = pattern.at( hh );
 					local_accum += result;
 					nondata_accumulator += result;
 				}
@@ -137,10 +136,11 @@
 		//Work out the width for each one, loop through vector
 		NSMutableArray *symbolPattern = [[NSMutableArray alloc] init];
 		CGFloat width_accum = 0;
-		for ( int jj = 0; jj < testDeque.at( ii )->getEncodedData( )->size( ); jj++ ) 
+		const vector< int > &symData = testDeque.at( ii )->getEncodedData( );
+		for ( int jj = 0; jj < symData.size( ); jj++ ) 
 		{
-			width_accum += testDeque.at( ii )->getEncodedData( )->at( jj );
-			[symbolPattern addObject:[NSNumber numberWithInt:testDeque.at( ii )->getEncodedData( )->at( jj )]];
+			width_accum += symData.at( jj );
+			[symbolPattern addObject:[NSNumber numberWithInt:symData.at( jj )]];
 		}
 		width_accum += testDeque.at( ii )->getIntercharGap( );
 		

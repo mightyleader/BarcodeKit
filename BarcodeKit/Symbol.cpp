@@ -17,7 +17,11 @@ using namespace std;
 
 Symbol::Symbol( )
 {
-	
+	leadingElement = 0;
+	intercharacterGap = 0;
+	symbolType = 0;
+	forcePosition = 0;
+	asciiEquivalent = 0;
 }
 
 Symbol::Symbol( int characterData[ ], int dataLength )
@@ -69,14 +73,12 @@ int Symbol::getSymbolType( )
 	return Symbol::symbolType;
 }
 
-vector<int>* Symbol::getEncodedData( )
+const vector<int>& Symbol::getEncodedData( )
 {
-	vector<int> *tempVector = new vector<int>;
-	tempVector->insert( tempVector->begin( ), Symbol::encodedSymbol.begin( ), Symbol::encodedSymbol.end( ) );
-	return tempVector;
+	return Symbol::encodedSymbol;
 }
 
-int Symbol::getForcePostion( )
+int Symbol::getForcePosition( )
 {
 	return Symbol::forcePosition;
 }
@@ -138,8 +140,7 @@ void Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &dest
 		destination.resize( sourceLength );				//resize it as we don't know that source and destination are same size
 		for ( iter = 0; iter < sourceLength; iter++ )	//loop through the source assigning to the destination
 		{
-			int holdingVar = source[ iter ];
-			destination.assign( iter, holdingVar );
+			destination[ iter ] = source[ iter ];
 		}
 		if ( destination.capacity( ) == 0 )
 		{

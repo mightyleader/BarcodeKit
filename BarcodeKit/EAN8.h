@@ -10,7 +10,6 @@
 #define BarcodeKit_EAN8_h
 
 #include "BaseEANUPC.h"
-#include "IGuardPatterns.h"
 #include "Symbol.h"
 #include "rapidxml.hpp"
 #include <vector>
@@ -20,7 +19,7 @@
 using namespace std;
 using namespace rapidxml;
 
-class EAN8 : public BaseEANUPC, public IGuardPatterns
+class EAN8 : public BaseEANUPC
 {
 public:
 	EAN8( string *data );

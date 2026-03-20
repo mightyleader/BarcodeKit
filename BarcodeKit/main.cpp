@@ -12,6 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cstring>
 #include "Symbol.h"
 #include "rapidxml.hpp"
 #include "Codabar.h"
@@ -72,11 +73,12 @@ void testSymbol( Symbol *testSymbol ) //Output the values of a Symbol object to 
 	cout << "Symbol Type: " << testSymbol->getSymbolType( ) << endl;
 	cout << "Leading Element: " << testSymbol->getLeadingElement( ) << endl;
 	cout << "IC Gap: " << testSymbol->getIntercharGap( ) << endl;
-	cout << "Force Position: " << testSymbol->getForcePostion( ) << endl;
+	cout << "Force Position: " << testSymbol->getForcePosition( ) << endl;
 	cout << "Data: ";
-	for ( int ii = 0; ii < testSymbol->getEncodedData( )->size( ); ii++ ) 
+	const vector<int>& encodedData = testSymbol->getEncodedData( );
+	for ( int ii = 0; ii < encodedData.size( ); ii++ ) 
 	{
-		cout << testSymbol->getEncodedData( )->at( ii ) << " ";
+		cout << encodedData.at( ii ) << " ";
 	}
 	cout << endl;
 	cout << endl;
@@ -84,11 +86,8 @@ void testSymbol( Symbol *testSymbol ) //Output the values of a Symbol object to 
 
 char* getXMLToParse( string *fileTitle ) //Safely get the XML file into a c_string
 {
-	char *ft = new char[ fileTitle->length( ) + 1 ];
-	strcpy( ft, fileTitle->c_str( ) );
-	ifstream xmlfile ( ft, ios::in );
+	ifstream xmlfile ( fileTitle->c_str( ), ios::in );
 	
-	vector<string> xmlcontent;
 	string xmlentry;
 	string xmltoparse;
 	
@@ -96,18 +95,13 @@ char* getXMLToParse( string *fileTitle ) //Safely get the XML file into a c_stri
 	{
 		while ( getline( xmlfile, xmlentry ) )			//get the data
 		{
-			xmlcontent.push_back( xmlentry + "\n" );	//add data to vector
+			xmltoparse += xmlentry + "\n";				//add data to string
 		}
 		xmlfile.close( );
-		
-		for ( int i = 0; i < xmlcontent.size( ); i++ )	//iterate through vector into string
-		{
-			xmltoparse += xmlcontent[ i ];
-		}
 	}
 	
 	char * cxml = new char [ xmltoparse.size( ) + 1 ];	//copy string into cstring
-	strcpy ( cxml, xmltoparse.c_str( ) );
+	strncpy ( cxml, xmltoparse.c_str( ), xmltoparse.size( ) + 1 );
 	
 	return cxml;
 }
@@ -133,7 +127,7 @@ void testDOM ( xml_node< > *node ) //Test contents of a single named or unnamed 
 
 vector<string> returnDOMValues( xml_node< > *node ) //Return contents of a single named or unnamed node in the DOM
 {
-	vector<string> *returnValues = new vector<string>;
+	vector<string> returnValues;
 	//cout << node->name( ) << ":";
 	xml_node< > *datanode = node->first_node( );
 	while ( datanode != 0 ) 
@@ -144,7 +138,7 @@ vector<string> returnDOMValues( xml_node< > *node ) //Return contents of a singl
 		{
 			//cout << childnode->name( ) << " is " << childnode->value( );
 			string aValue = childnode->value( );
-			returnValues->push_back( aValue );
+			returnValues.push_back( aValue );
 			childnode = childnode->next_sibling( );
 		}
 		datanode = datanode->next_sibling( );
@@ -152,7 +146,7 @@ vector<string> returnDOMValues( xml_node< > *node ) //Return contents of a singl
 	//cout << endl;
 	node = node->next_sibling( );
 	
-	return *returnValues;
+	return returnValues;
 }
 
 

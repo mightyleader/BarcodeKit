@@ -14,6 +14,7 @@
 #include <deque>
 #include <fstream>
 #include <sstream>
+#include <cstring>
 #include "rapidxml.hpp"
 
 #pragma mark --Con/Destructors--
@@ -143,11 +144,8 @@ Symbol* BaseBarcode::createSymbol( int st, int ic, int le, int fp, vector<int> *
 
 char* BaseBarcode::getXMLToParse( string *fileTitle ) //Safely get the XML file into a c_string
 {
-	char *ft = new char[ fileTitle->length( ) + 1 ];
-	strcpy( ft, fileTitle->c_str( ) );
-	ifstream xmlfile ( ft, ios::in );
+	ifstream xmlfile ( fileTitle->c_str( ), ios::in );
 	
-	vector<string> xmlcontent;
 	string xmlentry;
 	string xmltoparse;
 	
@@ -155,18 +153,13 @@ char* BaseBarcode::getXMLToParse( string *fileTitle ) //Safely get the XML file 
 	{
 		while ( getline( xmlfile, xmlentry ) )			//get the data
 		{
-			xmlcontent.push_back( xmlentry + "\n" );	//add data to vector
+			xmltoparse += xmlentry + "\n";				//add data to string
 		}
 		xmlfile.close( );
-		
-		for ( int i = 0; i < xmlcontent.size( ); i++ )	//iterate through vector into string
-		{
-			xmltoparse += xmlcontent[ i ];
-		}
 	}
 	
 	char * cxml = new char [ xmltoparse.size( ) + 1 ];	//copy string into cstring
-	strcpy ( cxml, xmltoparse.c_str( ) );
+	strncpy ( cxml, xmltoparse.c_str( ), xmltoparse.size( ) + 1 );
 	
 	return cxml;
 }
@@ -174,7 +167,7 @@ char* BaseBarcode::getXMLToParse( string *fileTitle ) //Safely get the XML file 
 
 vector<string> BaseBarcode::returnDOMValues( rapidxml::xml_node< > *node ) //Return contents of a single named or unnamed node in the DOM
 {
-	vector<string> *returnValues = new vector<string>;
+	vector<string> returnValues;
 	//cout << node->name( ) << ":";
 	rapidxml::xml_node< > *datanode = node->first_node( );
 	while ( datanode != 0 ) 
@@ -185,7 +178,7 @@ vector<string> BaseBarcode::returnDOMValues( rapidxml::xml_node< > *node ) //Ret
 		{
 			//cout << childnode->name( ) << " is " << childnode->value( );
 			string aValue = childnode->value( );
-			returnValues->push_back( aValue );
+			returnValues.push_back( aValue );
 			childnode = childnode->next_sibling( );
 		}
 		datanode = datanode->next_sibling( );
@@ -193,5 +186,5 @@ vector<string> BaseBarcode::returnDOMValues( rapidxml::xml_node< > *node ) //Ret
 	//cout << endl;
 	node = node->next_sibling( );
 	
-	return *returnValues;
+	return returnValues;
 }

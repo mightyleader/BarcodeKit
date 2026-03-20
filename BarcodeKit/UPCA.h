@@ -10,7 +10,6 @@
 #define BarcodeKit_UPCA_h
 
 #include "BaseEANUPC.h"
-#include "IGuardPatterns.h"
 #include "Symbol.h"
 #include "rapidxml.hpp"
 #include <vector>
@@ -20,7 +19,7 @@
 using namespace std;
 using namespace rapidxml;
 
-class UPCA : public BaseEANUPC, public IGuardPatterns
+class UPCA : public BaseEANUPC
 {
 public:
 	UPCA( string *data );

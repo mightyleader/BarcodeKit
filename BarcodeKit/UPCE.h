@@ -10,7 +10,6 @@
 #define BarcodeKit_UPCE_h
 
 #include "BaseEANUPC.h"
-#include "IGuardPatterns.h"
 #include "Symbol.h"
 #include "rapidxml.hpp"
 #include <vector>
@@ -20,7 +19,7 @@
 using namespace std;
 using namespace rapidxml;
 
-class UPCE : public BaseEANUPC, public IGuardPatterns
+class UPCE : public BaseEANUPC
 {
 public:
 	//**consructors**

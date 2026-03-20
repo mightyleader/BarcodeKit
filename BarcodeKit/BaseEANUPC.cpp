@@ -70,7 +70,7 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 {	
 	int multiples[12] = {1,3,1,3,1,3,1,3,1,3,1,3};
 	int accumulator = 0;
-	int count = NULL;
+	int count = 0;
 	int dsl = data->length();
 	
 	switch (dsl) 
@@ -110,5 +110,6 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 	completedDataString = *newString;
 	cout << "Amended string: " << completedDataString << endl;
 	encodeSymbol( newString );
+	delete newString;
 }
 

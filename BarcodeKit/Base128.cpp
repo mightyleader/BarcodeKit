@@ -103,8 +103,8 @@ void Base128::encodeSymbol ( const string *data )
 			node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( ASCIIRef.c_str( ) );
 			returnedData = returnDOMValues( node );
 			charSetToRef = kSetC;
-			firstDigit = NULL;
-			secondDigit = NULL;
+			firstDigit = '\0';
+			secondDigit = '\0';
 			++jj;
 		}
 		else //*** A or B Char Sets ***

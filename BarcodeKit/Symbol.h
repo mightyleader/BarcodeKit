@@ -31,8 +31,8 @@ class Symbol
 	int getLeadingElement( );
 	int getIntercharGap( );
 	int getSymbolType( );
-	vector<int>* getEncodedData( );
-	int getForcePostion( );
+	const vector<int>& getEncodedData( );
+	int getForcePosition( );
 	int getAsciiEquivalent( );
 	string getTextEquivalent( );
 	
