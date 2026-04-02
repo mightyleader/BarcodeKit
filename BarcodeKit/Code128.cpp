@@ -117,7 +117,7 @@ bool Code128::verifyContent ( const string *content )
 	for ( int nn = 0; nn < content->length( ); nn++ ) 
 	{
 		char testChar = content->at( nn );
-		if ( ( int )testChar < 0 && ( int )testChar > 127 ) 
+		if ( ( int )testChar < 0 || ( int )testChar > 127 ) 
 		{
 			cerr << "You are trying to encode " << content->at( nn ) << " which is not supported by this barcode type." << endl;
 			return false;

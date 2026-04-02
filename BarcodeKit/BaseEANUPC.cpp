@@ -70,10 +70,10 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 {	
 	int multiples[12] = {1,3,1,3,1,3,1,3,1,3,1,3};
 	int accumulator = 0;
-	int count = NULL;
+	int count = 0;
 	int dsl = data->length();
-	
-	switch (dsl) 
+
+	switch (dsl)
 	{
 		case 12:
 			count = 0;
@@ -85,6 +85,7 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 			count = 5;
 			break;
 		default:
+			count = 0;
 			break;
 	}
 	

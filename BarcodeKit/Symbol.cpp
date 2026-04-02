@@ -139,7 +139,7 @@ void Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &dest
 		for ( iter = 0; iter < sourceLength; iter++ )	//loop through the source assigning to the destination
 		{
 			int holdingVar = source[ iter ];
-			destination.assign( iter, holdingVar );
+			destination[ iter ] = holdingVar;
 		}
 		if ( destination.capacity( ) == 0 )
 		{

@@ -77,11 +77,11 @@ void Interleaved2of5::encodeSymbol ( const string *data )
 	string returnedData1, returnedData2;
 	string ASCII = kASCII;
 	
-	for ( int ii = 0; ii < data->length( ); ii++ ) 
+	for ( int ii = 0; ii + 1 < (int)data->length( ); ii += 2 )
 	{
 		char char1 = data->at( ii );
 		char char2 = data->at( ii + 1 );
-		
+
 		string suffix1, suffix2;
 		stringstream output1, output2;
 		output1 << ( int )char1;
@@ -94,23 +94,22 @@ void Interleaved2of5::encodeSymbol ( const string *data )
 		string search1 = ASCII.append( suffix1 );
 		ASCII = kASCII;
 		string search2 = ASCII.append( suffix2 );
-		
+
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( search1.c_str( ) )->first_node( "Interleaved" );
 		returnedData1 = node->value( );
 		node = parsed_xml.first_node( )->first_node( )->next_sibling( "data_encoding" )->first_node( search2.c_str( ) )->first_node( "Interleaved" );
 		returnedData2 = node->value( );
-		
+
 		string combinedData;
-		for ( int xx = 0; xx < returnedData1.length( ); xx++ ) 
+		for ( int xx = 0; xx < returnedData1.length( ); xx++ )
 		{
 			combinedData.append( 1, returnedData1.at( xx ) );
 			combinedData.append( 1, returnedData2.at( xx ) );
 		}
-		
+
 		vector< int > *pattern = stringToVector( combinedData );
 		Symbol *iSymbol = createSymbol( 0, 0, 1, 0, pattern );
 		BaseBarcode::addEncodedSymbol( iSymbol );
-		ii++;
 	}
 }
 
@@ -150,38 +149,37 @@ void Interleaved2of5::encodeQuietZones ( )
 void Interleaved2of5::encodeCheckCharacter ( const string *data )
 {
 	int accum1 = 0, accum2 = 0;
-	for ( int cc = data->length( ) - 1; cc > 0; cc-- ) 
+	// Sum digits at odd positions from the right (1st, 3rd, 5th, ...)
+	for ( int cc = (int)data->length( ) - 1; cc >= 0; cc -= 2 )
 	{
 		char eachOdd = data->at( cc );
-		accum1 = accum1 + atoi( &eachOdd ) ;
-		cc--;
+		accum1 = accum1 + atoi( &eachOdd );
 	}
-	for ( int cc = data->length( ) - 1; cc > 0; cc--)
+	// Sum digits at even positions from the right (2nd, 4th, 6th, ...)
+	for ( int cc = (int)data->length( ) - 2; cc >= 0; cc -= 2 )
 	{
-		cc--;
 		char eachEven = data->at( cc );
 		accum2 = accum2 + atoi( &eachEven );
 	}
-	
-	accum1 = ( accum1 * 3 ) + accum2;
-	int checkchar = (char)kModulus -  ( accum1 % kModulus );
-	
+
+	int total = ( accum1 * 3 ) + accum2;
+	int checkchar = ( kModulus - ( total % kModulus ) ) % kModulus;
+
 	string suffix;
 	stringstream output;
 	output << checkchar;
 	suffix = output.str( );
 	output.flush( );
-	
+
 	string *newString = new string ( *data );
-	
+
 	newString->append( suffix );
-	
-	if ( newString->length( ) % 2 == 1 ) 
+
+	if ( newString->length( ) % 2 == 1 )
 	{
 		newString->insert( newString->begin( ), '0' );
 	}
 	completedDataString = *newString;
-	cout << completedDataString << endl;
 	encodeSymbol( newString );
 }
 
