@@ -17,35 +17,32 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-using namespace rapidxml;
-
 class UPCE : public BaseEANUPC, public IGuardPatterns
 {
 public:
-	//**consructors**
-	UPCE( string *data );
+	//**constructors**
+	UPCE( std::string *data );
 	~UPCE( );
-	void encodeSymbol( const string *data );
+	void encodeSymbol( const std::string *data );
 	void encodeQuietZones( );
 	void encodeGuardPatterns( );
-	void setGuardPatterns( string left, string centre, string right );
-	//void encodeCheckCharacter( const string *data );
-	vector< string > getGuardPatterns( );
-	vector< int >* stringToVector( string aString );
-	bool verifyContent ( const string *content );
-	
+	void setGuardPatterns( std::string left, std::string centre, std::string right );
+	//void encodeCheckCharacter( const std::string *data );
+	std::vector< std::string > getGuardPatterns( );
+	std::vector< int >* stringToVector( std::string aString );
+	bool verifyContent ( const std::string *content );
+
 	//**format specific methods**
-	string* zeroSuppression( const string *data );
-	bool isZeroSuppresible( const string *data );
+	std::string* zeroSuppression( const std::string *data );
+	bool isZeroSuppresible( const std::string *data );
 	int getZSPattern( );
 	void setZSPattern( int pattern );
-	
-	string filename;
-	string checkFilename;
-	vector< string >guardPatterns;
-	xml_document< > parsed_xml;
-	xml_document< > parity_xml;
+
+	std::string filename;
+	std::string checkFilename;
+	std::vector< std::string > guardPatterns;
+	rapidxml::xml_document< > parsed_xml;
+	rapidxml::xml_document< > parity_xml;
 	int zsPattern;
 };
 

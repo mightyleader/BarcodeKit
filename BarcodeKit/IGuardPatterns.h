@@ -12,13 +12,11 @@
 #include <vector> 
 #include <string>
 
-using namespace std;
-
 class IGuardPatterns
 {
 	public:
-	virtual void setGuardPatterns( string left, string centre, string right ) = 0;
-	virtual vector< string > getGuardPatterns( ) = 0;
+	virtual void setGuardPatterns( std::string left, std::string centre, std::string right ) = 0;
+	virtual std::vector< std::string > getGuardPatterns( ) = 0;
 	virtual void encodeGuardPatterns( ) = 0;
 };
 

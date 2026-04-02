@@ -1,6 +1,6 @@
 //
 //  Symbol.cpp
-//	Object represents a single character, data or non-data, storing it's attributes and encoding
+//	Object represents a single character, data or non-data, storing its attributes and encoding
 //  BarcodeKit
 //
 //  Created by Robert Stearn on 13.04.12.
@@ -13,11 +13,11 @@
 
 using namespace std;
 
-#pragma mark --Constructor methods--
+// MARK: -- Constructor methods --
 
 Symbol::Symbol( )
 {
-	
+
 }
 
 Symbol::Symbol( int characterData[ ], int dataLength )
@@ -48,37 +48,34 @@ Symbol::Symbol( int characterData[ ], int dataLength, int startWith, int gapWidt
 
 Symbol::~Symbol( )
 {
-	
 }
 
 
-#pragma mark --Accessor methods--
+// MARK: -- Accessor methods --
 
 int Symbol::getLeadingElement( )
 {
-	return Symbol::leadingElement;
+	return leadingElement;
 }
 
 int Symbol::getIntercharGap( )
 {
-	return Symbol::intercharacterGap;
+	return intercharacterGap;
 }
 
 int Symbol::getSymbolType( )
 {
-	return Symbol::symbolType;
+	return symbolType;
 }
 
 vector<int>* Symbol::getEncodedData( )
 {
-	vector<int> *tempVector = new vector<int>;
-	tempVector->insert( tempVector->begin( ), Symbol::encodedSymbol.begin( ), Symbol::encodedSymbol.end( ) );
-	return tempVector;
+	return &encodedSymbol;	// non-owning pointer — caller must not delete
 }
 
-int Symbol::getForcePostion( )
+int Symbol::getForcePosition( )
 {
-	return Symbol::forcePosition;
+	return forcePosition;
 }
 
 int Symbol::getAsciiEquivalent( )
@@ -88,46 +85,46 @@ int Symbol::getAsciiEquivalent( )
 
 string Symbol::getTextEquivalent( )
 {
-	return  textEquivalent;
+	return textEquivalent;
 }
 
 void Symbol::setLeadingElement( int le )
 {
-	Symbol::leadingElement = le;
+	leadingElement = le;
 }
 
 void Symbol::setIntercharGap( int icg )
 {
-	Symbol::intercharacterGap = icg;
+	intercharacterGap = icg;
 }
 
 void Symbol::setSymbolType( int st )
 {
-	Symbol::symbolType = st;
+	symbolType = st;
 }
 
 void Symbol::setEncodedData( vector<int> const& ec )
 {
-    Symbol::encodedSymbol = ec;
+	encodedSymbol = ec;
 }
 
 void Symbol::setForcedPosition( int fp )
 {
-	Symbol::forcePosition = fp;
+	forcePosition = fp;
 }
 
 void Symbol::setAsciiEquivalent( int ae )
 {
-	Symbol::asciiEquivalent = ae;
+	asciiEquivalent = ae;
 }
 
 void Symbol::setTextEquivalent( string &te )
 {
-	Symbol::textEquivalent = te;
+	textEquivalent = te;
 }
 
 
-#pragma mark --Private internal methods--
+// MARK: -- Private internal methods --
 
 void Symbol::arrayIntoVector( int source[ ], int sourceLength, vector<int> &destination )
 {

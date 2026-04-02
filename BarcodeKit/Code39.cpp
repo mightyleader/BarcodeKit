@@ -27,7 +27,7 @@ using namespace rapidxml;
 
 Code39::Code39( string *data )
 {
-	BaseBarcode::setCheckcharModulus( kModulus );
+	BaseBarcode::setCheckCharModulus( kModulus );
 	filename = "Basic.xml";
 	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
 	setDataLength( -1 ); //variable length symbol
@@ -130,9 +130,10 @@ void Code39::encodeStartStop ( )
 	
 	vector< int > *pattern = stringToVector( returnedData );
 	
-	Symbol *startstopSymbol = createSymbol( 4, 1, 1, 0, pattern );
-	BaseBarcode::addEncodedSymbol( startstopSymbol, 0 );
-	BaseBarcode::addEncodedSymbol( startstopSymbol, BaseBarcode::encodedSymbols.size( ) );
+	Symbol *startSymbol = createSymbol( 4, 1, 1, 0, pattern );
+	BaseBarcode::addEncodedSymbol( startSymbol, 0 );
+	Symbol *stopSymbol = createSymbol( 4, 1, 1, 0, pattern );
+	BaseBarcode::addEncodedSymbol( stopSymbol, BaseBarcode::encodedSymbols.size( ) );
 }
 
 
@@ -162,7 +163,7 @@ void Code39::encodeCheckCharacter ( const string *data )
 		accumulator = accumulator + returnedINT;
 	}
 	
-	int modulo = accumulator % BaseBarcode::getCheckcharModulus( );
+	int modulo = accumulator % BaseBarcode::getCheckCharModulus( );
 	char returnChar = checksumCharForInt( modulo );
 	
 	xml_node< > *node = NULL;

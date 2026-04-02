@@ -25,7 +25,7 @@ using namespace rapidxml;
 
 Interleaved2of5::Interleaved2of5( string *data )
 {
-	BaseBarcode::setCheckcharModulus( kModulus );
+	BaseBarcode::setCheckCharModulus( kModulus );
 	filename = "Basic.xml";
 	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
 	setDataLength( -1 ); //variable length symbol

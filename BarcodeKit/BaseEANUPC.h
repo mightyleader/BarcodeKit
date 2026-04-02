@@ -17,20 +17,18 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-
 class BaseEANUPC : public BaseBarcode, public IGuardPatterns
 {
 	public:
 	BaseEANUPC( );
 	~BaseEANUPC( );
-	bool verifyContent ( const string *content );
-	virtual void encodeSymbol ( const string *data );
+	bool verifyContent ( const std::string *content );
+	virtual void encodeSymbol ( const std::string *data );
 	virtual void encodeQuietZones ( );
 	virtual void encodeStartStop( );
-	virtual void encodeCheckCharacter ( const string *data );
-	virtual void setGuardPatterns( string left, string centre, string right ) = 0;
-	virtual vector< string > getGuardPatterns( ) = 0;
+	virtual void encodeCheckCharacter ( const std::string *data );
+	virtual void setGuardPatterns( std::string left, std::string centre, std::string right ) = 0;
+	virtual std::vector< std::string > getGuardPatterns( ) = 0;
 	virtual void encodeGuardPatterns( ) = 0;
 };
 

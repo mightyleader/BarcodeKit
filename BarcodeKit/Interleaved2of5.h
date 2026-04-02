@@ -16,25 +16,21 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-using namespace rapidxml;
-
 class Interleaved2of5 : public BaseBarcode
 {
 	public:
-	Interleaved2of5( string *data );
+	Interleaved2of5( std::string *data );
 	~Interleaved2of5( );
-	bool verifyContent ( const string *content );
-	void encodeCheckCharacter ( const string *data );
-	void encodeSymbol ( const string *data );
+	bool verifyContent ( const std::string *content );
+	void encodeCheckCharacter ( const std::string *data );
+	void encodeSymbol ( const std::string *data );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	
-	
+
 	private:
-	string filename;
-	xml_document< > parsed_xml;
-	vector< int >* stringToVector( string aString );
+	std::string filename;
+	rapidxml::xml_document< > parsed_xml;
+	std::vector< int >* stringToVector( std::string aString );
 };
 
 #endif

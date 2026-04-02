@@ -17,25 +17,22 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-using namespace rapidxml;
-
 class UPCA : public BaseEANUPC, public IGuardPatterns
 {
 public:
-	UPCA( string *data );
+	UPCA( std::string *data );
 	~UPCA( );
-	void encodeSymbol( const string *data );
+	void encodeSymbol( const std::string *data );
 	void encodeQuietZones( );
 	void encodeGuardPatterns( );
-	void setGuardPatterns( string left, string centre, string right );
-	vector< string > getGuardPatterns( );
-	vector< int >* stringToVector( string aString );
-	
-	string filename;
-	string parityFilename;
-	vector< string >guardPatterns;
-	xml_document< > parsed_xml;
+	void setGuardPatterns( std::string left, std::string centre, std::string right );
+	std::vector< std::string > getGuardPatterns( );
+	std::vector< int >* stringToVector( std::string aString );
+
+	std::string filename;
+	std::string parityFilename;
+	std::vector< std::string > guardPatterns;
+	rapidxml::xml_document< > parsed_xml;
 };
 
 #endif

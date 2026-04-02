@@ -16,25 +16,22 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-using namespace rapidxml;
-
 class Codabar : public BaseBarcode
 {
 	public:
 	Codabar( );
-	Codabar( string *data );
+	Codabar( std::string *data );
 	~Codabar( );
-	bool verifyContent ( const string *content );
-	void encodeSymbol ( const string *data );
+	bool verifyContent ( const std::string *content );
+	void encodeSymbol ( const std::string *data );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	void encodeCheckCharacter ( const string *data );
-	
+	void encodeCheckCharacter ( const std::string *data );
+
 	private:
-	string filename;
-	xml_document< > parsed_xml;
-	vector< int >* stringToVector( string aString );
+	std::string filename;
+	rapidxml::xml_document< > parsed_xml;
+	std::vector< int >* stringToVector( std::string aString );
 };
 
 #endif

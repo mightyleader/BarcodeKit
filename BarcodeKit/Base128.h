@@ -16,18 +16,15 @@
 #include <string> 
 #include "rapidxml.hpp"
 
-using namespace std;
-using namespace rapidxml;
-
 class Base128 : public BaseBarcode
 {
 	protected:
 	Base128( );
 	~Base128( );
-	virtual void encodeSymbol ( const string *data );
+	virtual void encodeSymbol ( const std::string *data );
 	virtual int returnCheckCharASCII(  ) = 0;
-	
-	vector< int >* checkCharList;
+
+	std::vector< int >* checkCharList;
 };
 
 #endif

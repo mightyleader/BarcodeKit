@@ -30,7 +30,7 @@ using namespace rapidxml;
 Code128::Code128( string *data )
 {
 	checkCharList = new vector< int >;
-	BaseBarcode::setCheckcharModulus( kModulus );
+	BaseBarcode::setCheckCharModulus( kModulus );
 	filename = "Base128.xml";
 	parsed_xml.parse< 0 >( getXMLToParse( &filename ) );
 	setDataLength( -1 ); //variable length symbol
@@ -82,8 +82,8 @@ Code128::Code128( string *data )
 
 Code128::~Code128( )
 {
-	checkCharList = NULL;
 	delete checkCharList;
+	checkCharList = NULL;
 }
 
 

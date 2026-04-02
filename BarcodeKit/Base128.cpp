@@ -25,7 +25,7 @@
 using namespace std;
 using namespace rapidxml;
 
-#pragma mark --Con/Destructors--
+// MARK: -- Con/Destructors --
 
 Base128::Base128( )
 {
@@ -39,7 +39,7 @@ Base128::~Base128( )
 }
 
 
-#pragma mark --Methods--
+// MARK: -- Methods --
 
 void Base128::encodeSymbol ( const string *data )
 {

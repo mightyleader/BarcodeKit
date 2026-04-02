@@ -17,26 +17,23 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-using namespace rapidxml;
-
 class EAN13 : public BaseEANUPC, public IGuardPatterns
 {
 public:
-	EAN13( string *data );
+	EAN13( std::string *data );
 	~EAN13( );
-	void encodeSymbol( const string *data );
+	void encodeSymbol( const std::string *data );
 	void encodeQuietZones( );
 	void encodeGuardPatterns( );
-	void setGuardPatterns( string left, string centre, string right );
-	vector< string > getGuardPatterns( );
-	vector< int >* stringToVector( string aString );
-	
-	string filename;
-	string parityFilename;
-	vector< string >guardPatterns;
-	xml_document< > parsed_xml;
-	xml_document< > parity_xml;
+	void setGuardPatterns( std::string left, std::string centre, std::string right );
+	std::vector< std::string > getGuardPatterns( );
+	std::vector< int >* stringToVector( std::string aString );
+
+	std::string filename;
+	std::string parityFilename;
+	std::vector< std::string > guardPatterns;
+	rapidxml::xml_document< > parsed_xml;
+	rapidxml::xml_document< > parity_xml;
 };
 
 #endif

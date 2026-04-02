@@ -21,7 +21,7 @@
 
 BaseEANUPC::BaseEANUPC ( )
 {
-	BaseBarcode::setCheckcharModulus( 10 );
+	BaseBarcode::setCheckCharModulus( 10 );
 }
 
 BaseEANUPC::~BaseEANUPC ( )
@@ -47,7 +47,6 @@ bool BaseEANUPC::verifyContent ( const string *content )
 			return false;
 		}
 	}
-	cout << "Passed content check" << endl;
 	return true;
 }
 
@@ -109,7 +108,6 @@ void BaseEANUPC::encodeCheckCharacter ( const string *data )
 	output4.flush( );
 	newString->append( output4.str( ) );
 	completedDataString = *newString;
-	cout << "Amended string: " << completedDataString << endl;
 	encodeSymbol( newString );
 }
 

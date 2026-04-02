@@ -16,26 +16,23 @@
 #include <deque> 
 #include <string> 
 
-using namespace std;
-using namespace rapidxml;
-
 class Code128 : public Base128
 {
 	public:
-	Code128( string *data );
+	Code128( std::string *data );
 	~Code128( );
 	int getSet( char first );
-	bool verifyContent ( const string *content );
+	bool verifyContent ( const std::string *content );
 	void encodeStartStop ( );
 	void encodeQuietZones ( );
-	void encodeCheckCharacter ( const string *data );
+	void encodeCheckCharacter ( const std::string *data );
 	int returnCheckCharASCII(  );
-	
+
 	private:
-	string filename;
-	xml_document< > parsed_xml;
-	vector< int >* stringToVector( string aString );
-	
+	std::string filename;
+	rapidxml::xml_document< > parsed_xml;
+	std::vector< int >* stringToVector( std::string aString );
+
 };
 
 #endif

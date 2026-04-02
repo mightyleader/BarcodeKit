@@ -72,7 +72,7 @@ void testSymbol( Symbol *testSymbol ) //Output the values of a Symbol object to 
 	cout << "Symbol Type: " << testSymbol->getSymbolType( ) << endl;
 	cout << "Leading Element: " << testSymbol->getLeadingElement( ) << endl;
 	cout << "IC Gap: " << testSymbol->getIntercharGap( ) << endl;
-	cout << "Force Position: " << testSymbol->getForcePostion( ) << endl;
+	cout << "Force Position: " << testSymbol->getForcePosition( ) << endl;
 	cout << "Data: ";
 	for ( int ii = 0; ii < testSymbol->getEncodedData( )->size( ); ii++ ) 
 	{

@@ -67,7 +67,6 @@ bool UPCE::verifyContent ( const string *content )
 	//leading zero
 	if ( content->at( 0 ) != '0' ) 
 	{
-		cout << "failed on leading zero" << endl;
 		return false;
 	}
 	//characters in range
